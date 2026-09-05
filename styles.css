@@ -55,6 +55,8 @@ h2 { font-size: clamp(1.5rem, 3vw, 2.1rem); line-height: 1.08; letter-spacing: -
 .showcase-heading .eyebrow { margin-bottom: .3rem; }
 .screenshots { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; align-items: start; }
 .screenshot { min-width: 0; margin: 0; }
+.image-trigger { display: block; width: 100%; padding: 0; border: 0; background: transparent; cursor: zoom-in; }
+.image-trigger:focus-visible { outline: 2px solid var(--blue); outline-offset: 4px; }
 .screenshot img { display: block; width: 100%; height: auto; }
 .home-shot, .instance-shot, .discovery-shot { min-height: 0; }
 .screenshot figcaption { display: grid; gap: .2rem; padding-top: .75rem; }
@@ -68,6 +70,11 @@ h2 { font-size: clamp(1.5rem, 3vw, 2.1rem); line-height: 1.08; letter-spacing: -
 .status { padding: 3rem; border: 1px solid var(--edge); border-radius: 1.2rem; background: linear-gradient(130deg, rgba(77, 95, 210, .2), rgba(10, 13, 24, .38)); }
 .status h2 { max-width: 650px; margin-bottom: .9rem; }
 .status > p:last-child { margin-bottom: 0; max-width: 640px; }
+.image-dialog { width: min(94vw, 1280px); max-width: none; max-height: 92vh; margin: auto; padding: 0; overflow: visible; border: 1px solid var(--edge); border-radius: .9rem; background: #080b13; box-shadow: 0 28px 90px rgba(0, 0, 0, .65); }
+.image-dialog::backdrop { background: rgba(3, 5, 10, .88); backdrop-filter: blur(5px); }
+.image-dialog img { display: block; max-width: 100%; max-height: 88vh; margin: 0 auto; object-fit: contain; }
+.dialog-close { position: absolute; top: .7rem; right: .7rem; display: grid; width: 2.2rem; height: 2.2rem; place-items: center; border: 1px solid rgba(255,255,255,.18); border-radius: 50%; color: white; background: rgba(7, 10, 18, .8); font-size: 1.5rem; line-height: 1; cursor: pointer; }
+.dialog-close:hover { background: rgba(55, 69, 142, .95); }
 footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .8rem 2rem; max-width: 1160px; margin: 0 auto; padding: 1.5rem 2rem 2.4rem; border-top: 1px solid var(--edge); color: var(--muted); font-size: .78rem; }
 
 @media (max-width: 720px) {

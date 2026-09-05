@@ -52,15 +52,21 @@
         </div>
         <div class="screenshots">
           <figure class="screenshot home-shot">
-            <img src="./assets/homescreen.png" alt="Hyperix home screen showing the instance library" />
+            <button class="image-trigger" type="button" data-image="./assets/homescreen.png" data-alt="Hyperix home screen showing the instance library" aria-haspopup="dialog" aria-label="Open Instance library screenshot">
+              <img src="./assets/homescreen.png" alt="Hyperix home screen showing the instance library" />
+            </button>
             <figcaption><strong>Instance library</strong><span>Keep separate Minecraft setups visible at a glance.</span></figcaption>
           </figure>
           <figure class="screenshot instance-shot">
-            <img src="./assets/instance-detail.png" alt="Hyperix instance detail screen with installed content controls" />
+            <button class="image-trigger" type="button" data-image="./assets/instance-detail.png" data-alt="Hyperix instance detail screen with installed content controls" aria-haspopup="dialog" aria-label="Open Instance detail screenshot">
+              <img src="./assets/instance-detail.png" alt="Hyperix instance detail screen with installed content controls" />
+            </button>
             <figcaption><strong>Instance detail</strong><span>Inspect content and local files in the context of one instance.</span></figcaption>
           </figure>
           <figure class="screenshot discovery-shot">
-            <img src="./assets/discovery.png" alt="Hyperix discovery screen showing Modrinth project results" />
+            <button class="image-trigger" type="button" data-image="./assets/discovery.png" data-alt="Hyperix discovery screen showing Modrinth project results" aria-haspopup="dialog" aria-label="Open Modrinth discovery screenshot">
+              <img src="./assets/discovery.png" alt="Hyperix discovery screen showing Modrinth project results" />
+            </button>
             <figcaption><strong>Modrinth discovery</strong><span>Browse compatible community projects through the official API.</span></figcaption>
           </figure>
         </div>
@@ -84,10 +90,31 @@
       </section>
     </main>
 
+    <dialog class="image-dialog" aria-label="Screenshot preview">
+      <button class="dialog-close" type="button" aria-label="Close image preview">×</button>
+      <img src="" alt="" />
+    </dialog>
+
     <footer>
       <span>Hyperix Launcher</span>
       <span>Independent Minecraft launcher project</span>
       <a href="https://github.com/Hadeverl4/Hyperix-Launcher/issues">Project contact <span aria-hidden="true">↗</span></a>
     </footer>
+    <script>
+      const dialog = document.querySelector('.image-dialog');
+      const dialogImage = dialog.querySelector('img');
+      document.querySelectorAll('.image-trigger').forEach((trigger) => {
+        trigger.addEventListener('click', () => {
+          dialogImage.src = trigger.dataset.image;
+          dialogImage.alt = trigger.dataset.alt;
+          dialog.showModal();
+        });
+      });
+      dialog.querySelector('.dialog-close').addEventListener('click', () => dialog.close());
+      dialog.addEventListener('click', (event) => {
+        if (event.target === dialog) dialog.close();
+      });
+      dialog.addEventListener('close', () => { dialogImage.src = ''; });
+    </script>
   </body>
 </html>
