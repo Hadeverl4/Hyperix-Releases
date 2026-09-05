@@ -25,7 +25,7 @@ main { max-width: 1160px; margin: 0 auto; padding: 1.4rem 2rem 6rem; }
 nav { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
 .brand { display: inline-flex; gap: .7rem; align-items: center; color: var(--ink); font-size: 1rem; font-weight: 760; text-decoration: none; letter-spacing: -.02em; }
 .brand em { color: var(--muted); font-style: normal; font-weight: 500; }
-.brand-mark { display: grid; width: 2rem; height: 2rem; place-items: center; border: 1px solid var(--edge); border-radius: .65rem; background: linear-gradient(145deg, #8796ff, #4858d8); box-shadow: 0 8px 25px rgba(80, 100, 255, .25); }
+.brand-mark { width: 2.15rem; height: 2.15rem; object-fit: contain; filter: drop-shadow(0 6px 12px rgba(80, 100, 255, .35)); }
 .source-link, footer a { color: var(--muted); font-size: .875rem; text-decoration: none; }
 .source-link:hover, footer a:hover { color: var(--ink); }
 
