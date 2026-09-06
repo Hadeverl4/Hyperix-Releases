@@ -74,6 +74,15 @@ h2 { font-size: clamp(1.5rem, 3vw, 2.1rem); line-height: 1.08; letter-spacing: -
 .status { padding: 3rem; border: 1px solid var(--edge); border-radius: 1.2rem; background: linear-gradient(130deg, rgba(77, 95, 210, .2), rgba(10, 13, 24, .38)); }
 .status h2 { max-width: 650px; margin-bottom: .9rem; }
 .status > p:last-child { margin-bottom: 0; max-width: 640px; }
+.policy-page { max-width: 920px; }
+.policy-page nav { margin-bottom: 4.5rem; }
+.policy-document { max-width: 760px; }
+.policy-document h1 { font-size: clamp(2.7rem, 6vw, 5.1rem); }
+.policy-document h2 { margin: 3rem 0 .8rem; font-size: clamp(1.35rem, 2.7vw, 1.8rem); }
+.policy-document p { color: var(--muted); font-size: 1rem; line-height: 1.75; }
+.policy-document .lede { color: var(--ink); }
+.policy-document a { color: #b8c4ff; }
+.policy-document strong { color: var(--ink); }
 .image-dialog { width: min(94vw, 1280px); max-width: none; max-height: 92vh; margin: auto; padding: 0; overflow: visible; border: 1px solid var(--edge); border-radius: .9rem; background: #080b13; box-shadow: 0 28px 90px rgba(0, 0, 0, .65); }
 .image-dialog::backdrop { background: rgba(3, 5, 10, .88); backdrop-filter: blur(5px); }
 .image-dialog img { display: block; max-width: 100%; max-height: 88vh; margin: 0 auto; object-fit: contain; }

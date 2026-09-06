@@ -1,5 +1,5 @@
-# Hyperix Releases
+# Hyperix landing page
 
-Public signed update artifacts for Hyperix Launcher. Source code is maintained in a separate private repository.
+This directory is a static landing page for the Hyperix Website URL used in external project applications. It has no server, analytics, API key, or build step.
 
-Hyperix Launcher was previously developed under the name HyperKraft. The project has been rebranded to Hyperix Launcher, while some legacy technical identifiers and update infrastructure may temporarily retain the HyperKraft name for compatibility with existing installations.
+The repository includes `.github/workflows/website-pages.yml`, which publishes this directory through GitHub Pages after GitHub Pages is enabled for the repository. Use the resulting `https://<account>.github.io/<repository>/` address in external application forms. If the source repository remains private, publish this unchanged directory from a small public website repository instead; do not expose launcher secrets or private development files.
