@@ -40,6 +40,10 @@ h1 span { display: block; color: #aeb9ff; }
 .button:hover { transform: translateY(-2px); }
 .primary { color: white; background: linear-gradient(135deg, #7888ff, #5262e5); box-shadow: 0 12px 30px rgba(73, 91, 230, .28); }
 .secondary { border: 1px solid var(--edge); color: var(--ink); background: rgba(255,255,255,.035); }
+.download-notice { max-width: 760px; margin-top: 1.25rem; padding: .9rem 1rem; border: 1px solid rgba(246, 190, 74, .34); border-radius: .8rem; background: rgba(111, 79, 18, .17); color: var(--muted); font-size: .78rem; line-height: 1.55; }
+.download-notice strong { color: #ffe09a; font-size: .8rem; }
+.download-notice p { margin: .35rem 0 .55rem; }
+.download-notice code { display: block; overflow-wrap: anywhere; color: #d9e2ff; font-size: .7rem; }
 
 .principles { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid var(--edge); border-radius: 1.2rem; overflow: hidden; background: var(--surface); backdrop-filter: blur(14px); }
 .principles article { min-height: 235px; padding: 1.6rem; border-right: 1px solid var(--edge); }
