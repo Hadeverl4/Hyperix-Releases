@@ -5,16 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="Hyperix Launcher support and security information." />
     <title>Support — Hyperix Launcher</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
+    <div class="bg-glow-orb bg-glow-1" aria-hidden="true"></div>
+    <div class="bg-glow-orb bg-glow-2" aria-hidden="true"></div>
+
     <main class="policy-page">
       <nav aria-label="Primary navigation">
-        <a class="brand" href="./index.html" aria-label="Hyperix Launcher home"><img class="brand-mark" src="./assets/hyperix-logo.png" alt="" aria-hidden="true" /><span>Hyperix <em>Launcher</em></span></a>
-        <a class="source-link" href="./privacy.html">Privacy</a>
+        <a class="brand" href="./index.html" aria-label="Hyperix Launcher home">
+          <img class="brand-mark" src="./assets/hyperix-logo.png" alt="" aria-hidden="true" />
+          <span>Hyperix <em>Launcher</em></span>
+        </a>
+        <div class="nav-right">
+          <a class="source-link" href="./privacy.html">Privacy</a>
+        </div>
       </nav>
+
       <article class="policy-copy policy-document">
-        <p class="eyebrow">Support</p>
+        <div class="eyebrow-badge" style="margin-bottom: 1.2rem;">
+          <p class="eyebrow">Support</p>
+        </div>
         <h1>Help us reproduce the issue safely.</h1>
         <p class="lede">Hyperix is maintained independently. Please include the launcher version, Windows version, relevant Minecraft version/loader, reproducible steps, and a sanitized error message.</p>
 
@@ -31,6 +45,14 @@
         <p>Only download Hyperix from this page, the official GitHub Releases page, or Microsoft Store after it is certified. Do not accept executables or account-login instructions from third parties.</p>
       </article>
     </main>
-    <footer><span>Hyperix Launcher</span><a href="./privacy.html">Privacy</a><a href="./terms.html">Terms</a><a href="./index.html">Home</a></footer>
+
+    <footer>
+      <span>Hyperix Launcher</span>
+      <div class="footer-links">
+        <a href="./privacy.html">Privacy</a>
+        <a href="./terms.html">Terms</a>
+        <a href="./index.html">Home</a>
+      </div>
+    </footer>
   </body>
 </html>
