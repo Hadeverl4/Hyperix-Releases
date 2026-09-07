@@ -785,59 +785,201 @@ h1 span {
   color: #ffffff;
 }
 
-/* Image Preview Dialog Modal */
+/* Image Preview Dialog Modal with Cinematic Opening Effect */
 .image-dialog {
-  width: min(94vw, 1340px);
-  max-width: none;
-  max-height: 92vh;
-  margin: auto;
+  border: none;
+  background: transparent;
   padding: 0;
+  max-width: min(94vw, 1260px);
+  width: min(94vw, 1260px);
+  max-height: 94vh;
+  margin: auto;
   overflow: visible;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: var(--radius-lg);
-  background: #070a14;
-  box-shadow: 0 35px 120px rgba(0, 0, 0, 0.85), 0 0 0 1px rgba(99, 102, 241, 0.2);
+  opacity: 0;
+  transform: scale(0.84) translateY(24px);
+  transition: opacity 0.34s cubic-bezier(0.16, 1, 0.3, 1), transform 0.34s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.image-dialog.is-open {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+.image-dialog.is-closing {
+  opacity: 0;
+  transform: scale(0.9) translateY(12px);
+  transition: opacity 0.24s ease-in, transform 0.24s ease-in;
 }
 
 .image-dialog::backdrop {
-  background: rgba(3, 5, 12, 0.88);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: rgba(4, 6, 14, 0);
+  backdrop-filter: blur(0px);
+  -webkit-backdrop-filter: blur(0px);
+  transition: background 0.34s ease, backdrop-filter 0.34s ease;
 }
 
-.image-dialog img {
-  display: block;
-  max-width: 100%;
-  max-height: 86vh;
-  margin: 0 auto;
-  object-fit: contain;
-  border-radius: var(--radius-lg);
+.image-dialog.is-open::backdrop {
+  background: rgba(4, 6, 14, 0.88);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.dialog-shell {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background: rgba(12, 17, 34, 0.88);
+  backdrop-filter: blur(30px) saturate(190%);
+  -webkit-backdrop-filter: blur(30px) saturate(190%);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: var(--radius-xl);
+  box-shadow: 0 35px 100px -20px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(99, 102, 241, 0.3), 0 0 45px rgba(99, 102, 241, 0.15);
+  overflow: hidden;
+  padding: 1.25rem 1.5rem;
+}
+
+.dialog-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.dialog-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.dialog-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.dialog-index-counter {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #a5b4fc;
+  background: rgba(99, 102, 241, 0.18);
+  border: 1px solid rgba(129, 140, 248, 0.3);
+  padding: 0.2rem 0.6rem;
+  border-radius: 9999px;
 }
 
 .dialog-close {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 2.4rem;
-  height: 2.4rem;
+  width: 2.2rem;
+  height: 2.2rem;
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 50%;
   color: #ffffff;
-  background: rgba(15, 23, 42, 0.85);
-  backdrop-filter: blur(8px);
-  font-size: 1.4rem;
+  background: rgba(255, 255, 255, 0.08);
+  font-size: 1.2rem;
   line-height: 1;
   cursor: pointer;
   transition: all 0.2s ease;
-  z-index: 10;
 }
 
 .dialog-close:hover {
   background: var(--accent-blue);
-  transform: rotate(90deg);
+  border-color: var(--accent-blue);
+  transform: rotate(90deg) scale(1.08);
+}
+
+.dialog-viewport {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.2rem;
+  position: relative;
+}
+
+.dialog-nav-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #ffffff;
+  cursor: pointer;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  flex-shrink: 0;
+}
+
+.dialog-nav-arrow:hover {
+  background: var(--accent-blue);
+  border-color: var(--accent-blue);
+  transform: scale(1.1);
+  box-shadow: 0 0 24px rgba(99, 102, 241, 0.55);
+}
+
+.dialog-nav-arrow:active {
+  transform: scale(0.95);
+}
+
+.dialog-stage {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #040711;
+}
+
+.dialog-main-img {
+  display: block;
+  max-width: 100%;
+  max-height: 68vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  transition: opacity 0.22s cubic-bezier(0.16, 1, 0.3, 1), transform 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: scale(1);
+  opacity: 1;
+}
+
+.dialog-main-img.switching {
+  opacity: 0;
+  transform: scale(0.96);
+}
+
+.dialog-bottombar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.dialog-caption {
+  margin: 0;
+  color: var(--ink-secondary);
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
+.dialog-hint {
+  color: var(--ink-muted);
+  font-size: 0.76rem;
+  white-space: nowrap;
 }
 
 /* Footer */

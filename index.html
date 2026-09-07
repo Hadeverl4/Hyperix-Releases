@@ -90,7 +90,7 @@
         <div class="screenshots">
           <figure class="screenshot home-shot">
             <div class="screenshot-frame">
-              <button class="image-trigger" type="button" data-image="./assets/homescreen.png" data-alt="Hyperix home screen showing the instance library" aria-haspopup="dialog" aria-label="Open Instance library screenshot">
+              <button class="image-trigger" type="button" data-index="0" data-image="./assets/homescreen.png" data-title="Instance library" data-desc="Keep separate Minecraft setups visible at a glance." data-alt="Hyperix home screen showing the instance library" aria-haspopup="dialog" aria-label="Open Instance library screenshot">
                 <img src="./assets/homescreen.png" alt="Hyperix home screen showing the instance library" loading="lazy" />
               </button>
             </div>
@@ -102,7 +102,7 @@
 
           <figure class="screenshot instance-shot">
             <div class="screenshot-frame">
-              <button class="image-trigger" type="button" data-image="./assets/instance-detail.png" data-alt="Hyperix instance detail screen with installed content controls" aria-haspopup="dialog" aria-label="Open Instance detail screenshot">
+              <button class="image-trigger" type="button" data-index="1" data-image="./assets/instance-detail.png" data-title="Instance detail" data-desc="Inspect content and local files in the context of one instance." data-alt="Hyperix instance detail screen with installed content controls" aria-haspopup="dialog" aria-label="Open Instance detail screenshot">
                 <img src="./assets/instance-detail.png" alt="Hyperix instance detail screen with installed content controls" loading="lazy" />
               </button>
             </div>
@@ -114,7 +114,7 @@
 
           <figure class="screenshot discovery-shot">
             <div class="screenshot-frame">
-              <button class="image-trigger" type="button" data-image="./assets/discovery.png" data-alt="Hyperix discovery screen showing Modrinth project results" aria-haspopup="dialog" aria-label="Open Modrinth discovery screenshot">
+              <button class="image-trigger" type="button" data-index="2" data-image="./assets/discovery.png" data-title="Modrinth discovery" data-desc="Browse compatible community projects through the official API." data-alt="Hyperix discovery screen showing Modrinth project results" aria-haspopup="dialog" aria-label="Open Modrinth discovery screenshot">
                 <img src="./assets/discovery.png" alt="Hyperix discovery screen showing Modrinth project results" loading="lazy" />
               </button>
             </div>
@@ -144,9 +144,32 @@
       </section>
     </main>
 
+    <!-- Animated Lightbox Dialog -->
     <dialog class="image-dialog" aria-label="Screenshot preview">
-      <button class="dialog-close" type="button" aria-label="Close image preview">✕</button>
-      <img src="" alt="" />
+      <div class="dialog-shell">
+        <div class="dialog-topbar">
+          <div class="dialog-meta">
+            <span class="dialog-badge"><span class="pulse-dot" aria-hidden="true"></span> <span id="dialog-title-text">Instance library</span></span>
+            <span class="dialog-index-counter" id="dialog-counter">1 / 3</span>
+          </div>
+          <button class="dialog-close" type="button" aria-label="Close image preview">✕</button>
+        </div>
+
+        <div class="dialog-viewport">
+          <button class="dialog-nav-arrow prev-arrow" type="button" id="dialog-prev" aria-label="Previous screenshot">‹</button>
+          
+          <div class="dialog-stage">
+            <img class="dialog-main-img" id="dialog-img" src="" alt="" />
+          </div>
+
+          <button class="dialog-nav-arrow next-arrow" type="button" id="dialog-next" aria-label="Next screenshot">›</button>
+        </div>
+
+        <div class="dialog-bottombar">
+          <p class="dialog-caption" id="dialog-desc-text">Keep separate Minecraft setups visible at a glance.</p>
+          <span class="dialog-hint">Press ‹ › arrows or Esc to close</span>
+        </div>
+      </div>
     </dialog>
 
     <footer>
@@ -166,21 +189,108 @@
 
     <!-- Dialog & Interaction Scripts -->
     <script>
-      // Screenshot Modal
+      // Screenshot Data
+      const screenshotsData = [
+        {
+          image: './assets/homescreen.png',
+          title: 'Instance library',
+          desc: 'Keep separate Minecraft setups visible at a glance.',
+          alt: 'Hyperix home screen showing the instance library'
+        },
+        {
+          image: './assets/instance-detail.png',
+          title: 'Instance detail',
+          desc: 'Inspect content and local files in the context of one instance.',
+          alt: 'Hyperix instance detail screen with installed content controls'
+        },
+        {
+          image: './assets/discovery.png',
+          title: 'Modrinth discovery',
+          desc: 'Browse compatible community projects through the official API.',
+          alt: 'Hyperix discovery screen showing Modrinth project results'
+        }
+      ];
+
+      let currentIndex = 0;
       const dialog = document.querySelector('.image-dialog');
-      const dialogImage = dialog.querySelector('img');
+      const dialogImg = document.getElementById('dialog-img');
+      const titleText = document.getElementById('dialog-title-text');
+      const descText = document.getElementById('dialog-desc-text');
+      const counterText = document.getElementById('dialog-counter');
+      const prevBtn = document.getElementById('dialog-prev');
+      const nextBtn = document.getElementById('dialog-next');
+
+      function updateDialogContent(index, animateSwitch = true) {
+        currentIndex = (index + screenshotsData.length) % screenshotsData.length;
+        const item = screenshotsData[currentIndex];
+
+        if (animateSwitch) {
+          dialogImg.classList.add('switching');
+          setTimeout(() => {
+            dialogImg.src = item.image;
+            dialogImg.alt = item.alt;
+            titleText.textContent = item.title;
+            descText.textContent = item.desc;
+            counterText.textContent = `${currentIndex + 1} / ${screenshotsData.length}`;
+            dialogImg.classList.remove('switching');
+          }, 110);
+        } else {
+          dialogImg.src = item.image;
+          dialogImg.alt = item.alt;
+          titleText.textContent = item.title;
+          descText.textContent = item.desc;
+          counterText.textContent = `${currentIndex + 1} / ${screenshotsData.length}`;
+        }
+      }
+
+      function openModal(index) {
+        updateDialogContent(index, false);
+        dialog.showModal();
+        document.body.style.overflow = 'hidden';
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            dialog.classList.add('is-open');
+          });
+        });
+      }
+
+      function closeModal() {
+        dialog.classList.remove('is-open');
+        dialog.classList.add('is-closing');
+        setTimeout(() => {
+          dialog.close();
+          dialog.classList.remove('is-closing');
+          document.body.style.overflow = '';
+        }, 240);
+      }
+
       document.querySelectorAll('.image-trigger').forEach((trigger) => {
         trigger.addEventListener('click', () => {
-          dialogImage.src = trigger.dataset.image;
-          dialogImage.alt = trigger.dataset.alt;
-          dialog.showModal();
+          const idx = parseInt(trigger.dataset.index || '0', 10);
+          openModal(idx);
         });
       });
-      dialog.querySelector('.dialog-close').addEventListener('click', () => dialog.close());
+
+      dialog.querySelector('.dialog-close').addEventListener('click', closeModal);
+      prevBtn.addEventListener('click', () => updateDialogContent(currentIndex - 1));
+      nextBtn.addEventListener('click', () => updateDialogContent(currentIndex + 1));
+
       dialog.addEventListener('click', (event) => {
-        if (event.target === dialog) dialog.close();
+        if (event.target === dialog) closeModal();
       });
-      dialog.addEventListener('close', () => { dialogImage.src = ''; });
+
+      // Keyboard Controls
+      window.addEventListener('keydown', (e) => {
+        if (!dialog.open) return;
+        if (e.key === 'ArrowLeft') {
+          updateDialogContent(currentIndex - 1);
+        } else if (e.key === 'ArrowRight') {
+          updateDialogContent(currentIndex + 1);
+        } else if (e.key === 'Escape') {
+          e.preventDefault();
+          closeModal();
+        }
+      });
 
       // Copy SHA-256 Hash
       const copyBtn = document.getElementById('copy-hash-btn');
