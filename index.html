@@ -26,7 +26,7 @@
         </a>
         <div class="nav-right">
           <a class="source-link" href="#changelog">Changelog</a>
-          <span class="release-badge"><span class="pulse-dot" aria-hidden="true"></span> v1.1.8 Live</span>
+          <span class="release-badge" id="live-version-badge"><span class="pulse-dot" aria-hidden="true"></span> <span id="live-version-text">v1.1.8 Live</span></span>
           <a class="source-link" href="https://github.com/Hadeverl4/Hyperix-Launcher">Source code <span aria-hidden="true">↗</span></a>
         </div>
       </nav>
@@ -39,7 +39,7 @@
         <p class="lede">Hyperix helps players create and manage isolated Minecraft instances, organize local content, and understand what belongs to each setup.</p>
         
         <div class="actions">
-          <a class="button primary" href="https://github.com/Hadeverl4/Hyperix-Releases/releases/download/v1.1.7/Hyperix-Launcher_1.1.7_x64-setup.exe">
+          <a class="button primary" id="primary-download-btn" href="https://github.com/Hadeverl4/Hyperix-Releases/releases/download/v1.1.8/Hyperix-Launcher_1.1.8_x64-setup.exe">
             <svg class="button-icon" viewBox="0 0 24 24" aria-hidden="true">
               <path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.551H10.949M0 12.6h9.75V22.05L0 20.7m10.949-8.1H24V24l-13.051-1.8" />
             </svg>
@@ -56,7 +56,7 @@
           </div>
           <p>Hyperix is independently distributed and is not yet Authenticode-signed. Windows SmartScreen may show a warning for this new installer. Only continue after confirming you downloaded it from this official page or the GitHub release.</p>
           <div class="hash-container">
-            <code id="sha256-code">v1.1.7 SHA-256: 915fd681de46ebecf828154bd828f927adea802983f3304b61ff0e1e9b2b870f</code>
+            <code id="sha256-code">v1.1.8 SHA-256: 772a5a7dbba9f2455fd4e09f3f398209491893155e48d293b2ad76b121e8e9d9</code>
             <button class="copy-hash-btn" type="button" id="copy-hash-btn" aria-label="Copy SHA-256 checksum">Copy</button>
           </div>
         </aside>
@@ -671,12 +671,14 @@
         }
       });
 
+      // Current SHA-256 Hash for latest release
+      let currentSha256 = '772a5a7dbba9f2455fd4e09f3f398209491893155e48d293b2ad76b121e8e9d9';
+
       // Copy SHA-256 Hash
       const copyBtn = document.getElementById('copy-hash-btn');
       if (copyBtn) {
         copyBtn.addEventListener('click', () => {
-          const hashText = '915fd681de46ebecf828154bd828f927adea802983f3304b61ff0e1e9b2b870f';
-          navigator.clipboard.writeText(hashText).then(() => {
+          navigator.clipboard.writeText(currentSha256).then(() => {
             copyBtn.textContent = 'Copied!';
             copyBtn.classList.add('copied');
             setTimeout(() => {
@@ -688,6 +690,40 @@
           });
         });
       }
+
+      // Auto-fetch latest release details from GitHub API to keep live badge & links always updated
+      fetch('https://api.github.com/repos/Hadeverl4/Hyperix-Releases/releases/latest')
+        .then((res) => {
+          if (!res.ok) throw new Error('API unavailable');
+          return res.json();
+        })
+        .then((data) => {
+          if (!data || !data.tag_name) return;
+          const latestTag = data.tag_name;
+
+          // Update Nav Live Badge
+          const badgeText = document.getElementById('live-version-text');
+          if (badgeText) badgeText.textContent = `${latestTag} Live`;
+
+          // Update Primary Download Button & SHA-256
+          const exeAsset = data.assets && data.assets.find((a) => a.name && a.name.endsWith('.exe'));
+          if (exeAsset) {
+            const primaryBtn = document.getElementById('primary-download-btn');
+            if (primaryBtn && exeAsset.browser_download_url) {
+              primaryBtn.href = exeAsset.browser_download_url;
+            }
+
+            if (exeAsset.digest && exeAsset.digest.startsWith('sha256:')) {
+              const sha = exeAsset.digest.replace('sha256:', '');
+              currentSha256 = sha;
+              const shaCodeEl = document.getElementById('sha256-code');
+              if (shaCodeEl) shaCodeEl.textContent = `${latestTag} SHA-256: ${sha}`;
+            }
+          }
+        })
+        .catch(() => {
+          // Gracefully retain pre-rendered v1.1.8 static values
+        });
 
       // Card 3D Tilt on Mouse Move
       const tiltCards = document.querySelectorAll('.principle-card, .screenshot, .release-card');
