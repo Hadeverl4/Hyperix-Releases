@@ -26,7 +26,7 @@
         </a>
         <div class="nav-right">
           <a class="source-link" href="#changelog">Changelog</a>
-          <span class="release-badge" id="live-version-badge"><span class="pulse-dot" aria-hidden="true"></span> <span id="live-version-text">v1.1.8 Live</span></span>
+          <span class="release-badge" id="live-version-badge"><span class="pulse-dot" aria-hidden="true"></span> <span id="live-version-text">v1.1.9 Live</span></span>
           <a class="source-link" id="nav-store-link" href="https://apps.microsoft.com/detail/9nk9fxtbt77t" target="_blank" rel="noreferrer">Microsoft Store <span aria-hidden="true">↗</span></a>
         </div>
       </nav>
@@ -60,7 +60,7 @@
             </div>
           </a>
 
-          <a class="button primary" id="primary-download-btn" href="https://github.com/Hadeverl4/Hyperix-Releases/releases/download/v1.1.8/Hyperix-Launcher_1.1.8_x64-setup.exe">
+          <a class="button primary" id="primary-download-btn" href="https://github.com/Hadeverl4/Hyperix-Releases/releases/download/v1.1.9/Hyperix-Launcher_1.1.9_x64-setup.exe">
             <svg class="button-icon" viewBox="0 0 24 24" aria-hidden="true">
               <path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.551H10.949M0 12.6h9.75V22.05L0 20.7m10.949-8.1H24V24l-13.051-1.8" />
             </svg>
@@ -77,7 +77,7 @@
           </div>
           <p>For verified one-click installation and automatic background updates, get Hyperix directly from the <strong>Microsoft Store</strong>. If you are using the standalone direct installer (.exe) above, Windows SmartScreen may show a temporary warning for new releases. Always verify the SHA-256 checksum below before running.</p>
           <div class="hash-container">
-            <code id="sha256-code">v1.1.8 SHA-256: 772a5a7dbba9f2455fd4e09f3f398209491893155e48d293b2ad76b121e8e9d9</code>
+            <code id="sha256-code">v1.1.9 SHA-256: 15a9688a105a9aaf2f3475f14980fe26fb521c760488273a400e2f06a0c62344</code>
             <button class="copy-hash-btn" type="button" id="copy-hash-btn" aria-label="Copy SHA-256 checksum">Copy</button>
           </div>
         </aside>
@@ -180,20 +180,44 @@
             <h2 id="changelog-title">Continuous updates, transparently documented.</h2>
           </div>
           <div class="changelog-filters" role="tablist" aria-label="Filter releases by category">
-            <button class="changelog-filter-btn active" type="button" data-filter="all">All releases (14)</button>
+            <button class="changelog-filter-btn active" type="button" data-filter="all">All releases (15)</button>
             <button class="changelog-filter-btn" type="button" data-filter="hyperix">Hyperix (v1.1.x)</button>
             <button class="changelog-filter-btn" type="button" data-filter="legacy">HyperKraft (v1.0.x)</button>
           </div>
         </div>
 
         <div class="timeline-stream">
-          <!-- v1.1.8 (Latest) -->
-          <article class="release-entry is-latest" data-category="hyperix">
+          <!-- v1.1.9 (Latest) -->
+          <article class="release-entry is-latest" data-category="hyperix" data-tag="v1.1.9">
             <div class="release-card is-latest">
               <div class="release-header">
                 <div class="release-title-row">
-                  <span class="release-tag-badge">v1.1.8</span>
+                  <span class="release-tag-badge">v1.1.9</span>
                   <span class="release-type-chip chip-latest">Latest Release</span>
+                  <time class="release-date" datetime="2026-09-17">17 September 2026</time>
+                </div>
+                <div class="release-actions">
+                  <a class="release-btn primary" href="https://github.com/Hadeverl4/Hyperix-Releases/releases/download/v1.1.9/Hyperix-Launcher_1.1.9_x64-setup.exe">Download .exe <span aria-hidden="true">↓</span></a>
+                  <a class="release-btn secondary" href="https://github.com/Hadeverl4/Hyperix-Releases/releases/tag/v1.1.9" target="_blank" rel="noopener">Release notes <span aria-hidden="true">↗</span></a>
+                </div>
+              </div>
+              <p class="release-summary">Hyperix 1.1.9 mang đến hỗ trợ CurseForge toàn diện, theo dõi nội dung instance thời gian thực, hiển thị tiến trình tải trên Taskbar Windows và tinh chỉnh giao diện hộp thoại mượt mà.</p>
+              <ul class="release-bullets">
+                <li><strong>CurseForge:</strong> Cài mod, resource pack, shader và modpack trực tiếp từ CurseForge; đổi phiên bản với lọc loader theo instance; Data Packs cài theo từng thế giới.</li>
+                <li><strong>Nội dung instance:</strong> Danh sách cập nhật thời gian thực khi thêm/xóa file, hiển thị trạng thái kiểm tra nguồn và đổi phiên bản tại chỗ cho cả Modrinth &amp; CurseForge.</li>
+                <li><strong>Tiện ích hệ thống:</strong> Thanh tiến độ trên biểu tượng taskbar Windows khi tải modpack, thông báo có logo Hyperix, thanh quản lý dung lượng ổ đĩa 4 phần không làm treo app.</li>
+                <li><strong>Giao diện:</strong> Các hộp thoại dùng chung chuẩn toàn màn hình làm mờ nền; sidebar giữ đủ nút khi thu nhỏ cửa sổ; lưu thời gian chơi ở cấp launcher.</li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- v1.1.8 -->
+          <article class="release-entry" data-category="hyperix" data-tag="v1.1.8">
+            <div class="release-card">
+              <div class="release-header">
+                <div class="release-title-row">
+                  <span class="release-tag-badge">v1.1.8</span>
+                  <span class="release-type-chip chip-stable">Stable</span>
                   <time class="release-date" datetime="2026-09-07">7 September 2026</time>
                 </div>
                 <div class="release-actions">
@@ -729,8 +753,8 @@
         }
       });
 
-      // Current SHA-256 Hash for latest release
-      let currentSha256 = '772a5a7dbba9f2455fd4e09f3f398209491893155e48d293b2ad76b121e8e9d9';
+      // Current SHA-256 Hash for latest release (v1.1.9)
+      let currentSha256 = '15a9688a105a9aaf2f3475f14980fe26fb521c760488273a400e2f06a0c62344';
 
       // Copy SHA-256 Hash
       const copyBtn = document.getElementById('copy-hash-btn');
@@ -749,22 +773,164 @@
         });
       }
 
-      // Auto-fetch latest release details from GitHub API to keep live badge & links always updated
-      fetch('https://api.github.com/repos/Hadeverl4/Hyperix-Releases/releases/latest')
+      function escapeHtml(s) {
+        return (s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+      }
+
+      function parseReleaseBody(body) {
+        if (!body) return { summary: '', bullets: [] };
+        const lines = body.split(/\r?\n/).map(l => l.trim()).filter(Boolean);
+        const bullets = [];
+        let summary = '';
+        let currentHeader = '';
+
+        for (let i = 0; i < lines.length; i++) {
+          const line = lines[i];
+          if (line.toLowerCase().startsWith('hyperix launcher') || line.toLowerCase().startsWith('hyperkraft')) {
+            continue;
+          }
+          if (line.startsWith('- ') || line.startsWith('* ')) {
+            const text = line.replace(/^[-*]\s+/, '');
+            if (currentHeader) {
+              bullets.push(`<strong>${escapeHtml(currentHeader)}:</strong> ${escapeHtml(text)}`);
+            } else {
+              bullets.push(escapeHtml(text));
+            }
+          } else if (line.startsWith('#')) {
+            currentHeader = line.replace(/^#+\s*/, '');
+          } else {
+            if (i + 1 < lines.length && (lines[i+1].startsWith('- ') || lines[i+1].startsWith('* '))) {
+              currentHeader = line;
+            } else if (!summary) {
+              summary = escapeHtml(line);
+            } else {
+              bullets.push(escapeHtml(line));
+            }
+          }
+        }
+        return { summary, bullets };
+      }
+
+      function createReleaseCardElement(release, isLatest) {
+        const article = document.createElement('article');
+        const isHyperix = !release.tag_name.startsWith('v1.0');
+        article.className = 'release-entry' + (isLatest ? ' is-latest' : '');
+        article.dataset.category = isHyperix ? 'hyperix' : 'legacy';
+        article.dataset.tag = release.tag_name;
+
+        const card = document.createElement('div');
+        card.className = 'release-card' + (isLatest ? ' is-latest' : '');
+
+        const header = document.createElement('div');
+        header.className = 'release-header';
+
+        const titleRow = document.createElement('div');
+        titleRow.className = 'release-title-row';
+
+        const tagBadge = document.createElement('span');
+        tagBadge.className = 'release-tag-badge';
+        tagBadge.textContent = release.tag_name;
+
+        const typeChip = document.createElement('span');
+        typeChip.className = 'release-type-chip ' + (isLatest ? 'chip-latest' : 'chip-stable');
+        typeChip.textContent = isLatest ? 'Latest Release' : 'Stable';
+
+        const dateEl = document.createElement('time');
+        dateEl.className = 'release-date';
+        const pubDate = new Date(release.published_at || release.created_at);
+        dateEl.setAttribute('datetime', pubDate.toISOString().split('T')[0]);
+        dateEl.textContent = pubDate.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+
+        titleRow.appendChild(tagBadge);
+        titleRow.appendChild(typeChip);
+        titleRow.appendChild(dateEl);
+
+        const actions = document.createElement('div');
+        actions.className = 'release-actions';
+
+        const exeAsset = release.assets && release.assets.find(a => a.name && a.name.endsWith('.exe'));
+        if (exeAsset) {
+          const dlBtn = document.createElement('a');
+          dlBtn.className = 'release-btn primary';
+          dlBtn.href = exeAsset.browser_download_url;
+          dlBtn.innerHTML = 'Download .exe <span aria-hidden="true">↓</span>';
+          actions.appendChild(dlBtn);
+        }
+
+        const notesBtn = document.createElement('a');
+        notesBtn.className = 'release-btn secondary';
+        notesBtn.href = release.html_url;
+        notesBtn.target = '_blank';
+        notesBtn.rel = 'noopener';
+        notesBtn.innerHTML = 'Release notes <span aria-hidden="true">↗</span>';
+        actions.appendChild(notesBtn);
+
+        header.appendChild(titleRow);
+        header.appendChild(actions);
+        card.appendChild(header);
+
+        const parsed = parseReleaseBody(release.body);
+        if (parsed.summary) {
+          const summaryP = document.createElement('p');
+          summaryP.className = 'release-summary';
+          summaryP.textContent = parsed.summary;
+          card.appendChild(summaryP);
+        }
+
+        if (parsed.bullets.length > 0) {
+          const ul = document.createElement('ul');
+          ul.className = 'release-bullets';
+          parsed.bullets.forEach(b => {
+            const li = document.createElement('li');
+            li.innerHTML = b;
+            ul.appendChild(li);
+          });
+          card.appendChild(ul);
+        }
+
+        article.appendChild(card);
+        return article;
+      }
+
+      function attachTiltEffects() {
+        const tiltCards = document.querySelectorAll('.principle-card, .screenshot, .release-card');
+        tiltCards.forEach((card) => {
+          if (card._tiltAttached) return;
+          card._tiltAttached = true;
+          card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+            const rotateX = (-y / rect.height) * 8;
+            const rotateY = (x / rect.width) * 8;
+            card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
+          });
+
+          card.addEventListener('mouseleave', () => {
+            card.style.transform = '';
+          });
+        });
+      }
+      attachTiltEffects();
+
+      // Auto-fetch releases from GitHub API to keep live badge, download buttons, SHA-256 and Version History 100% live!
+      fetch('https://api.github.com/repos/Hadeverl4/Hyperix-Releases/releases?per_page=30')
         .then((res) => {
           if (!res.ok) throw new Error('API unavailable');
           return res.json();
         })
-        .then((data) => {
-          if (!data || !data.tag_name) return;
-          const latestTag = data.tag_name;
+        .then((releases) => {
+          if (!Array.isArray(releases) || releases.length === 0) return;
 
-          // Update Nav Live Badge
+          const latest = releases[0];
+          const latestTag = latest.tag_name;
+
+          // 1. Update Nav Live Badge
           const badgeText = document.getElementById('live-version-text');
           if (badgeText) badgeText.textContent = `${latestTag} Live`;
 
-          // Update Primary Download Button & SHA-256
-          const exeAsset = data.assets && data.assets.find((a) => a.name && a.name.endsWith('.exe'));
+          // 2. Update Primary Download Button & SHA-256
+          const exeAsset = latest.assets && latest.assets.find((a) => a.name && a.name.endsWith('.exe'));
           if (exeAsset) {
             const primaryBtn = document.getElementById('primary-download-btn');
             if (primaryBtn && exeAsset.browser_download_url) {
@@ -778,27 +944,54 @@
               if (shaCodeEl) shaCodeEl.textContent = `${latestTag} SHA-256: ${sha}`;
             }
           }
+
+          // 3. Update Changelog Stream Dynamically if any new release is published
+          const stream = document.querySelector('.timeline-stream');
+          if (!stream) return;
+
+          const existingTags = new Set();
+          document.querySelectorAll('.release-entry').forEach((el) => {
+            const tag = el.dataset.tag || el.querySelector('.release-tag-badge')?.textContent.trim();
+            if (tag) existingTags.add(tag);
+          });
+
+          const missingReleases = releases.filter(r => !existingTags.has(r.tag_name) && !r.draft);
+
+          if (missingReleases.length > 0) {
+            // Demote existing latest cards
+            document.querySelectorAll('.release-entry.is-latest, .release-card.is-latest').forEach(el => {
+              el.classList.remove('is-latest');
+            });
+            document.querySelectorAll('.chip-latest').forEach(el => {
+              el.className = 'release-type-chip chip-stable';
+              el.textContent = 'Stable';
+            });
+
+            // Insert missing releases at top in reverse order so newest is at the very top
+            for (let i = missingReleases.length - 1; i >= 0; i--) {
+              const rel = missingReleases[i];
+              const isFirst = (i === 0 && rel.tag_name === latestTag);
+              const cardEl = createReleaseCardElement(rel, isFirst);
+              stream.insertBefore(cardEl, stream.firstChild);
+            }
+
+            // Update filter counters
+            const allEntries = document.querySelectorAll('.release-entry');
+            const allBtn = document.querySelector('.changelog-filter-btn[data-filter="all"]');
+            if (allBtn) {
+              allBtn.textContent = `All releases (${allEntries.length})`;
+            }
+
+            // Re-apply filter and collapse/expand
+            updateVisibleReleases();
+
+            // Re-attach 3D Tilt on Mouse Move
+            attachTiltEffects();
+          }
         })
         .catch(() => {
-          // Gracefully retain pre-rendered v1.1.8 static values
+          // Gracefully retain pre-rendered static values
         });
-
-      // Card 3D Tilt on Mouse Move
-      const tiltCards = document.querySelectorAll('.principle-card, .screenshot, .release-card');
-      tiltCards.forEach((card) => {
-        card.addEventListener('mousemove', (e) => {
-          const rect = card.getBoundingClientRect();
-          const x = e.clientX - rect.left - rect.width / 2;
-          const y = e.clientY - rect.top - rect.height / 2;
-          const rotateX = (-y / rect.height) * 8;
-          const rotateY = (x / rect.width) * 8;
-          card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
-        });
-
-        card.addEventListener('mouseleave', () => {
-          card.style.transform = '';
-        });
-      });
     </script>
   </body>
 </html>
