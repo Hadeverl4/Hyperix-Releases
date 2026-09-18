@@ -25,26 +25,31 @@
           <span>Hyperix <em>Launcher</em></span>
         </a>
         <div class="nav-right">
-          <a class="source-link" href="#changelog">Changelog</a>
+          <a class="source-link" href="#changelog" data-i18n="nav_changelog">Changelog</a>
           <span class="release-badge" id="live-version-badge"><span class="pulse-dot" aria-hidden="true"></span> <span id="live-version-text">v1.1.9 Live</span></span>
-          <a class="source-link" id="nav-store-link" href="https://apps.microsoft.com/detail/9nk9fxtbt77t" target="_blank" rel="noreferrer">Microsoft Store <span aria-hidden="true">↗</span></a>
+          <a class="source-link" id="nav-store-link" href="https://apps.microsoft.com/detail/9nk9fxtbt77t" target="_blank" rel="noreferrer" data-i18n="nav_store">Microsoft Store <span aria-hidden="true">↗</span></a>
+          <div class="lang-switch" role="group" aria-label="Language selection">
+            <button class="lang-btn" type="button" data-lang="en" aria-label="Switch to English">EN</button>
+            <span class="lang-divider" aria-hidden="true">/</span>
+            <button class="lang-btn" type="button" data-lang="vi" aria-label="Chuyển sang Tiếng Việt">VI</button>
+          </div>
         </div>
       </nav>
 
       <section class="hero" id="top">
         <div class="eyebrow-row">
           <div class="eyebrow-badge">
-            <p class="eyebrow">Independent Minecraft desktop launcher</p>
+            <p class="eyebrow" data-i18n="eyebrow_launcher">Independent Minecraft desktop launcher</p>
           </div>
           <span class="store-certified-pill">
             <svg viewBox="0 0 16 16" aria-hidden="true">
               <path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"/>
             </svg>
-            Available on Microsoft Store
+            <span data-i18n="eyebrow_store">Available on Microsoft Store</span>
           </span>
         </div>
-        <h1>Keep every Minecraft setup <span>separate, clear, and yours.</span></h1>
-        <p class="lede">Hyperix helps players create and manage isolated Minecraft instances, organize local content, and understand what belongs to each setup.</p>
+        <h1 data-i18n="hero_title">Keep every Minecraft setup <span>separate, clear, and yours.</span></h1>
+        <p class="lede" data-i18n="hero_lede">Hyperix helps players create and manage isolated Minecraft instances, organize local content, and understand what belongs to each setup.</p>
 
         <div class="actions">
           <a class="store-badge-btn" id="ms-store-btn" href="https://apps.microsoft.com/detail/9nk9fxtbt77t" target="_blank" rel="noreferrer" aria-label="Get Hyperix Launcher on Microsoft Store">
@@ -55,8 +60,8 @@
               <rect x="13" y="13" width="10" height="10" fill="#ffb900" rx="1.5" />
             </svg>
             <div class="store-badge-copy">
-              <span class="store-badge-sub">GET IT FROM</span>
-              <span class="store-badge-title">Microsoft Store</span>
+              <span class="store-badge-sub" data-i18n="btn_store_sub">GET IT FROM</span>
+              <span class="store-badge-title" data-i18n="btn_store_title">Microsoft Store</span>
             </div>
           </a>
 
@@ -64,21 +69,21 @@
             <svg class="button-icon" viewBox="0 0 24 24" aria-hidden="true">
               <path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.551H10.949M0 12.6h9.75V22.05L0 20.7m10.949-8.1H24V24l-13.051-1.8" />
             </svg>
-            <span>Download for Windows (.exe)</span>
+            <span id="primary-download-btn-text" data-i18n="btn_download">Download for Windows (.exe)</span>
             <span aria-hidden="true">↓</span>
           </a>
 
-          <a class="button secondary" href="#changelog">Releases & Changelog <span aria-hidden="true">↓</span></a>
+          <a class="button secondary" href="#changelog" data-i18n="btn_changelog">Releases & Changelog <span aria-hidden="true">↓</span></a>
         </div>
 
         <aside class="download-notice" aria-label="Windows download verification">
           <div class="download-notice-header">
-            <strong>Windows Installation & Integrity</strong>
+            <strong data-i18n="notice_header">Windows Installation & Integrity</strong>
           </div>
-          <p>For verified one-click installation and automatic background updates, get Hyperix directly from the <strong>Microsoft Store</strong>. If you are using the standalone direct installer (.exe) above, Windows SmartScreen may show a temporary warning for new releases. Always verify the SHA-256 checksum below before running.</p>
+          <p data-i18n="notice_body">For verified one-click installation and automatic background updates, get Hyperix directly from the <strong>Microsoft Store</strong>. If you are using the standalone direct installer (.exe) above, Windows SmartScreen may show a temporary warning for new releases. Always verify the SHA-256 checksum below before running.</p>
           <div class="hash-container">
             <code id="sha256-code">v1.1.9 SHA-256: 15a9688a105a9aaf2f3475f14980fe26fb521c760488273a400e2f06a0c62344</code>
-            <button class="copy-hash-btn" type="button" id="copy-hash-btn" aria-label="Copy SHA-256 checksum">Copy</button>
+            <button class="copy-hash-btn" type="button" id="copy-hash-btn" aria-label="Copy SHA-256 checksum" data-i18n="copy_btn">Copy</button>
           </div>
         </aside>
       </section>
@@ -86,26 +91,26 @@
       <section class="principles" aria-label="What Hyperix focuses on">
         <article class="principle-card">
           <span class="number-tag">01</span>
-          <h2>Isolated instances</h2>
-          <p>Mods, configurations, screenshots, worlds, and logs stay with the Minecraft instance they belong to.</p>
+          <h2 data-i18n="principle_1_title">Isolated instances</h2>
+          <p data-i18n="principle_1_desc">Mods, configurations, screenshots, worlds, and logs stay with the Minecraft instance they belong to.</p>
         </article>
         <article class="principle-card">
           <span class="number-tag">02</span>
-          <h2>Transparent local control</h2>
-          <p>Inspect installed content, manage files natively, and keep a clear view of storage and diagnostics.</p>
+          <h2 data-i18n="principle_2_title">Transparent local control</h2>
+          <p data-i18n="principle_2_desc">Inspect installed content, manage files natively, and keep a clear view of storage and diagnostics.</p>
         </article>
         <article class="principle-card">
           <span class="number-tag">03</span>
-          <h2>Respect for creators</h2>
-          <p>Content discovery uses official provider APIs and respects every creator’s third-party distribution choice.</p>
+          <h2 data-i18n="principle_3_title">Respect for creators</h2>
+          <p data-i18n="principle_3_desc">Content discovery uses official provider APIs and respects every creator’s third-party distribution choice.</p>
         </article>
       </section>
 
       <section class="showcase" aria-labelledby="showcase-title">
         <div class="showcase-heading">
           <div>
-            <p class="eyebrow" style="margin-bottom: 0.6rem; color: #818cf8;">A closer look</p>
-            <h2 id="showcase-title">A launcher built around the way players actually manage Minecraft.</h2>
+            <p class="eyebrow" style="margin-bottom: 0.6rem; color: #818cf8;" data-i18n="showcase_eyebrow">A closer look</p>
+            <h2 id="showcase-title" data-i18n="showcase_title">A launcher built around the way players actually manage Minecraft.</h2>
           </div>
         </div>
 
@@ -117,8 +122,8 @@
               </button>
             </div>
             <figcaption>
-              <strong>Instance library</strong>
-              <span>Keep separate Minecraft setups visible at a glance.</span>
+              <strong data-i18n="shot_1_title">Instance library</strong>
+              <span data-i18n="shot_1_desc">Keep separate Minecraft setups visible at a glance.</span>
             </figcaption>
           </figure>
 
@@ -129,8 +134,8 @@
               </button>
             </div>
             <figcaption>
-              <strong>Instance detail</strong>
-              <span>Inspect content and local files in the context of one instance.</span>
+              <strong data-i18n="shot_2_title">Instance detail</strong>
+              <span data-i18n="shot_2_desc">Inspect content and local files in the context of one instance.</span>
             </figcaption>
           </figure>
 
@@ -141,8 +146,8 @@
               </button>
             </div>
             <figcaption>
-              <strong>Modrinth discovery</strong>
-              <span>Browse compatible community projects through the official API.</span>
+              <strong data-i18n="shot_3_title">Modrinth discovery</strong>
+              <span data-i18n="shot_3_desc">Browse compatible community projects through the official API.</span>
             </figcaption>
           </figure>
 
@@ -153,8 +158,8 @@
               </button>
             </div>
             <figcaption>
-              <strong>Multiplayer servers</strong>
-              <span>Track server latency, status, and player counts with real-time pings.</span>
+              <strong data-i18n="shot_4_title">Multiplayer servers</strong>
+              <span data-i18n="shot_4_desc">Track server latency, status, and player counts with real-time pings.</span>
             </figcaption>
           </figure>
 
@@ -165,8 +170,8 @@
               </button>
             </div>
             <figcaption>
-              <strong>Skin selector & 3D preview</strong>
-              <span>Preview skins in interactive 3D, switch variants, and customize your look.</span>
+              <strong data-i18n="shot_5_title">Skin selector & 3D preview</strong>
+              <span data-i18n="shot_5_desc">Preview skins in interactive 3D, switch variants, and customize your look.</span>
             </figcaption>
           </figure>
         </div>
@@ -176,11 +181,11 @@
       <section class="changelog-section" id="changelog" aria-labelledby="changelog-title">
         <div class="changelog-header">
           <div>
-            <p class="eyebrow" style="margin-bottom: 0.6rem; color: #a5b4fc;">Version history</p>
-            <h2 id="changelog-title">Continuous updates, transparently documented.</h2>
+            <p class="eyebrow" style="margin-bottom: 0.6rem; color: #a5b4fc;" data-i18n="changelog_eyebrow">Version history</p>
+            <h2 id="changelog-title" data-i18n="changelog_title">Continuous updates, transparently documented.</h2>
           </div>
           <div class="changelog-filters" role="tablist" aria-label="Filter releases by category">
-            <button class="changelog-filter-btn active" type="button" data-filter="all">All releases (15)</button>
+            <button class="changelog-filter-btn active" type="button" data-filter="all"><span data-i18n="filter_all">All releases</span> (<span id="count-all">15</span>)</button>
             <button class="changelog-filter-btn" type="button" data-filter="hyperix">Hyperix (v1.1.x)</button>
             <button class="changelog-filter-btn" type="button" data-filter="legacy">HyperKraft (v1.0.x)</button>
           </div>
@@ -193,20 +198,20 @@
               <div class="release-header">
                 <div class="release-title-row">
                   <span class="release-tag-badge">v1.1.9</span>
-                  <span class="release-type-chip chip-latest">Latest Release</span>
+                  <span class="release-type-chip chip-latest" data-i18n="rel_chip_latest">Latest Release</span>
                   <time class="release-date" datetime="2026-09-17">17 September 2026</time>
                 </div>
                 <div class="release-actions">
-                  <a class="release-btn primary" href="https://github.com/Hadeverl4/Hyperix-Releases/releases/download/v1.1.9/Hyperix-Launcher_1.1.9_x64-setup.exe">Download .exe <span aria-hidden="true">↓</span></a>
-                  <a class="release-btn secondary" href="https://github.com/Hadeverl4/Hyperix-Releases/releases/tag/v1.1.9" target="_blank" rel="noopener">Release notes <span aria-hidden="true">↗</span></a>
+                  <a class="release-btn primary" href="https://github.com/Hadeverl4/Hyperix-Releases/releases/download/v1.1.9/Hyperix-Launcher_1.1.9_x64-setup.exe" data-i18n="rel_btn_download">Download .exe <span aria-hidden="true">↓</span></a>
+                  <a class="release-btn secondary" href="https://github.com/Hadeverl4/Hyperix-Releases/releases/tag/v1.1.9" target="_blank" rel="noopener" data-i18n="rel_btn_notes">Release notes <span aria-hidden="true">↗</span></a>
                 </div>
               </div>
-              <p class="release-summary">Hyperix 1.1.9 mang đến hỗ trợ CurseForge toàn diện, theo dõi nội dung instance thời gian thực, hiển thị tiến trình tải trên Taskbar Windows và tinh chỉnh giao diện hộp thoại mượt mà.</p>
+              <p class="release-summary" data-i18n="rel_1_1_9_summary">Hyperix 1.1.9 mang đến hỗ trợ CurseForge toàn diện, theo dõi nội dung instance thời gian thực, hiển thị tiến trình tải trên Taskbar Windows và tinh chỉnh giao diện hộp thoại mượt mà.</p>
               <ul class="release-bullets">
-                <li><strong>CurseForge:</strong> Cài mod, resource pack, shader và modpack trực tiếp từ CurseForge; đổi phiên bản với lọc loader theo instance; Data Packs cài theo từng thế giới.</li>
-                <li><strong>Nội dung instance:</strong> Danh sách cập nhật thời gian thực khi thêm/xóa file, hiển thị trạng thái kiểm tra nguồn và đổi phiên bản tại chỗ cho cả Modrinth &amp; CurseForge.</li>
-                <li><strong>Tiện ích hệ thống:</strong> Thanh tiến độ trên biểu tượng taskbar Windows khi tải modpack, thông báo có logo Hyperix, thanh quản lý dung lượng ổ đĩa 4 phần không làm treo app.</li>
-                <li><strong>Giao diện:</strong> Các hộp thoại dùng chung chuẩn toàn màn hình làm mờ nền; sidebar giữ đủ nút khi thu nhỏ cửa sổ; lưu thời gian chơi ở cấp launcher.</li>
+                <li data-i18n="rel_1_1_9_b1"><strong>CurseForge:</strong> Cài mod, resource pack, shader và modpack trực tiếp từ CurseForge; đổi phiên bản với lọc loader theo instance; Data Packs cài theo từng thế giới.</li>
+                <li data-i18n="rel_1_1_9_b2"><strong>Nội dung instance:</strong> Danh sách cập nhật thời gian thực khi thêm/xóa file, hiển thị trạng thái kiểm tra nguồn và đổi phiên bản tại chỗ cho cả Modrinth &amp; CurseForge.</li>
+                <li data-i18n="rel_1_1_9_b3"><strong>Tiện ích hệ thống:</strong> Thanh tiến độ trên biểu tượng taskbar Windows khi tải modpack, thông báo có logo Hyperix, thanh quản lý dung lượng ổ đĩa 4 phần không làm treo app.</li>
+                <li data-i18n="rel_1_1_9_b4"><strong>Giao diện:</strong> Các hộp thoại dùng chung chuẩn toàn màn hình làm mờ nền; sidebar giữ đủ nút khi thu nhỏ cửa sổ; lưu thời gian chơi ở cấp launcher.</li>
               </ul>
             </div>
           </article>
@@ -217,21 +222,21 @@
               <div class="release-header">
                 <div class="release-title-row">
                   <span class="release-tag-badge">v1.1.8</span>
-                  <span class="release-type-chip chip-stable">Stable</span>
+                  <span class="release-type-chip chip-stable" data-i18n="rel_chip_stable">Stable</span>
                   <time class="release-date" datetime="2026-09-07">7 September 2026</time>
                 </div>
                 <div class="release-actions">
-                  <a class="release-btn primary" href="https://github.com/Hadeverl4/Hyperix-Releases/releases/download/v1.1.8/Hyperix-Launcher_1.1.8_x64-setup.exe">Download .exe <span aria-hidden="true">↓</span></a>
-                  <a class="release-btn secondary" href="https://github.com/Hadeverl4/Hyperix-Releases/releases/tag/v1.1.8" target="_blank" rel="noopener">Release notes <span aria-hidden="true">↗</span></a>
+                  <a class="release-btn primary" href="https://github.com/Hadeverl4/Hyperix-Releases/releases/download/v1.1.8/Hyperix-Launcher_1.1.8_x64-setup.exe" data-i18n="rel_btn_download">Download .exe <span aria-hidden="true">↓</span></a>
+                  <a class="release-btn secondary" href="https://github.com/Hadeverl4/Hyperix-Releases/releases/tag/v1.1.8" target="_blank" rel="noopener" data-i18n="rel_btn_notes">Release notes <span aria-hidden="true">↗</span></a>
                 </div>
               </div>
-              <p class="release-summary">Hyperix 1.1.8 improves instance content management and settings, adds safer Modrinth included-content filtering, and fixes UI layering.</p>
+              <p class="release-summary" data-i18n="rel_1_1_8_summary">Hyperix 1.1.8 improves instance content management and settings, adds safer Modrinth included-content filtering, and fixes UI layering.</p>
               <ul class="release-bullets">
-                <li>Improved instance content management and settings controls.</li>
-                <li>Added safer Modrinth included-content filtering.</li>
-                <li>Fixed Update/Switch modal layering and clipped content action menus.</li>
-                <li>Refined Ely.by skin flow and skin synchronization hardening.</li>
-                <li>Performance, runtime, Discord session, duplicate-instance, and compatibility fixes.</li>
+                <li data-i18n="rel_1_1_8_b1">Improved instance content management and settings controls.</li>
+                <li data-i18n="rel_1_1_8_b2">Added safer Modrinth included-content filtering.</li>
+                <li data-i18n="rel_1_1_8_b3">Fixed Update/Switch modal layering and clipped content action menus.</li>
+                <li data-i18n="rel_1_1_8_b4">Refined Ely.by skin flow and skin synchronization hardening.</li>
+                <li data-i18n="rel_1_1_8_b5">Performance, runtime, Discord session, duplicate-instance, and compatibility fixes.</li>
               </ul>
             </div>
           </article>
@@ -242,19 +247,19 @@
               <div class="release-header">
                 <div class="release-title-row">
                   <span class="release-tag-badge">v1.1.7</span>
-                  <span class="release-type-chip chip-stable">Stable</span>
+                  <span class="release-type-chip chip-stable" data-i18n="rel_chip_stable">Stable</span>
                   <time class="release-date" datetime="2026-09-06">6 September 2026</time>
                 </div>
                 <div class="release-actions">
-                  <a class="release-btn primary" href="https://github.com/Hadeverl4/Hyperix-Releases/releases/download/v1.1.7/Hyperix-Launcher_1.1.7_x64-setup.exe">Download .exe <span aria-hidden="true">↓</span></a>
-                  <a class="release-btn secondary" href="https://github.com/Hadeverl4/Hyperix-Releases/releases/tag/v1.1.7" target="_blank" rel="noopener">Release notes <span aria-hidden="true">↗</span></a>
+                  <a class="release-btn primary" href="https://github.com/Hadeverl4/Hyperix-Releases/releases/download/v1.1.7/Hyperix-Launcher_1.1.7_x64-setup.exe" data-i18n="rel_btn_download">Download .exe <span aria-hidden="true">↓</span></a>
+                  <a class="release-btn secondary" href="https://github.com/Hadeverl4/Hyperix-Releases/releases/tag/v1.1.7" target="_blank" rel="noopener" data-i18n="rel_btn_notes">Release notes <span aria-hidden="true">↗</span></a>
                 </div>
               </div>
               <ul class="release-bullets">
-                <li>Added real weekly play-time history with previous-week browsing.</li>
-                <li>Improved launch reliability, Stop/recovery handling, bounded logs, native clipboard, and startup Retry flows.</li>
-                <li>Expanded Vietnamese/English polish and fixed stale-search, screenshot deletion, and external-link safety edge cases.</li>
-                <li>Added privacy controls and Store-ready distribution groundwork while keeping play-time history local-only.</li>
+                <li data-i18n="rel_1_1_7_b1">Added real weekly play-time history with previous-week browsing.</li>
+                <li data-i18n="rel_1_1_7_b2">Improved launch reliability, Stop/recovery handling, bounded logs, native clipboard, and startup Retry flows.</li>
+                <li data-i18n="rel_1_1_7_b3">Expanded Vietnamese/English polish and fixed stale-search, screenshot deletion, and external-link safety edge cases.</li>
+                <li data-i18n="rel_1_1_7_b4">Added privacy controls and Store-ready distribution groundwork while keeping play-time history local-only.</li>
               </ul>
             </div>
           </article>
@@ -515,19 +520,19 @@
 
       <section class="content-policy" id="content-policy">
         <div>
-          <p class="eyebrow" style="margin-bottom: 0.8rem; color: #38bdf8;">Content providers</p>
-          <h2>Discovery without taking ownership of creator work.</h2>
+          <p class="eyebrow" style="margin-bottom: 0.8rem; color: #38bdf8;" data-i18n="policy_eyebrow">Content providers</p>
+          <h2 data-i18n="policy_title">Discovery without taking ownership of creator work.</h2>
         </div>
         <div class="policy-copy">
-          <p>Hyperix uses official provider APIs for compatible Minecraft content discovery. It does not scrape provider websites, re-host files, bypass author restrictions, or present creator content as its own.</p>
-          <p>For CurseForge, a project is downloaded only where the creator has explicitly approved third-party distribution. Otherwise, Hyperix directs the player to the official project page.</p>
+          <p data-i18n="policy_p1">Hyperix uses official provider APIs for compatible Minecraft content discovery. It does not scrape provider websites, re-host files, bypass author restrictions, or present creator content as its own.</p>
+          <p data-i18n="policy_p2">For CurseForge, a project is downloaded only where the creator has explicitly approved third-party distribution. Otherwise, Hyperix directs the player to the official project page.</p>
         </div>
       </section>
 
       <section class="status" aria-label="Project status">
-        <p class="eyebrow" style="margin-bottom: 0.8rem; color: #818cf8;">Project status</p>
-        <h2>Available on Microsoft Store & Independent Windows Release.</h2>
-        <p>Hyperix is certified on the Microsoft Store and available as an independent release. It is a non-commercial project with no advertisements, subscriptions, paid tiers, or bundled third-party software.</p>
+        <p class="eyebrow" style="margin-bottom: 0.8rem; color: #818cf8;" data-i18n="status_eyebrow">Project status</p>
+        <h2 data-i18n="status_title">Available on Microsoft Store & Independent Windows Release.</h2>
+        <p data-i18n="status_desc">Hyperix is certified on the Microsoft Store and available as an independent release. It is a non-commercial project with no advertisements, subscriptions, paid tiers, or bundled third-party software.</p>
       </section>
     </main>
 
@@ -554,21 +559,21 @@
 
         <div class="dialog-bottombar">
           <p class="dialog-caption" id="dialog-desc-text">Keep separate Minecraft setups visible at a glance.</p>
-          <span class="dialog-hint">Press ‹ › arrows or Esc to close</span>
+          <span class="dialog-hint" data-i18n="dialog_hint">Press ‹ › arrows or Esc to close</span>
         </div>
       </div>
     </dialog>
 
     <footer>
       <span>Hyperix Launcher</span>
-      <span>Independent Minecraft launcher project</span>
+      <span data-i18n="footer_tagline">Independent Minecraft launcher project</span>
       <div class="footer-links">
-        <a href="#changelog">Changelog</a>
+        <a href="#changelog" data-i18n="nav_changelog">Changelog</a>
         <a href="https://apps.microsoft.com/detail/9nk9fxtbt77t" target="_blank" rel="noreferrer">Microsoft Store</a>
-        <a href="./privacy.html">Privacy</a>
-        <a href="./terms.html">Terms</a>
-        <a href="./support.html">Support</a>
-        <a href="mailto:hyperix.contact@gmail.com">Contact <span aria-hidden="true">↗</span></a>
+        <a href="./privacy.html" data-i18n="footer_privacy">Privacy</a>
+        <a href="./terms.html" data-i18n="footer_terms">Terms</a>
+        <a href="./support.html" data-i18n="footer_support">Support</a>
+        <a href="mailto:hyperix.contact@gmail.com" data-i18n="footer_contact">Contact <span aria-hidden="true">↗</span></a>
       </div>
     </footer>
 
@@ -578,6 +583,242 @@
 
     <!-- Dialog & Interaction Scripts -->
     <script>
+      // Internationalization (i18n) Data
+      const translations = {
+        en: {
+          page_title: "Hyperix Launcher",
+          meta_description: "Hyperix Launcher is an independent Minecraft desktop launcher for safe, isolated instance management.",
+          nav_changelog: "Changelog",
+          nav_store: "Microsoft Store <span aria-hidden=\"true\">↗</span>",
+          eyebrow_launcher: "Independent Minecraft desktop launcher",
+          eyebrow_store: "Available on Microsoft Store",
+          hero_title: "Keep every Minecraft setup <span>separate, clear, and yours.</span>",
+          hero_lede: "Hyperix helps players create and manage isolated Minecraft instances, organize local content, and understand what belongs to each setup.",
+          btn_store_sub: "GET IT FROM",
+          btn_store_title: "Microsoft Store",
+          btn_download: "Download for Windows (.exe)",
+          btn_changelog: "Releases &amp; Changelog <span aria-hidden=\"true\">↓</span>",
+          notice_header: "Windows Installation &amp; Integrity",
+          notice_body: "For verified one-click installation and automatic background updates, get Hyperix directly from the <strong>Microsoft Store</strong>. If you are using the standalone direct installer (.exe) above, Windows SmartScreen may show a temporary warning for new releases. Always verify the SHA-256 checksum below before running.",
+          copy_btn: "Copy",
+          copy_btn_copied: "Copied!",
+          copy_btn_failed: "Failed",
+          principle_1_title: "Isolated instances",
+          principle_1_desc: "Mods, configurations, screenshots, worlds, and logs stay with the Minecraft instance they belong to.",
+          principle_2_title: "Transparent local control",
+          principle_2_desc: "Inspect installed content, manage files natively, and keep a clear view of storage and diagnostics.",
+          principle_3_title: "Respect for creators",
+          principle_3_desc: "Content discovery uses official provider APIs and respects every creator’s third-party distribution choice.",
+          showcase_eyebrow: "A closer look",
+          showcase_title: "A launcher built around the way players actually manage Minecraft.",
+          shot_1_title: "Instance library",
+          shot_1_desc: "Keep separate Minecraft setups visible at a glance.",
+          shot_2_title: "Instance detail",
+          shot_2_desc: "Inspect content and local files in the context of one instance.",
+          shot_3_title: "Modrinth discovery",
+          shot_3_desc: "Browse compatible community projects through the official API.",
+          shot_4_title: "Multiplayer servers",
+          shot_4_desc: "Track server latency, status, and player counts with real-time pings.",
+          shot_5_title: "Skin selector &amp; 3D preview",
+          shot_5_desc: "Preview skins in interactive 3D, switch variants, and customize your look.",
+          changelog_eyebrow: "Version history",
+          changelog_title: "Continuous updates, transparently documented.",
+          filter_all: "All releases",
+          dialog_hint: "Press ‹ › arrows or Esc to close",
+          policy_eyebrow: "Content providers",
+          policy_title: "Discovery without taking ownership of creator work.",
+          policy_p1: "Hyperix uses official provider APIs for compatible Minecraft content discovery. It does not scrape provider websites, re-host files, bypass author restrictions, or present creator content as its own.",
+          policy_p2: "For CurseForge, a project is downloaded only where the creator has explicitly approved third-party distribution. Otherwise, Hyperix directs the player to the official project page.",
+          status_eyebrow: "Project status",
+          status_title: "Available on Microsoft Store &amp; Independent Windows Release.",
+          status_desc: "Hyperix is certified on the Microsoft Store and available as an independent release. It is a non-commercial project with no advertisements, subscriptions, paid tiers, or bundled third-party software.",
+          footer_tagline: "Independent Minecraft launcher project",
+          footer_privacy: "Privacy",
+          footer_terms: "Terms",
+          footer_support: "Support",
+          footer_contact: "Contact <span aria-hidden=\"true\">↗</span>",
+
+          rel_chip_latest: "Latest Release",
+          rel_chip_stable: "Stable",
+          rel_chip_patch: "Patch",
+          rel_chip_legacy: "Legacy HyperKraft",
+          rel_btn_download: "Download .exe <span aria-hidden=\"true\">↓</span>",
+          rel_btn_notes: "Release notes <span aria-hidden=\"true\">↗</span>",
+          rel_live_suffix: "Live",
+          rel_expand_show: "Show full history ({n} earlier releases)",
+          rel_expand_collapse: "Collapse earlier releases",
+
+          rel_1_1_9_summary: "Hyperix 1.1.9 brings comprehensive CurseForge integration, real-time instance content monitoring, Windows Taskbar download progress, and unified full-screen modal styling.",
+          rel_1_1_9_b1: "<strong>CurseForge:</strong> Install mods, resource packs, shaders, and modpacks directly from CurseForge; switch versions with instance loader filtering; world-specific Data Packs.",
+          rel_1_1_9_b2: "<strong>Instance Content:</strong> Real-time updates when files are added or deleted, verification status indicators, and in-place version switching for both Modrinth &amp; CurseForge.",
+          rel_1_1_9_b3: "<strong>System Integrations:</strong> Progress bar on Windows taskbar icon during modpack downloads, branded notifications, non-blocking 4-segment disk storage manager.",
+          rel_1_1_9_b4: "<strong>Interface Polish:</strong> Standardized full-screen backdrop-blur dialogs; persistent sidebar buttons on narrow windows; launcher-level total play-time tracking.",
+
+          rel_1_1_8_summary: "Hyperix 1.1.8 improves instance content management and settings, adds safer Modrinth included-content filtering, and fixes UI layering.",
+          rel_1_1_8_b1: "Improved instance content management and settings controls.",
+          rel_1_1_8_b2: "Added safer Modrinth included-content filtering.",
+          rel_1_1_8_b3: "Fixed Update/Switch modal layering and clipped content action menus.",
+          rel_1_1_8_b4: "Refined Ely.by skin flow and skin synchronization hardening.",
+          rel_1_1_8_b5: "Performance, runtime, Discord session, duplicate-instance, and compatibility fixes.",
+
+          rel_1_1_7_b1: "Added real weekly play-time history with previous-week browsing.",
+          rel_1_1_7_b2: "Improved launch reliability, Stop/recovery handling, bounded logs, native clipboard, and startup Retry flows.",
+          rel_1_1_7_b3: "Expanded Vietnamese/English polish and fixed stale-search, screenshot deletion, and external-link safety edge cases.",
+          rel_1_1_7_b4: "Added privacy controls and Store-ready distribution groundwork while keeping play-time history local-only."
+        },
+        vi: {
+          page_title: "Hyperix Launcher — Trình khởi chạy Minecraft độc lập",
+          meta_description: "Hyperix Launcher là trình khởi chạy Minecraft độc lập giúp quản lý các phiên bản cài đặt an toàn, riêng biệt.",
+          nav_changelog: "Lịch sử cập nhật",
+          nav_store: "Microsoft Store <span aria-hidden=\"true\">↗</span>",
+          eyebrow_launcher: "Trình khởi chạy Minecraft độc lập trên PC",
+          eyebrow_store: "Đã có mặt trên Microsoft Store",
+          hero_title: "Quản lý mọi bản cài đặt Minecraft <span>riêng biệt, rõ ràng và trọn vẹn.</span>",
+          hero_lede: "Hyperix giúp bạn dễ dàng tạo và quản lý các phiên bản Minecraft độc lập, tổ chức tệp tin nội bộ và kiểm soát toàn diện mọi thành phần cài đặt.",
+          btn_store_sub: "TẢI NGAY TỪ",
+          btn_store_title: "Microsoft Store",
+          btn_download: "Tải về cho Windows (.exe)",
+          btn_changelog: "Các bản phát hành &amp; Thay đổi <span aria-hidden=\"true\">↓</span>",
+          notice_header: "Cài đặt &amp; Kiểm tra toàn vẹn trên Windows",
+          notice_body: "Để cài đặt 1 chạm đã qua kiểm duyệt và tự động cập nhật ngầm, hãy tải Hyperix trực tiếp từ <strong>Microsoft Store</strong>. Nếu sử dụng bản cài đặt độc lập (.exe) ở trên, Windows SmartScreen có thể hiển thị cảnh báo tạm thời đối với các bản phát hành mới. Hãy luôn đối chiếu mã kiểm tra SHA-256 bên dưới trước khi mở.",
+          copy_btn: "Sao chép",
+          copy_btn_copied: "Đã sao chép!",
+          copy_btn_failed: "Lỗi",
+          principle_1_title: "Bản cài đặt tách biệt",
+          principle_1_desc: "Mod, tệp cấu hình, ảnh chụp màn hình, thế giới và nhật ký luôn gắn liền với từng phiên bản Minecraft riêng lẻ.",
+          principle_2_title: "Kiểm soát cục bộ minh bạch",
+          principle_2_desc: "Kiểm tra nội dung đã cài, quản lý tệp tin trực tiếp và theo dõi rõ ràng dung lượng lưu trữ cùng nhật ký chẩn đoán.",
+          principle_3_title: "Tôn trọng tác giả sáng tạo",
+          principle_3_desc: "Khám phá nội dung thông qua các API chính thức và luôn tuân thủ quyền phân phối của từng tác giả modpack.",
+          showcase_eyebrow: "Chi tiết tính năng",
+          showcase_title: "Trình khởi chạy được thiết kế dựa trên trải nghiệm thực tế của game thủ.",
+          shot_1_title: "Thư viện phiên bản",
+          shot_1_desc: "Dễ dàng quản lý và phân biệt các bản cài đặt Minecraft trong nháy mắt.",
+          shot_2_title: "Chi tiết phiên bản",
+          shot_2_desc: "Quản lý mod, gói tài nguyên và tệp dữ liệu cục bộ trong một phiên bản cụ thể.",
+          shot_3_title: "Khám phá Modrinth",
+          shot_3_desc: "Duyệt tìm các dự án cộng đồng tương thích thông qua API chính thức.",
+          shot_4_title: "Danh sách máy chủ",
+          shot_4_desc: "Theo dõi độ trễ ping, trạng thái trực tuyến và số lượng người chơi theo thời gian thực.",
+          shot_5_title: "Quản lý skin &amp; Xem trước 3D",
+          shot_5_desc: "Xem trước ngoại hình nhân vật 3D trực quan, đổi phiên bản dáng và tùy biến phong cách.",
+          changelog_eyebrow: "Lịch sử phiên bản",
+          changelog_title: "Cập nhật liên tục, minh bạch và rõ ràng.",
+          filter_all: "Tất cả phiên bản",
+          dialog_hint: "Nhấn phím mũi tên ‹ › hoặc Esc để đóng",
+          policy_eyebrow: "Nguồn cung cấp nội dung",
+          policy_title: "Tìm kiếm &amp; cài đặt với sự tôn trọng bản quyền tác giả.",
+          policy_p1: "Hyperix sử dụng API chính thức của các nền tảng để tìm kiếm nội dung Minecraft tương thích. Chúng tôi không thu thập lậu từ trang web, không tự ý lưu trữ lại tệp tin, không phá vỡ giới hạn phân phối của tác giả và không nhận tác phẩm của cộng đồng làm của mình.",
+          policy_p2: "Đối với CurseForge, tệp chỉ được tải trực tiếp khi tác giả đã bật quyền cho phép phân phối qua bên thứ ba. Nếu không, Hyperix sẽ điều hướng người chơi đến trang chính thức của dự án.",
+          status_eyebrow: "Trạng thái dự án",
+          status_title: "Đã có mặt trên Microsoft Store &amp; Bản phát hành Windows độc lập.",
+          status_desc: "Hyperix đã được chứng nhận trên Microsoft Store và cung cấp dưới dạng bản phát hành độc lập. Đây là dự án phi thương mại, hoàn toàn không có quảng cáo, không thu phí dịch vụ hay gói trả phí, và không đính kèm bất kỳ phần mềm rác nào.",
+          footer_tagline: "Dự án trình khởi chạy Minecraft độc lập",
+          footer_privacy: "Quyền riêng tư",
+          footer_terms: "Điều khoản",
+          footer_support: "Hỗ trợ",
+          footer_contact: "Liên hệ <span aria-hidden=\"true\">↗</span>",
+
+          rel_chip_latest: "Bản mới nhất",
+          rel_chip_stable: "Bản ổn định",
+          rel_chip_patch: "Bản vá",
+          rel_chip_legacy: "Bản cũ HyperKraft",
+          rel_btn_download: "Tải .exe <span aria-hidden=\"true\">↓</span>",
+          rel_btn_notes: "Chi tiết phát hành <span aria-hidden=\"true\">↗</span>",
+          rel_live_suffix: "Mới nhất",
+          rel_expand_show: "Xem toàn bộ lịch sử ({n} bản phát hành trước)",
+          rel_expand_collapse: "Thu gọn các bản phát hành trước",
+
+          rel_1_1_9_summary: "Hyperix 1.1.9 mang đến hỗ trợ CurseForge toàn diện, theo dõi nội dung instance thời gian thực, hiển thị tiến trình tải trên Taskbar Windows và tinh chỉnh giao diện hộp thoại mượt mà.",
+          rel_1_1_9_b1: "<strong>CurseForge:</strong> Cài mod, resource pack, shader và modpack trực tiếp từ CurseForge; đổi phiên bản với lọc loader theo instance; Data Packs cài theo từng thế giới.",
+          rel_1_1_9_b2: "<strong>Nội dung instance:</strong> Danh sách cập nhật thời gian thực khi thêm/xóa file, hiển thị trạng thái kiểm tra nguồn và đổi phiên bản tại chỗ cho cả Modrinth &amp; CurseForge.",
+          rel_1_1_9_b3: "<strong>Tiện ích hệ thống:</strong> Thanh tiến độ trên biểu tượng taskbar Windows khi tải modpack, thông báo có logo Hyperix, thanh quản lý dung lượng ổ đĩa 4 phần không làm treo app.",
+          rel_1_1_9_b4: "<strong>Giao diện:</strong> Các hộp thoại dùng chung chuẩn toàn màn hình làm mờ nền; sidebar giữ đủ nút khi thu nhỏ cửa sổ; lưu thời gian chơi ở cấp launcher.",
+
+          rel_1_1_8_summary: "Hyperix 1.1.8 cải tiến trình quản lý nội dung và cài đặt instance, thêm bộ lọc an toàn cho nội dung đính kèm Modrinth, và sửa lỗi hiển thị phân lớp giao diện.",
+          rel_1_1_8_b1: "Cải tiến quản lý nội dung instance và các tùy chọn cài đặt.",
+          rel_1_1_8_b2: "Thêm bộ lọc an toàn cho nội dung đính kèm từ Modrinth.",
+          rel_1_1_8_b3: "Sửa lỗi phân lớp hộp thoại Cập nhật/Chuyển đổi và menu thao tác bị cắt khuất.",
+          rel_1_1_8_b4: "Tinh chỉnh luồng đăng nhập skin Ely.by và đồng bộ hóa skin ổn định hơn.",
+          rel_1_1_8_b5: "Nâng cao hiệu năng, sửa lỗi phiên Discord, chống trùng lặp instance và tăng tính tương thích.",
+
+          rel_1_1_7_b1: "Thêm lịch sử thời gian chơi theo tuần kèm tính năng duyệt lại các tuần trước.",
+          rel_1_1_7_b2: "Cải thiện độ ổn định khi khởi chạy, xử lý Dừng/phục hồi, giới hạn log, clipboard gốc và luồng Thử lại khi khởi động.",
+          rel_1_1_7_b3: "Hoàn thiện bản dịch Tiếng Việt/Tiếng Anh và sửa các trường hợp tìm kiếm cũ, xóa ảnh chụp màn hình và an toàn liên kết ngoài.",
+          rel_1_1_7_b4: "Bổ sung kiểm soát quyền riêng tư và chuẩn bị phân phối lên Store trong khi vẫn giữ dữ liệu giờ chơi hoàn toàn cục bộ."
+        }
+      };
+
+      // Screenshot Data Localized
+      const screenshotsLocalized = {
+        en: [
+          {
+            image: './assets/homescreen.png',
+            title: 'Instance library',
+            desc: 'Keep separate Minecraft setups visible at a glance.',
+            alt: 'Hyperix home screen showing the instance library'
+          },
+          {
+            image: './assets/instance-detail.png',
+            title: 'Instance detail',
+            desc: 'Inspect content and local files in the context of one instance.',
+            alt: 'Hyperix instance detail screen with installed content controls'
+          },
+          {
+            image: './assets/discovery.png',
+            title: 'Modrinth discovery',
+            desc: 'Browse compatible community projects through the official API.',
+            alt: 'Hyperix discovery screen showing Modrinth project results'
+          },
+          {
+            image: './assets/servers.png',
+            title: 'Multiplayer servers',
+            desc: 'Track server latency, status, and player counts with real-time pings.',
+            alt: 'Hyperix multiplayer servers list with ping indicators'
+          },
+          {
+            image: './assets/skin-selector.png',
+            title: 'Skin selector & 3D preview',
+            desc: 'Preview skins in interactive 3D, switch variants, and customize your look.',
+            alt: 'Hyperix skin selector screen with 3D model preview'
+          }
+        ],
+        vi: [
+          {
+            image: './assets/homescreen.png',
+            title: 'Thư viện phiên bản',
+            desc: 'Dễ dàng quản lý và phân biệt các bản cài đặt Minecraft trong nháy mắt.',
+            alt: 'Màn hình chính Hyperix hiển thị thư viện phiên bản'
+          },
+          {
+            image: './assets/instance-detail.png',
+            title: 'Chi tiết phiên bản',
+            desc: 'Quản lý mod, gói tài nguyên và tệp dữ liệu cục bộ trong một phiên bản cụ thể.',
+            alt: 'Màn hình chi tiết phiên bản Hyperix với các nút quản trị tệp'
+          },
+          {
+            image: './assets/discovery.png',
+            title: 'Khám phá Modrinth',
+            desc: 'Duyệt tìm các dự án cộng đồng tương thích thông qua API chính thức.',
+            alt: 'Màn hình khám phá Hyperix hiển thị kết quả từ Modrinth'
+          },
+          {
+            image: './assets/servers.png',
+            title: 'Danh sách máy chủ',
+            desc: 'Theo dõi độ trễ ping, trạng thái trực tuyến và số lượng người chơi theo thời gian thực.',
+            alt: 'Danh sách máy chủ chơi mạng trong Hyperix với chỉ báo ping'
+          },
+          {
+            image: './assets/skin-selector.png',
+            title: 'Quản lý skin & Xem trước 3D',
+            desc: 'Xem trước ngoại hình nhân vật 3D trực quan, đổi phiên bản dáng và tùy biến phong cách.',
+            alt: 'Màn hình chọn skin Hyperix với mô hình 3D tương tác'
+          }
+        ]
+      };
+
+      let currentLang = 'en';
+
       // Changelog Filter & Expand Logic
       const filterButtons = document.querySelectorAll('.changelog-filter-btn');
       const releaseEntries = document.querySelectorAll('.release-entry');
@@ -609,12 +850,13 @@
           } else {
             toggleBtn.parentElement.style.display = 'flex';
             const hiddenCount = totalMatching - 5;
+            const t = translations[currentLang] || translations.en;
             if (isExpanded) {
               toggleBtn.classList.add('is-expanded');
-              toggleBtn.querySelector('span').textContent = 'Collapse earlier releases';
+              toggleBtn.querySelector('span').textContent = t.rel_expand_collapse;
             } else {
               toggleBtn.classList.remove('is-expanded');
-              toggleBtn.querySelector('span').textContent = `Show full history (${hiddenCount} earlier releases)`;
+              toggleBtn.querySelector('span').textContent = t.rel_expand_show.replace('{n}', hiddenCount);
             }
           }
         }
@@ -636,42 +878,7 @@
         });
       }
 
-      updateVisibleReleases();
-
-      // Screenshot Data
-      const screenshotsData = [
-        {
-          image: './assets/homescreen.png',
-          title: 'Instance library',
-          desc: 'Keep separate Minecraft setups visible at a glance.',
-          alt: 'Hyperix home screen showing the instance library'
-        },
-        {
-          image: './assets/instance-detail.png',
-          title: 'Instance detail',
-          desc: 'Inspect content and local files in the context of one instance.',
-          alt: 'Hyperix instance detail screen with installed content controls'
-        },
-        {
-          image: './assets/discovery.png',
-          title: 'Modrinth discovery',
-          desc: 'Browse compatible community projects through the official API.',
-          alt: 'Hyperix discovery screen showing Modrinth project results'
-        },
-        {
-          image: './assets/servers.png',
-          title: 'Multiplayer servers',
-          desc: 'Track server latency, status, and player counts with real-time pings.',
-          alt: 'Hyperix multiplayer servers list with ping indicators'
-        },
-        {
-          image: './assets/skin-selector.png',
-          title: 'Skin selector & 3D preview',
-          desc: 'Preview skins in interactive 3D, switch variants, and customize your look.',
-          alt: 'Hyperix skin selector screen with 3D model preview'
-        }
-      ];
-
+      // Dialog Lightbox State
       let currentIndex = 0;
       const dialog = document.querySelector('.image-dialog');
       const dialogImg = document.getElementById('dialog-img');
@@ -682,8 +889,9 @@
       const nextBtn = document.getElementById('dialog-next');
 
       function updateDialogContent(index, animateSwitch = true) {
-        currentIndex = (index + screenshotsData.length) % screenshotsData.length;
-        const item = screenshotsData[currentIndex];
+        const list = screenshotsLocalized[currentLang] || screenshotsLocalized.en;
+        currentIndex = (index + list.length) % list.length;
+        const item = list[currentIndex];
 
         if (animateSwitch) {
           dialogImg.classList.add('switching');
@@ -692,7 +900,7 @@
             dialogImg.alt = item.alt;
             titleText.textContent = item.title;
             descText.textContent = item.desc;
-            counterText.textContent = `${currentIndex + 1} / ${screenshotsData.length}`;
+            counterText.textContent = `${currentIndex + 1} / ${list.length}`;
             dialogImg.classList.remove('switching');
           }, 110);
         } else {
@@ -700,7 +908,7 @@
           dialogImg.alt = item.alt;
           titleText.textContent = item.title;
           descText.textContent = item.desc;
-          counterText.textContent = `${currentIndex + 1} / ${screenshotsData.length}`;
+          counterText.textContent = `${currentIndex + 1} / ${list.length}`;
         }
       }
 
@@ -753,6 +961,95 @@
         }
       });
 
+      // Language Switcher Function
+      function setLanguage(lang) {
+        if (!translations[lang]) return;
+        currentLang = lang;
+        document.documentElement.lang = lang;
+        localStorage.setItem('hyperix_lang', lang);
+
+        // Update switcher buttons active state
+        document.querySelectorAll('.lang-btn').forEach((btn) => {
+          const isActive = btn.dataset.lang === lang;
+          btn.classList.toggle('active', isActive);
+          btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+        });
+
+        // Update title & meta description
+        if (translations[lang].page_title) {
+          document.title = translations[lang].page_title;
+        }
+        const metaDesc = document.querySelector('meta[name="description"]');
+        if (metaDesc && translations[lang].meta_description) {
+          metaDesc.setAttribute('content', translations[lang].meta_description);
+        }
+
+        // Update all elements with data-i18n
+        document.querySelectorAll('[data-i18n]').forEach((el) => {
+          const key = el.dataset.i18n;
+          if (translations[lang] && translations[lang][key] !== undefined) {
+            el.innerHTML = translations[lang][key];
+          }
+        });
+
+        // Update release-btn labels across timeline
+        document.querySelectorAll('.release-btn.primary').forEach(el => {
+          el.innerHTML = translations[lang].rel_btn_download;
+        });
+        document.querySelectorAll('.release-btn.secondary').forEach(el => {
+          el.innerHTML = translations[lang].rel_btn_notes;
+        });
+
+        // Update release chips across timeline
+        document.querySelectorAll('.chip-latest').forEach(el => {
+          el.textContent = translations[lang].rel_chip_latest;
+        });
+        document.querySelectorAll('.chip-stable').forEach(el => {
+          if (!el.dataset.i18n) el.textContent = translations[lang].rel_chip_stable;
+        });
+        document.querySelectorAll('.chip-patch').forEach(el => {
+          if (!el.dataset.i18n) el.textContent = translations[lang].rel_chip_patch;
+        });
+        document.querySelectorAll('.chip-legacy').forEach(el => {
+          if (!el.dataset.i18n) el.textContent = translations[lang].rel_chip_legacy;
+        });
+
+        // Update release dates
+        document.querySelectorAll('.release-date').forEach(dateEl => {
+          const dt = dateEl.getAttribute('datetime');
+          if (dt) {
+            const d = new Date(dt + 'T12:00:00Z');
+            if (!isNaN(d.getTime())) {
+              dateEl.textContent = d.toLocaleDateString(lang === 'vi' ? 'vi-VN' : 'en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+            }
+          }
+        });
+
+        // Update screenshot lightbox text if modal is open
+        if (dialog && dialog.open) {
+          updateDialogContent(currentIndex, false);
+        }
+
+        // Update Changelog expand button
+        updateVisibleReleases();
+
+        // Update live version badge suffix
+        const badgeText = document.getElementById('live-version-text');
+        if (badgeText) {
+          const tagMatch = badgeText.textContent.match(/v\d+\.\d+\.\d+/);
+          const tag = tagMatch ? tagMatch[0] : 'v1.1.9';
+          badgeText.textContent = `${tag} ${translations[lang].rel_live_suffix}`;
+        }
+      }
+
+      // Attach Language Switcher click listeners
+      document.querySelectorAll('.lang-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const lang = btn.dataset.lang;
+          if (lang) setLanguage(lang);
+        });
+      });
+
       // Current SHA-256 Hash for latest release (v1.1.9)
       let currentSha256 = '15a9688a105a9aaf2f3475f14980fe26fb521c760488273a400e2f06a0c62344';
 
@@ -760,15 +1057,16 @@
       const copyBtn = document.getElementById('copy-hash-btn');
       if (copyBtn) {
         copyBtn.addEventListener('click', () => {
+          const t = translations[currentLang] || translations.en;
           navigator.clipboard.writeText(currentSha256).then(() => {
-            copyBtn.textContent = 'Copied!';
+            copyBtn.textContent = t.copy_btn_copied;
             copyBtn.classList.add('copied');
             setTimeout(() => {
-              copyBtn.textContent = 'Copy';
+              copyBtn.textContent = t.copy_btn;
               copyBtn.classList.remove('copied');
             }, 2200);
           }).catch(() => {
-            copyBtn.textContent = 'Failed';
+            copyBtn.textContent = t.copy_btn_failed;
           });
         });
       }
@@ -812,6 +1110,7 @@
       }
 
       function createReleaseCardElement(release, isLatest) {
+        const t = translations[currentLang] || translations.en;
         const article = document.createElement('article');
         const isHyperix = !release.tag_name.startsWith('v1.0');
         article.className = 'release-entry' + (isLatest ? ' is-latest' : '');
@@ -833,13 +1132,13 @@
 
         const typeChip = document.createElement('span');
         typeChip.className = 'release-type-chip ' + (isLatest ? 'chip-latest' : 'chip-stable');
-        typeChip.textContent = isLatest ? 'Latest Release' : 'Stable';
+        typeChip.textContent = isLatest ? t.rel_chip_latest : t.rel_chip_stable;
 
         const dateEl = document.createElement('time');
         dateEl.className = 'release-date';
         const pubDate = new Date(release.published_at || release.created_at);
         dateEl.setAttribute('datetime', pubDate.toISOString().split('T')[0]);
-        dateEl.textContent = pubDate.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+        dateEl.textContent = pubDate.toLocaleDateString(currentLang === 'vi' ? 'vi-VN' : 'en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
 
         titleRow.appendChild(tagBadge);
         titleRow.appendChild(typeChip);
@@ -853,7 +1152,7 @@
           const dlBtn = document.createElement('a');
           dlBtn.className = 'release-btn primary';
           dlBtn.href = exeAsset.browser_download_url;
-          dlBtn.innerHTML = 'Download .exe <span aria-hidden="true">↓</span>';
+          dlBtn.innerHTML = t.rel_btn_download;
           actions.appendChild(dlBtn);
         }
 
@@ -862,7 +1161,7 @@
         notesBtn.href = release.html_url;
         notesBtn.target = '_blank';
         notesBtn.rel = 'noopener';
-        notesBtn.innerHTML = 'Release notes <span aria-hidden="true">↗</span>';
+        notesBtn.innerHTML = t.rel_btn_notes;
         actions.appendChild(notesBtn);
 
         header.appendChild(titleRow);
@@ -913,6 +1212,12 @@
       }
       attachTiltEffects();
 
+      // Initialize Language from LocalStorage or Browser Setting
+      const savedLang = localStorage.getItem('hyperix_lang');
+      const browserLang = (navigator.language || navigator.userLanguage || '').toLowerCase().startsWith('vi') ? 'vi' : 'en';
+      const initialLang = savedLang || browserLang || 'en';
+      setLanguage(initialLang);
+
       // Auto-fetch releases from GitHub API to keep live badge, download buttons, SHA-256 and Version History 100% live!
       fetch('https://api.github.com/repos/Hadeverl4/Hyperix-Releases/releases?per_page=30')
         .then((res) => {
@@ -924,10 +1229,11 @@
 
           const latest = releases[0];
           const latestTag = latest.tag_name;
+          const t = translations[currentLang] || translations.en;
 
           // 1. Update Nav Live Badge
           const badgeText = document.getElementById('live-version-text');
-          if (badgeText) badgeText.textContent = `${latestTag} Live`;
+          if (badgeText) badgeText.textContent = `${latestTag} ${t.rel_live_suffix}`;
 
           // 2. Update Primary Download Button & SHA-256
           const exeAsset = latest.assets && latest.assets.find((a) => a.name && a.name.endsWith('.exe'));
@@ -964,7 +1270,7 @@
             });
             document.querySelectorAll('.chip-latest').forEach(el => {
               el.className = 'release-type-chip chip-stable';
-              el.textContent = 'Stable';
+              el.textContent = t.rel_chip_stable;
             });
 
             // Insert missing releases at top in reverse order so newest is at the very top
@@ -979,7 +1285,7 @@
             const allEntries = document.querySelectorAll('.release-entry');
             const allBtn = document.querySelector('.changelog-filter-btn[data-filter="all"]');
             if (allBtn) {
-              allBtn.textContent = `All releases (${allEntries.length})`;
+              allBtn.innerHTML = `<span data-i18n="filter_all">${t.filter_all}</span> (<span id="count-all">${allEntries.length}</span>)`;
             }
 
             // Re-apply filter and collapse/expand
