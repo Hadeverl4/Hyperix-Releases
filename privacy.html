@@ -21,45 +21,141 @@
           <span>Hyperix <em>Launcher</em></span>
         </a>
         <div class="nav-right">
-          <a class="source-link" href="./support.html">Support</a>
+          <a class="source-link" href="./support.html" data-i18n="nav_support">Support</a>
+          <div class="lang-switch" role="group" aria-label="Language selection">
+            <button class="lang-btn" type="button" data-lang="en" aria-label="Switch to English">EN</button>
+            <span class="lang-divider" aria-hidden="true">/</span>
+            <button class="lang-btn" type="button" data-lang="vi" aria-label="Chuyển sang Tiếng Việt">VI</button>
+          </div>
         </div>
       </nav>
 
       <article class="policy-copy policy-document">
         <div class="eyebrow-badge" style="margin-bottom: 1.2rem;">
-          <p class="eyebrow">Privacy policy</p>
+          <p class="eyebrow" data-i18n="privacy_eyebrow">Privacy policy</p>
         </div>
-        <h1>Your Minecraft data stays yours.</h1>
-        <p class="lede">Effective 6 September 2026. This policy describes the Windows desktop application Hyperix Launcher and its official distribution pages.</p>
+        <h1 data-i18n="privacy_h1">Your Minecraft data stays yours.</h1>
+        <p class="lede" data-i18n="privacy_lede">Effective 6 September 2026. This policy describes the Windows desktop application Hyperix Launcher and its official distribution pages.</p>
 
-        <h2>What Hyperix stores locally</h2>
-        <p>Hyperix stores launcher configuration, instance metadata, local game content, screenshots, logs, and account display metadata on the Windows device. Authentication credentials for Microsoft/Minecraft and supported account providers are kept separately using Windows user-scoped DPAPI. Hyperix does not store these credentials in its renderer data, ordinary account metadata files, screenshots, or launcher logs.</p>
+        <h2 data-i18n="privacy_h2_stores">What Hyperix stores locally</h2>
+        <p data-i18n="privacy_p_stores">Hyperix stores launcher configuration, instance metadata, local game content, screenshots, logs, and account display metadata on the Windows device. Authentication credentials for Microsoft/Minecraft and supported account providers are kept separately using Windows user-scoped DPAPI. Hyperix does not store these credentials in its renderer data, ordinary account metadata files, screenshots, or launcher logs.</p>
 
-        <h2>Services Hyperix connects to</h2>
-        <p>When you choose to use a feature, Hyperix connects directly to the relevant service: Microsoft, Xbox and Minecraft services for Microsoft sign-in and Minecraft play; Mojang services for game metadata/assets; Modrinth and, where enabled, CurseForge for content discovery and downloads; and Ely.by only when you select that provider. Those services process data under their own policies.</p>
+        <h2 data-i18n="privacy_h2_services">Services Hyperix connects to</h2>
+        <p data-i18n="privacy_p_services">When you choose to use a feature, Hyperix connects directly to the relevant service: Microsoft, Xbox and Minecraft services for Microsoft sign-in and Minecraft play; Mojang services for game metadata/assets; Modrinth and, where enabled, CurseForge for content discovery and downloads; and Ely.by only when you select that provider. Those services process data under their own policies.</p>
 
-        <h2>Technical telemetry</h2>
-        <p>A release sends technical telemetry only when it is built with a Hyperix collector endpoint and the <strong>Help improve Hyperix</strong> setting remains enabled. Current builds without such an endpoint send no telemetry. The allowlisted events are app start, Minecraft launch attempt, supervised game exit, and process-wait failure. They may contain the app version, operating-system/architecture, an ephemeral session identifier, bounded Minecraft version/loader, launch outcome and duration, and process exit status.</p>
-        <p>Telemetry never includes account names, authentication tokens/codes, instance IDs or names, server/world names, mod lists, filesystem paths, raw logs, screenshots, or play-time history. You can turn the setting off in Settings → Privacy; turning it off prevents future telemetry delivery.</p>
+        <h2 data-i18n="privacy_h2_telemetry">Technical telemetry</h2>
+        <p data-i18n="privacy_p_telemetry_1">A release sends technical telemetry only when it is built with a Hyperix collector endpoint and the <strong>Help improve Hyperix</strong> setting remains enabled. Current builds without such an endpoint send no telemetry. The allowlisted events are app start, Minecraft launch attempt, supervised game exit, and process-wait failure. They may contain the app version, operating-system/architecture, an ephemeral session identifier, bounded Minecraft version/loader, launch outcome and duration, and process exit status.</p>
+        <p data-i18n="privacy_p_telemetry_2">Telemetry never includes account names, authentication tokens/codes, instance IDs or names, server/world names, mod lists, filesystem paths, raw logs, screenshots, or play-time history. You can turn the setting off in Settings → Privacy; turning it off prevents future telemetry delivery.</p>
 
-        <h2>What Hyperix does not do</h2>
-        <p>Hyperix does not sell personal information, display advertising, run an in-app payment system, or re-host third-party mod files. It does not use local Minecraft worlds, mods, screenshots, or logs as technical telemetry.</p>
+        <h2 data-i18n="privacy_h2_notdo">What Hyperix does not do</h2>
+        <p data-i18n="privacy_p_notdo">Hyperix does not sell personal information, display advertising, run an in-app payment system, or re-host third-party mod files. It does not use local Minecraft worlds, mods, screenshots, or logs as technical telemetry.</p>
 
-        <h2>Retention and control</h2>
-        <p>Local launcher and game data remains on your device until you delete it through Hyperix, remove an account, uninstall/delete the Hyperix data directory, or remove the relevant game instance. The Storage Manager intentionally excludes worlds, mods, screenshots, accounts, and Minecraft runtime data from automatic cleanup.</p>
+        <h2 data-i18n="privacy_h2_retention">Retention and control</h2>
+        <p data-i18n="privacy_p_retention">Local launcher and game data remains on your device until you delete it through Hyperix, remove an account, uninstall/delete the Hyperix data directory, or remove the relevant game instance. The Storage Manager intentionally excludes worlds, mods, screenshots, accounts, and Minecraft runtime data from automatic cleanup.</p>
 
-        <h2>Security and contact</h2>
-        <p>We use platform credential protection, constrained native commands, provider allowlists, and verified downloads where provider hashes are supplied. No software can guarantee that third-party game content is safe. For support or privacy questions, use the <a href="./support.html">Hyperix support page</a> or email <a href="mailto:hyperix.contact@gmail.com">hyperix.contact@gmail.com</a>. We will update this policy before materially changing data practices.</p>
+        <h2 data-i18n="privacy_h2_security">Security and contact</h2>
+        <p data-i18n="privacy_p_security">We use platform credential protection, constrained native commands, provider allowlists, and verified downloads where provider hashes are supplied. No software can guarantee that third-party game content is safe. For support or privacy questions, use the <a href="./support.html">Hyperix support page</a> or email <a href="mailto:hyperix.contact@gmail.com">hyperix.contact@gmail.com</a>. We will update this policy before materially changing data practices.</p>
       </article>
     </main>
 
     <footer>
       <span>Hyperix Launcher</span>
       <div class="footer-links">
-        <a href="./terms.html">Terms</a>
-        <a href="./support.html">Support</a>
-        <a href="./index.html">Home</a>
+        <a href="./terms.html" data-i18n="footer_terms">Terms</a>
+        <a href="./support.html" data-i18n="footer_support">Support</a>
+        <a href="./index.html" data-i18n="footer_home">Home</a>
       </div>
     </footer>
+
+    <script>
+      const translations = {
+        en: {
+          page_title: "Privacy Policy — Hyperix Launcher",
+          meta_description: "Hyperix Launcher privacy policy.",
+          nav_support: "Support",
+          privacy_eyebrow: "Privacy policy",
+          privacy_h1: "Your Minecraft data stays yours.",
+          privacy_lede: "Effective 6 September 2026. This policy describes the Windows desktop application Hyperix Launcher and its official distribution pages.",
+          privacy_h2_stores: "What Hyperix stores locally",
+          privacy_p_stores: "Hyperix stores launcher configuration, instance metadata, local game content, screenshots, logs, and account display metadata on the Windows device. Authentication credentials for Microsoft/Minecraft and supported account providers are kept separately using Windows user-scoped DPAPI. Hyperix does not store these credentials in its renderer data, ordinary account metadata files, screenshots, or launcher logs.",
+          privacy_h2_services: "Services Hyperix connects to",
+          privacy_p_services: "When you choose to use a feature, Hyperix connects directly to the relevant service: Microsoft, Xbox and Minecraft services for Microsoft sign-in and Minecraft play; Mojang services for game metadata/assets; Modrinth and, where enabled, CurseForge for content discovery and downloads; and Ely.by only when you select that provider. Those services process data under their own policies.",
+          privacy_h2_telemetry: "Technical telemetry",
+          privacy_p_telemetry_1: "A release sends technical telemetry only when it is built with a Hyperix collector endpoint and the <strong>Help improve Hyperix</strong> setting remains enabled. Current builds without such an endpoint send no telemetry. The allowlisted events are app start, Minecraft launch attempt, supervised game exit, and process-wait failure. They may contain the app version, operating-system/architecture, an ephemeral session identifier, bounded Minecraft version/loader, launch outcome and duration, and process exit status.",
+          privacy_p_telemetry_2: "Telemetry never includes account names, authentication tokens/codes, instance IDs or names, server/world names, mod lists, filesystem paths, raw logs, screenshots, or play-time history. You can turn the setting off in Settings → Privacy; turning it off prevents future telemetry delivery.",
+          privacy_h2_notdo: "What Hyperix does not do",
+          privacy_p_notdo: "Hyperix does not sell personal information, display advertising, run an in-app payment system, or re-host third-party mod files. It does not use local Minecraft worlds, mods, screenshots, or logs as technical telemetry.",
+          privacy_h2_retention: "Retention and control",
+          privacy_p_retention: "Local launcher and game data remains on your device until you delete it through Hyperix, remove an account, uninstall/delete the Hyperix data directory, or remove the relevant game instance. The Storage Manager intentionally excludes worlds, mods, screenshots, accounts, and Minecraft runtime data from automatic cleanup.",
+          privacy_h2_security: "Security and contact",
+          privacy_p_security: "We use platform credential protection, constrained native commands, provider allowlists, and verified downloads where provider hashes are supplied. No software can guarantee that third-party game content is safe. For support or privacy questions, use the <a href=\"./support.html\">Hyperix support page</a> or email <a href=\"mailto:hyperix.contact@gmail.com\">hyperix.contact@gmail.com</a>. We will update this policy before materially changing data practices.",
+          footer_terms: "Terms",
+          footer_support: "Support",
+          footer_home: "Home"
+        },
+        vi: {
+          page_title: "Chính sách quyền riêng tư — Hyperix Launcher",
+          meta_description: "Chính sách quyền riêng tư của Hyperix Launcher.",
+          nav_support: "Hỗ trợ",
+          privacy_eyebrow: "Chính sách quyền riêng tư",
+          privacy_h1: "Dữ liệu Minecraft của bạn luôn là của bạn.",
+          privacy_lede: "Có hiệu lực từ ngày 6 tháng 9, 2026. Chính sách này mô tả ứng dụng máy tính Hyperix Launcher trên Windows và các trang phân phối chính thức.",
+          privacy_h2_stores: "Những gì Hyperix lưu trữ cục bộ",
+          privacy_p_stores: "Hyperix lưu cấu hình trình khởi chạy, siêu dữ liệu bản cài (instance), tệp game cục bộ, ảnh chụp màn hình, nhật ký và thông tin hiển thị tài khoản trên thiết bị Windows. Thông tin xác thực cho Microsoft/Minecraft và các nhà cung cấp tài khoản được hỗ trợ được lưu riêng biệt bằng Windows DPAPI cấp người dùng. Hyperix không bao giờ lưu trữ các thông tin bảo mật này trong dữ liệu giao diện, tệp thông tin tài khoản thông thường, ảnh chụp màn hình hay nhật ký launcher.",
+          privacy_h2_services: "Các dịch vụ Hyperix kết nối tới",
+          privacy_p_services: "Khi bạn chọn sử dụng một tính năng, Hyperix chỉ kết nối trực tiếp đến dịch vụ tương ứng: Microsoft, Xbox và dịch vụ Minecraft để đăng nhập và khởi chạy game; dịch vụ Mojang cho siêu dữ liệu/tài nguyên game; Modrinth và CurseForge (nếu được bật) để tìm kiếm và tải nội dung; và Ely.by chỉ khi bạn chọn nhà cung cấp này. Các dịch vụ đó xử lý dữ liệu theo chính sách riêng của họ.",
+          privacy_h2_telemetry: "Dữ liệu đo từ xa kỹ thuật (Telemetry)",
+          privacy_p_telemetry_1: "Bản phát hành chỉ gửi dữ liệu đo từ xa khi được biên dịch cùng với máy chủ thu thập của Hyperix và tùy chọn <strong>Hỗ trợ cải thiện Hyperix</strong> được bật. Các bản phát hành hiện tại không có máy chủ này nên hoàn toàn không gửi dữ liệu nào. Các sự kiện trong danh sách cho phép gồm: khởi động app, thử mở Minecraft, giám sát thoát game và lỗi chờ tiến trình. Dữ liệu có thể gồm: phiên bản app, hệ điều hành/kiến trúc, mã phiên ngẫu nhiên, phiên bản Minecraft/loader giới hạn, kết quả khởi chạy, thời gian và mã trạng thái kết thúc.",
+          privacy_p_telemetry_2: "Dữ liệu đo từ xa tuyệt đối không bao giờ chứa tên tài khoản, token xác thực, ID/tên bản cài, tên máy chủ/thế giới, danh sách mod, đường dẫn thư mục, nhật ký thô, ảnh chụp màn hình hay lịch sử thời gian chơi. Bạn có thể tắt tùy chọn này bất cứ lúc nào trong Cài đặt → Quyền riêng tư; khi tắt, toàn bộ việc gửi dữ liệu sẽ bị chặn hoàn toàn.",
+          privacy_h2_notdo: "Những điều Hyperix không bao giờ làm",
+          privacy_p_notdo: "Hyperix không bán thông tin cá nhân, không hiển thị quảng cáo, không tích hợp hệ thống thanh toán trong ứng dụng và không lưu trữ lại các tệp mod của bên thứ ba. Hyperix không sử dụng các thế giới Minecraft, mod, ảnh chụp màn hình hay nhật ký cục bộ làm dữ liệu kỹ thuật.",
+          privacy_h2_retention: "Thời gian lưu trữ và quyền kiểm soát",
+          privacy_p_retention: "Dữ liệu launcher và game cục bộ sẽ nằm lại trên thiết bị của bạn cho đến khi bạn chủ động xóa qua Hyperix, gỡ tài khoản, gỡ cài đặt/xóa thư mục dữ liệu Hyperix hoặc xóa bản cài đặt game tương ứng. Trình quản lý dung lượng (Storage Manager) chủ động loại trừ thế giới, mod, ảnh chụp màn hình, tài khoản và dữ liệu thời gian chạy Minecraft khỏi tính năng tự động dọn dẹp.",
+          privacy_h2_security: "Bảo mật và liên hệ",
+          privacy_p_security: "Chúng tôi áp dụng cơ chế bảo vệ thông tin đăng nhập của hệ điều hành, giới hạn lệnh hệ thống gốc, danh sách cho phép nhà cung cấp và kiểm tra mã băm xác thực khi tải về từ nguồn cung cấp. Không có phần mềm nào có thể đảm bảo an toàn tuyệt đối trước nội dung game của bên thứ ba. Nếu bạn có thắc mắc về quyền riêng tư hoặc cần hỗ trợ, vui lòng sử dụng <a href=\"./support.html\">trang hỗ trợ Hyperix</a> hoặc gửi email về <a href=\"mailto:hyperix.contact@gmail.com\">hyperix.contact@gmail.com</a>. Chúng tôi sẽ cập nhật chính sách này trước khi có bất kỳ thay đổi quan trọng nào về cách xử lý dữ liệu.",
+          footer_terms: "Điều khoản",
+          footer_support: "Hỗ trợ",
+          footer_home: "Trang chủ"
+        }
+      };
+
+      function setLanguage(lang) {
+        if (!translations[lang]) return;
+        document.documentElement.lang = lang;
+        localStorage.setItem('hyperix_lang', lang);
+
+        document.querySelectorAll('.lang-btn').forEach((btn) => {
+          const isActive = btn.dataset.lang === lang;
+          btn.classList.toggle('active', isActive);
+          btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+        });
+
+        if (translations[lang].page_title) {
+          document.title = translations[lang].page_title;
+        }
+        const metaDesc = document.querySelector('meta[name="description"]');
+        if (metaDesc && translations[lang].meta_description) {
+          metaDesc.setAttribute('content', translations[lang].meta_description);
+        }
+
+        document.querySelectorAll('[data-i18n]').forEach((el) => {
+          const key = el.dataset.i18n;
+          if (translations[lang] && translations[lang][key] !== undefined) {
+            el.innerHTML = translations[lang][key];
+          }
+        });
+      }
+
+      document.querySelectorAll('.lang-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const lang = btn.dataset.lang;
+          if (lang) setLanguage(lang);
+        });
+      });
+
+      const savedLang = localStorage.getItem('hyperix_lang');
+      const browserLang = (navigator.language || navigator.userLanguage || '').toLowerCase().startsWith('vi') ? 'vi' : 'en';
+      setLanguage(savedLang || browserLang || 'en');
+    </script>
   </body>
 </html>

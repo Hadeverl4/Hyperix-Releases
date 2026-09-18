@@ -21,38 +21,124 @@
           <span>Hyperix <em>Launcher</em></span>
         </a>
         <div class="nav-right">
-          <a class="source-link" href="./privacy.html">Privacy</a>
+          <a class="source-link" href="./privacy.html" data-i18n="nav_privacy">Privacy</a>
+          <div class="lang-switch" role="group" aria-label="Language selection">
+            <button class="lang-btn" type="button" data-lang="en" aria-label="Switch to English">EN</button>
+            <span class="lang-divider" aria-hidden="true">/</span>
+            <button class="lang-btn" type="button" data-lang="vi" aria-label="Chuyển sang Tiếng Việt">VI</button>
+          </div>
         </div>
       </nav>
 
       <article class="policy-copy policy-document">
         <div class="eyebrow-badge" style="margin-bottom: 1.2rem;">
-          <p class="eyebrow">Support</p>
+          <p class="eyebrow" data-i18n="support_eyebrow">Support</p>
         </div>
-        <h1>Help us reproduce the issue safely.</h1>
-        <p class="lede">Hyperix is maintained independently. Please include the launcher version, Windows version, relevant Minecraft version/loader, reproducible steps, and a sanitized error message.</p>
+        <h1 data-i18n="support_h1">Help us reproduce the issue safely.</h1>
+        <p class="lede" data-i18n="support_lede">Hyperix is maintained independently. Please include the launcher version, Windows version, relevant Minecraft version/loader, reproducible steps, and a sanitized error message.</p>
 
-        <h2>General support</h2>
-        <p>Use the official <a href="https://github.com/Hadeverl4/Hyperix-Launcher/issues">Hyperix issue tracker</a> for a reproducible bug or feature request. Do not attach access tokens, refresh tokens, device codes, account credentials, private server addresses, worlds, or unredacted logs.</p>
+        <h2 data-i18n="support_h2_general">General support</h2>
+        <p data-i18n="support_p_general">Use the official <a href="https://github.com/Hadeverl4/Hyperix-Launcher/issues" target="_blank" rel="noopener">Hyperix issue tracker</a> for a reproducible bug or feature request. Do not attach access tokens, refresh tokens, device codes, account credentials, private server addresses, worlds, or unredacted logs.</p>
 
-        <h2>Security reports</h2>
-        <p>For a security issue, do not publish credentials or a working exploit in a public issue. Contact <a href="mailto:hyperix.contact@gmail.com">hyperix.contact@gmail.com</a> with a minimal reproduction and the affected Hyperix version. Before Store publication, this mailbox must remain monitored.</p>
+        <h2 data-i18n="support_h2_security">Security reports</h2>
+        <p data-i18n="support_p_security">For a security issue, do not publish credentials or a working exploit in a public issue. Contact <a href="mailto:hyperix.contact@gmail.com">hyperix.contact@gmail.com</a> with a minimal reproduction and the affected Hyperix version. Before Store publication, this mailbox must remain monitored.</p>
 
-        <h2>Content and rights reports</h2>
-        <p>Hyperix does not host provider content. Report a mod, modpack, or creator-rights concern first through the relevant provider’s official reporting route. If Hyperix is displaying or handling that content incorrectly, include the provider project URL and an explanation in the issue tracker.</p>
+        <h2 data-i18n="support_h2_content">Content and rights reports</h2>
+        <p data-i18n="support_p_content">Hyperix does not host provider content. Report a mod, modpack, or creator-rights concern first through the relevant provider’s official reporting route. If Hyperix is displaying or handling that content incorrectly, include the provider project URL and an explanation in the issue tracker.</p>
 
-        <h2>Official downloads</h2>
-        <p>Only download Hyperix from this page, the official GitHub Releases page, or the <a href="https://apps.microsoft.com/detail/9nk9fxtbt77t" target="_blank" rel="noreferrer">official Microsoft Store</a>. Do not accept executables or account-login instructions from third parties.</p>
+        <h2 data-i18n="support_h2_downloads">Official downloads</h2>
+        <p data-i18n="support_p_downloads">Only download Hyperix from this page, the official GitHub Releases page, or the <a href="https://apps.microsoft.com/detail/9nk9fxtbt77t" target="_blank" rel="noreferrer">official Microsoft Store</a>. Do not accept executables or account-login instructions from third parties.</p>
       </article>
     </main>
 
     <footer>
       <span>Hyperix Launcher</span>
       <div class="footer-links">
-        <a href="./privacy.html">Privacy</a>
-        <a href="./terms.html">Terms</a>
-        <a href="./index.html">Home</a>
+        <a href="./privacy.html" data-i18n="footer_privacy">Privacy</a>
+        <a href="./terms.html" data-i18n="footer_terms">Terms</a>
+        <a href="./index.html" data-i18n="footer_home">Home</a>
       </div>
     </footer>
+
+    <script>
+      const translations = {
+        en: {
+          page_title: "Support — Hyperix Launcher",
+          meta_description: "Hyperix Launcher support and security information.",
+          nav_privacy: "Privacy",
+          support_eyebrow: "Support",
+          support_h1: "Help us reproduce the issue safely.",
+          support_lede: "Hyperix is maintained independently. Please include the launcher version, Windows version, relevant Minecraft version/loader, reproducible steps, and a sanitized error message.",
+          support_h2_general: "General support",
+          support_p_general: "Use the official <a href=\"https://github.com/Hadeverl4/Hyperix-Launcher/issues\" target=\"_blank\" rel=\"noopener\">Hyperix issue tracker</a> for a reproducible bug or feature request. Do not attach access tokens, refresh tokens, device codes, account credentials, private server addresses, worlds, or unredacted logs.",
+          support_h2_security: "Security reports",
+          support_p_security: "For a security issue, do not publish credentials or a working exploit in a public issue. Contact <a href=\"mailto:hyperix.contact@gmail.com\">hyperix.contact@gmail.com</a> with a minimal reproduction and the affected Hyperix version. Before Store publication, this mailbox must remain monitored.",
+          support_h2_content: "Content and rights reports",
+          support_p_content: "Hyperix does not host provider content. Report a mod, modpack, or creator-rights concern first through the relevant provider’s official reporting route. If Hyperix is displaying or handling that content incorrectly, include the provider project URL and an explanation in the issue tracker.",
+          support_h2_downloads: "Official downloads",
+          support_p_downloads: "Only download Hyperix from this page, the official GitHub Releases page, or the <a href=\"https://apps.microsoft.com/detail/9nk9fxtbt77t\" target=\"_blank\" rel=\"noreferrer\">official Microsoft Store</a>. Do not accept executables or account-login instructions from third parties.",
+          footer_privacy: "Privacy",
+          footer_terms: "Terms",
+          footer_home: "Home"
+        },
+        vi: {
+          page_title: "Hỗ trợ — Hyperix Launcher",
+          meta_description: "Thông tin hỗ trợ và hướng dẫn bảo mật cho Hyperix Launcher.",
+          nav_privacy: "Quyền riêng tư",
+          support_eyebrow: "Hỗ trợ",
+          support_h1: "Giúp chúng tôi tái hiện sự cố an toàn & nhanh chóng.",
+          support_lede: "Hyperix được duy trì độc lập. Vui lòng cung cấp phiên bản launcher, bản Windows, phiên bản Minecraft/loader liên quan, các bước tái hiện lỗi và thông báo lỗi đã được lọc bỏ thông tin nhạy cảm.",
+          support_h2_general: "Hỗ trợ chung",
+          support_p_general: "Sử dụng trang <a href=\"https://github.com/Hadeverl4/Hyperix-Launcher/issues\" target=\"_blank\" rel=\"noopener\">theo dõi sự cố Hyperix chính thức</a> để báo cáo lỗi hoặc đề xuất tính năng mới. Tuyệt đối không đính kèm mã token, refresh token, mã thiết bị, mật khẩu tài khoản, địa chỉ máy chủ nội bộ, file thế giới hoặc nhật ký chưa được che thông tin cá nhân.",
+          support_h2_security: "Báo cáo bảo mật",
+          support_p_security: "Đối với sự cố bảo mật, vui lòng không đăng công khai thông tin đăng nhập hoặc mã khai thác lỗi. Hãy liên hệ trực tiếp <a href=\"mailto:hyperix.contact@gmail.com\">hyperix.contact@gmail.com</a> kèm hướng dẫn tái hiện tối giản và phiên bản Hyperix liên quan. Hộp thư này luôn được theo dõi thường xuyên.",
+          support_h2_content: "Báo cáo nội dung & bản quyền",
+          support_p_content: "Hyperix không lưu trữ nội dung của nhà cung cấp. Vui lòng báo cáo thắc mắc về mod, modpack hoặc quyền tác giả trước tiên qua kênh chính thức của nền tảng tương ứng. Nếu Hyperix hiển thị hoặc xử lý nội dung không đúng, hãy gửi URL dự án cùng giải thích chi tiết trên trang theo dõi lỗi.",
+          support_h2_downloads: "Tải về chính thức",
+          support_p_downloads: "Chỉ tải Hyperix từ trang này, trang GitHub Releases chính thức hoặc <a href=\"https://apps.microsoft.com/detail/9nk9fxtbt77t\" target=\"_blank\" rel=\"noreferrer\">Microsoft Store chính thức</a>. Tuyệt đối không tải file thực thi hoặc làm theo hướng dẫn đăng nhập từ các bên thứ ba không rõ nguồn gốc.",
+          footer_privacy: "Quyền riêng tư",
+          footer_terms: "Điều khoản",
+          footer_home: "Trang chủ"
+        }
+      };
+
+      function setLanguage(lang) {
+        if (!translations[lang]) return;
+        document.documentElement.lang = lang;
+        localStorage.setItem('hyperix_lang', lang);
+
+        document.querySelectorAll('.lang-btn').forEach((btn) => {
+          const isActive = btn.dataset.lang === lang;
+          btn.classList.toggle('active', isActive);
+          btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+        });
+
+        if (translations[lang].page_title) {
+          document.title = translations[lang].page_title;
+        }
+        const metaDesc = document.querySelector('meta[name="description"]');
+        if (metaDesc && translations[lang].meta_description) {
+          metaDesc.setAttribute('content', translations[lang].meta_description);
+        }
+
+        document.querySelectorAll('[data-i18n]').forEach((el) => {
+          const key = el.dataset.i18n;
+          if (translations[lang] && translations[lang][key] !== undefined) {
+            el.innerHTML = translations[lang][key];
+          }
+        });
+      }
+
+      document.querySelectorAll('.lang-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const lang = btn.dataset.lang;
+          if (lang) setLanguage(lang);
+        });
+      });
+
+      const savedLang = localStorage.getItem('hyperix_lang');
+      const browserLang = (navigator.language || navigator.userLanguage || '').toLowerCase().startsWith('vi') ? 'vi' : 'en';
+      setLanguage(savedLang || browserLang || 'en');
+    </script>
   </body>
 </html>

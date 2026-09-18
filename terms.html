@@ -21,44 +21,138 @@
           <span>Hyperix <em>Launcher</em></span>
         </a>
         <div class="nav-right">
-          <a class="source-link" href="./support.html">Support</a>
+          <a class="source-link" href="./support.html" data-i18n="nav_support">Support</a>
+          <div class="lang-switch" role="group" aria-label="Language selection">
+            <button class="lang-btn" type="button" data-lang="en" aria-label="Switch to English">EN</button>
+            <span class="lang-divider" aria-hidden="true">/</span>
+            <button class="lang-btn" type="button" data-lang="vi" aria-label="Chuyển sang Tiếng Việt">VI</button>
+          </div>
         </div>
       </nav>
 
       <article class="policy-copy policy-document">
         <div class="eyebrow-badge" style="margin-bottom: 1.2rem;">
-          <p class="eyebrow">Terms and content notice</p>
+          <p class="eyebrow" data-i18n="terms_eyebrow">Terms and content notice</p>
         </div>
-        <h1>Independent launcher, transparent limits.</h1>
-        <p class="lede">Effective 6 September 2026. These terms apply to Hyperix Launcher and its official distribution pages.</p>
+        <h1 data-i18n="terms_h1">Independent launcher, transparent limits.</h1>
+        <p class="lede" data-i18n="terms_lede">Effective 6 September 2026. These terms apply to Hyperix Launcher and its official distribution pages.</p>
 
-        <h2>Independent project</h2>
-        <p>Hyperix is an independent launcher. It is not an official Minecraft product and is not approved by or associated with Mojang or Microsoft. Minecraft is required to play Minecraft; you are responsible for holding any required game licence and complying with Minecraft’s terms.</p>
+        <h2 data-i18n="terms_h2_indie">Independent project</h2>
+        <p data-i18n="terms_p_indie">Hyperix is an independent launcher. It is not an official Minecraft product and is not approved by or associated with Mojang or Microsoft. Minecraft is required to play Minecraft; you are responsible for holding any required game licence and complying with Minecraft’s terms.</p>
 
-        <h2>Third-party content</h2>
-        <p>Mods, modpacks, resource packs, shaders, servers, and other community content are provided by their respective creators and services. Hyperix uses supported provider APIs and does not claim ownership of that content. You must follow each provider’s terms, project licence, author restrictions, and applicable law. Hyperix must not be used to bypass a creator’s distribution choice, game restrictions, or platform safeguards.</p>
+        <h2 data-i18n="terms_h2_thirdparty">Third-party content</h2>
+        <p data-i18n="terms_p_thirdparty">Mods, modpacks, resource packs, shaders, servers, and other community content are provided by their respective creators and services. Hyperix uses supported provider APIs and does not claim ownership of that content. You must follow each provider’s terms, project licence, author restrictions, and applicable law. Hyperix must not be used to bypass a creator’s distribution choice, game restrictions, or platform safeguards.</p>
 
-        <h2>Security and compatibility</h2>
-        <p>Third-party game content can be incompatible, unstable, malicious, or harmful. Hyperix shows recorded-source and local/changed-content signals where available, but these are provenance signals, not a malware certification. Review content carefully, keep backups, and use trusted sources. Hyperix may disable or change an integration when a provider’s rules, API, or safety requirements require it.</p>
+        <h2 data-i18n="terms_h2_security">Security and compatibility</h2>
+        <p data-i18n="terms_p_security">Third-party game content can be incompatible, unstable, malicious, or harmful. Hyperix shows recorded-source and local/changed-content signals where available, but these are provenance signals, not a malware certification. Review content carefully, keep backups, and use trusted sources. Hyperix may disable or change an integration when a provider’s rules, API, or safety requirements require it.</p>
 
-        <h2>Acceptable use</h2>
-        <p>Do not use Hyperix to infringe intellectual-property rights, evade access controls, distribute prohibited content, attack services, or violate the terms of Microsoft, Minecraft, Modrinth, CurseForge, Ely.by, or another service you choose to use. Do not misrepresent Hyperix as an official product of another organisation.</p>
+        <h2 data-i18n="terms_h2_use">Acceptable use</h2>
+        <p data-i18n="terms_p_use">Do not use Hyperix to infringe intellectual-property rights, evade access controls, distribute prohibited content, attack services, or violate the terms of Microsoft, Minecraft, Modrinth, CurseForge, Ely.by, or another service you choose to use. Do not misrepresent Hyperix as an official product of another organisation.</p>
 
-        <h2>Availability and changes</h2>
-        <p>Hyperix is provided as an independent project. Features and provider availability can change, and updates may be required for security, compatibility, or policy reasons. Nothing here limits rights that cannot legally be limited in your region.</p>
+        <h2 data-i18n="terms_h2_availability">Availability and changes</h2>
+        <p data-i18n="terms_p_availability">Hyperix is provided as an independent project. Features and provider availability can change, and updates may be required for security, compatibility, or policy reasons. Nothing here limits rights that cannot legally be limited in your region.</p>
 
-        <h2>Contact</h2>
-        <p>For support, security reports, privacy questions, or a rights concern, use the <a href="./support.html">Hyperix support page</a> or email <a href="mailto:hyperix.contact@gmail.com">hyperix.contact@gmail.com</a>.</p>
+        <h2 data-i18n="terms_h2_contact">Contact</h2>
+        <p data-i18n="terms_p_contact">For support, security reports, privacy questions, or a rights concern, use the <a href="./support.html">Hyperix support page</a> or email <a href="mailto:hyperix.contact@gmail.com">hyperix.contact@gmail.com</a>.</p>
       </article>
     </main>
 
     <footer>
       <span>Hyperix Launcher</span>
       <div class="footer-links">
-        <a href="./privacy.html">Privacy</a>
-        <a href="./support.html">Support</a>
-        <a href="./index.html">Home</a>
+        <a href="./privacy.html" data-i18n="footer_privacy">Privacy</a>
+        <a href="./support.html" data-i18n="footer_support">Support</a>
+        <a href="./index.html" data-i18n="footer_home">Home</a>
       </div>
     </footer>
+
+    <script>
+      const translations = {
+        en: {
+          page_title: "Terms — Hyperix Launcher",
+          meta_description: "Hyperix Launcher terms and content notice.",
+          nav_support: "Support",
+          terms_eyebrow: "Terms and content notice",
+          terms_h1: "Independent launcher, transparent limits.",
+          terms_lede: "Effective 6 September 2026. These terms apply to Hyperix Launcher and its official distribution pages.",
+          terms_h2_indie: "Independent project",
+          terms_p_indie: "Hyperix is an independent launcher. It is not an official Minecraft product and is not approved by or associated with Mojang or Microsoft. Minecraft is required to play Minecraft; you are responsible for holding any required game licence and complying with Minecraft’s terms.",
+          terms_h2_thirdparty: "Third-party content",
+          terms_p_thirdparty: "Mods, modpacks, resource packs, shaders, servers, and other community content are provided by their respective creators and services. Hyperix uses supported provider APIs and does not claim ownership of that content. You must follow each provider’s terms, project licence, author restrictions, and applicable law. Hyperix must not be used to bypass a creator’s distribution choice, game restrictions, or platform safeguards.",
+          terms_h2_security: "Security and compatibility",
+          terms_p_security: "Third-party game content can be incompatible, unstable, malicious, or harmful. Hyperix shows recorded-source and local/changed-content signals where available, but these are provenance signals, not a malware certification. Review content carefully, keep backups, and use trusted sources. Hyperix may disable or change an integration when a provider’s rules, API, or safety requirements require it.",
+          terms_h2_use: "Acceptable use",
+          terms_p_use: "Do not use Hyperix to infringe intellectual-property rights, evade access controls, distribute prohibited content, attack services, or violate the terms of Microsoft, Minecraft, Modrinth, CurseForge, Ely.by, or another service you choose to use. Do not misrepresent Hyperix as an official product of another organisation.",
+          terms_h2_availability: "Availability and changes",
+          terms_p_availability: "Hyperix is provided as an independent project. Features and provider availability can change, and updates may be required for security, compatibility, or policy reasons. Nothing here limits rights that cannot legally be limited in your region.",
+          terms_h2_contact: "Contact",
+          terms_p_contact: "For support, security reports, privacy questions, or a rights concern, use the <a href=\"./support.html\">Hyperix support page</a> or email <a href=\"mailto:hyperix.contact@gmail.com\">hyperix.contact@gmail.com</a>.",
+          footer_privacy: "Privacy",
+          footer_support: "Support",
+          footer_home: "Home"
+        },
+        vi: {
+          page_title: "Điều khoản — Hyperix Launcher",
+          meta_description: "Điều khoản sử dụng và thông báo nội dung của Hyperix Launcher.",
+          nav_support: "Hỗ trợ",
+          terms_eyebrow: "Điều khoản và thông báo nội dung",
+          terms_h1: "Trình khởi chạy độc lập, giới hạn minh bạch.",
+          terms_lede: "Có hiệu lực từ ngày 6 tháng 9, 2026. Các điều khoản này áp dụng cho Hyperix Launcher và các trang phân phối chính thức.",
+          terms_h2_indie: "Dự án độc lập",
+          terms_p_indie: "Hyperix là một trình khởi chạy độc lập. Đây không phải là sản phẩm Minecraft chính thức và không được phê duyệt hoặc liên kết với Mojang hay Microsoft. Bạn cần sở hữu bản quyền game Minecraft hợp lệ để chơi Minecraft; bạn tự chịu trách nhiệm về giấy phép game và tuân thủ các điều khoản của Minecraft.",
+          terms_h2_thirdparty: "Nội dung của bên thứ ba",
+          terms_p_thirdparty: "Mod, modpack, gói tài nguyên, shader, máy chủ và các nội dung cộng đồng khác được cung cấp bởi các tác giả và dịch vụ tương ứng. Hyperix sử dụng API chính thức của các nhà cung cấp được hỗ trợ và không tuyên bố quyền sở hữu đối với nội dung đó. Bạn phải tuân thủ các điều khoản, giấy phép dự án, các giới hạn của tác giả và luật pháp hiện hành. Tuyệt đối không sử dụng Hyperix để phá vỡ quyền phân phối của người sáng tạo, các hạn chế trong game hoặc biện pháp bảo vệ của nền tảng.",
+          terms_h2_security: "Bảo mật và tính tương thích",
+          terms_p_security: "Nội dung game từ bên thứ ba có thể không tương thích, không ổn định hoặc chứa mã độc hại. Hyperix hiển thị nguồn gốc được ghi nhận và trạng thái nội dung cục bộ/thay đổi khi có thể, nhưng đây là thông tin về nguồn gốc chứ không phải chứng nhận chống mã độc tuyệt đối. Hãy kiểm tra kỹ nội dung, sao lưu dữ liệu thường xuyên và chỉ sử dụng nguồn đáng tin cậy. Hyperix có thể vô hiệu hóa hoặc thay đổi một tích hợp khi quy định, API hoặc yêu cầu an toàn của nhà cung cấp đòi hỏi.",
+          terms_h2_use: "Quy định sử dụng chấp nhận được",
+          terms_p_use: "Không sử dụng Hyperix để xâm phạm quyền sở hữu trí tuệ, né tránh kiểm soát truy cập, phân phối nội dung bị cấm, tấn công dịch vụ hoặc vi phạm điều khoản của Microsoft, Minecraft, Modrinth, CurseForge, Ely.by hay bất kỳ dịch vụ nào bạn chọn sử dụng. Không được mạo danh Hyperix là sản phẩm chính thức của một tổ chức khác.",
+          terms_h2_availability: "Tính khả dụng và các thay đổi",
+          terms_p_availability: "Hyperix được cung cấp dưới dạng dự án độc lập. Các tính năng và tính khả dụng của nhà cung cấp có thể thay đổi, và các bản cập nhật có thể được yêu cầu vì lý do bảo mật, tương thích hoặc chính sách. Không điều khoản nào ở đây giới hạn các quyền lợi hợp pháp không thể bị giới hạn tại khu vực của bạn.",
+          terms_h2_contact: "Liên hệ",
+          terms_p_contact: "Để được hỗ trợ, báo cáo bảo mật, thắc mắc về quyền riêng tư hoặc quan ngại về bản quyền, hãy truy cập <a href=\"./support.html\">trang hỗ trợ Hyperix</a> hoặc gửi email đến <a href=\"mailto:hyperix.contact@gmail.com\">hyperix.contact@gmail.com</a>.",
+          footer_privacy: "Quyền riêng tư",
+          footer_support: "Hỗ trợ",
+          footer_home: "Trang chủ"
+        }
+      };
+
+      function setLanguage(lang) {
+        if (!translations[lang]) return;
+        document.documentElement.lang = lang;
+        localStorage.setItem('hyperix_lang', lang);
+
+        document.querySelectorAll('.lang-btn').forEach((btn) => {
+          const isActive = btn.dataset.lang === lang;
+          btn.classList.toggle('active', isActive);
+          btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+        });
+
+        if (translations[lang].page_title) {
+          document.title = translations[lang].page_title;
+        }
+        const metaDesc = document.querySelector('meta[name="description"]');
+        if (metaDesc && translations[lang].meta_description) {
+          metaDesc.setAttribute('content', translations[lang].meta_description);
+        }
+
+        document.querySelectorAll('[data-i18n]').forEach((el) => {
+          const key = el.dataset.i18n;
+          if (translations[lang] && translations[lang][key] !== undefined) {
+            el.innerHTML = translations[lang][key];
+          }
+        });
+      }
+
+      document.querySelectorAll('.lang-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const lang = btn.dataset.lang;
+          if (lang) setLanguage(lang);
+        });
+      });
+
+      const savedLang = localStorage.getItem('hyperix_lang');
+      const browserLang = (navigator.language || navigator.userLanguage || '').toLowerCase().startsWith('vi') ? 'vi' : 'en';
+      setLanguage(savedLang || browserLang || 'en');
+    </script>
   </body>
 </html>
