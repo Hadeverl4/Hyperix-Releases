@@ -1,0 +1,15 @@
+:root { color-scheme: dark; font-family: system-ui, -apple-system, Segoe UI, sans-serif; }
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body { margin: 0; min-height: 100vh; display: grid; place-items: center; padding: 24px; background: radial-gradient(circle at 50% 0%, #292536, #101114 60%); color: #f3f2f1; }
+.card { width: min(100%, 480px); padding: 32px; border: 1px solid #353840; border-radius: 20px; background: #202229; box-shadow: 0 20px 60px #0004; }
+.brand { display: inline-flex; align-items: center; gap: 10px; color: #f3f2f1; text-decoration: none; font-weight: 750; }
+.brand img { width: 32px; height: 32px; border-radius: 8px; }
+.eyebrow { display: block; margin-top: 36px; font-size: 11px; letter-spacing: .13em; font-weight: 800; color: #a79bff; }
+h1 { margin: 12px 0 10px; font-size: clamp(24px, 6vw, 32px); line-height: 1.2; }
+p { color: #b7b6be; line-height: 1.6; }
+.identity { margin: 24px 0; padding: 12px 14px; border-radius: 12px; background: #292b34; color: #f3f2f1; overflow-wrap: anywhere; }
+.open-button { display: block; width: 100%; margin-top: 24px; padding: 14px 18px; border-radius: 12px; background: #7567ef; color: white; text-align: center; text-decoration: none; font-weight: 750; }
+.open-button:hover, .open-button:focus-visible { background: #877bff; }
+.hint { margin: 20px 0 0; font-size: 13px; }
+.hint a { color: #aaa1ff; }
