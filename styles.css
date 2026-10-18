@@ -47,12 +47,15 @@ body {
 }
 
 /* Hero Video Background Layer */
+/* Hero Video Background Layer - Absolute positioning scoped to hero for natural physical scroll transition */
 .hero-video-backdrop {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
+  min-height: 840px;
+  max-height: 1100px;
   z-index: 0;
   pointer-events: none;
   overflow: hidden;
@@ -63,15 +66,16 @@ body {
   position: absolute;
   top: 50%;
   left: 50%;
-  /* Scale 1.3 to push all native YouTube edge controls, titles, and watermarks outside viewport */
-  transform: translate(-50%, -50%) scale(1.3);
+  /* Scale 1.5 and shift slightly down (-45%) so top edge of YouTube iframe is pushed > 200px offscreen,
+     completely eliminating YouTube's top fade bar (.ytp-gradient-top) */
+  transform: translate(-50%, -45%) scale(1.5);
   width: 100vw;
   height: 56.25vw; /* 16:9 aspect ratio */
   min-height: 100vh;
   min-width: 177.78vh; /* 16:9 aspect ratio */
   pointer-events: none;
   opacity: 0;
-  transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 1.4s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity;
 }
 
@@ -96,15 +100,16 @@ body {
   background: transparent;
 }
 
-/* Cinematic Scrim & Seamless Gradient Overlay - Focused so 4K video is vivid & text is 100% readable */
+/* Cinematic Scrim & Seamless Gradient Overlay - Focused so 4K video is vivid & text is 100% readable,
+   and smoothly dissolving into #070a16 at the bottom for an organic scroll transition */
 .hero-video-scrim {
   position: absolute;
   inset: 0;
   z-index: 2;
   pointer-events: none;
   background:
-    radial-gradient(ellipse 95% 75% at 50% 25%, rgba(7, 10, 22, 0.15) 0%, rgba(7, 10, 22, 0.55) 65%, #070a16 100%),
-    linear-gradient(to bottom, rgba(7, 10, 22, 0.35) 0%, transparent 16%, transparent 60%, rgba(7, 10, 22, 0.9) 85%, #070a16 100%);
+    radial-gradient(ellipse 95% 75% at 50% 25%, rgba(7, 10, 22, 0.08) 0%, rgba(7, 10, 22, 0.45) 65%, #070a16 100%),
+    linear-gradient(to bottom, rgba(7, 10, 22, 0.25) 0%, transparent 16%, transparent 55%, rgba(7, 10, 22, 0.75) 80%, #070a16 100%);
 }
 
 /* When video plays: completely turn OFF Three.js canvas & glowing orbs */
@@ -408,14 +413,14 @@ h1 {
   line-height: 1.02;
   letter-spacing: -0.055em;
   color: #ffffff;
-  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.85), 0 1px 4px rgba(0, 0, 0, 0.95);
 }
 
 h1 span {
   display: block;
-  background: linear-gradient(135deg, #a5b4fc 0%, #818cf8 45%, #38bdf8 100%);
+  background: linear-gradient(135deg, #c7d2fe 0%, #818cf8 45%, #38bdf8 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  text-shadow: none !important;
 }
 
 .lede {

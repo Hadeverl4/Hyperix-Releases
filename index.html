@@ -1366,6 +1366,8 @@
         const videoId = extractYouTubeId(window.HERO_YOUTUBE_ID);
         if (!videoId) return;
 
+        let hasRevealedVideo = false;
+
         function loadPlayer() {
           if (ytPlayer) return;
           ytPlayer = new YT.Player('yt-player', {
@@ -1393,25 +1395,32 @@
                 const toggleBtn = document.getElementById('video-toggle-btn');
                 // Hide ALL loading/buffering indicators: ONLY reveal once PLAYING is stable
                 if (event.data === YT.PlayerState.PLAYING) {
+                  // YouTube flashes the large center play/pause bezel [||] for ~1.2s upon starting.
+                  // We wait 1300ms on first play so the [||] bezel has completely faded out to 0 opacity
+                  // before we fade in the video background.
+                  const revealDelay = hasRevealedVideo ? 0 : 1300;
                   setTimeout(() => {
                     backdrop?.classList.add('is-playing');
                     toggleBtn?.classList.add('is-visible');
                     toggleBtn?.classList.remove('is-paused');
+                    hasRevealedVideo = true;
                     // Completely turn off Three.js 3D canvas and animation loop when video is playing
                     if (typeof window.stopThreeScene === 'function') {
                       window.stopThreeScene();
                     }
-                  }, 250);
+                  }, revealDelay);
                   const t = translations[currentLang] || translations.en;
                   const label = document.getElementById('video-toggle-label');
                   if (label) label.textContent = t.video_ambient_label;
                 } else if (event.data === YT.PlayerState.PAUSED) {
-                  backdrop?.classList.remove('is-playing');
-                  toggleBtn?.classList.add('is-paused');
-                  // Completely turn back on Three.js 3D effect when video is paused/off
-                  if (typeof window.startThreeScene === 'function') {
-                    window.startThreeScene();
+                  // Only remove is-playing and switch back to Three.js if user explicitly paused via toggle button
+                  if (toggleBtn?.classList.contains('user-paused')) {
+                    backdrop?.classList.remove('is-playing');
+                    if (typeof window.startThreeScene === 'function') {
+                      window.startThreeScene();
+                    }
                   }
+                  toggleBtn?.classList.add('is-paused');
                   const t = translations[currentLang] || translations.en;
                   const label = document.getElementById('video-toggle-label');
                   if (label) label.textContent = t.video_ambient_paused;
@@ -1438,7 +1447,7 @@
 
       initYouTubeBackground();
 
-      // Pause video when hero section scrolls out of view (saves CPU/GPU)
+      // Pause video when hero section scrolls completely out of view (saves CPU/GPU)
       if ('IntersectionObserver' in window) {
         const heroObserver = new IntersectionObserver((entries) => {
           entries.forEach((entry) => {
@@ -1450,12 +1459,13 @@
                 ytPlayer.playVideo();
               }
             } else {
+              // Only pause once hero is 100% scrolled offscreen
               if (state === YT.PlayerState.PLAYING) {
                 ytPlayer.pauseVideo();
               }
             }
           });
-        }, { threshold: 0.1 });
+        }, { threshold: 0 });
 
         const heroEl = document.getElementById('top');
         if (heroEl) heroObserver.observe(heroEl);
