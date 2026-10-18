@@ -230,35 +230,46 @@
     resizeTimeout = setTimeout(onWindowResize, 100);
   });
 
-  // Animation Loop with Clock
+  // Animation Loop with Clock. Do not queue idle RAF callbacks when video owns the stage.
   const clock = new THREE.Clock();
-  let isRunning = true;
+  let sceneWanted = true;
+  let animationFrame = 0;
+
+  function stopLoop() {
+    if (animationFrame) cancelAnimationFrame(animationFrame);
+    animationFrame = 0;
+  }
+
+  function startLoop() {
+    if (animationFrame || !sceneWanted || document.hidden) return;
+    clock.getDelta();
+    animationFrame = requestAnimationFrame(animate);
+  }
 
   document.addEventListener('visibilitychange', () => {
-    isRunning = !document.hidden;
-    if (isRunning) clock.getDelta(); // reset delta so objects don't jump
+    if (document.hidden) stopLoop();
+    else startLoop();
   });
 
   window.stopThreeScene = function() {
-    isRunning = false;
+    sceneWanted = false;
+    stopLoop();
     if (canvas) {
       canvas.style.display = 'none';
     }
   };
 
   window.startThreeScene = function() {
-    if (!isRunning) {
-      isRunning = true;
-      clock.getDelta();
-      if (canvas) {
-        canvas.style.display = 'block';
-      }
+    sceneWanted = true;
+    if (canvas) {
+      canvas.style.display = 'block';
     }
+    startLoop();
   };
 
   function animate() {
-    requestAnimationFrame(animate);
-    if (!isRunning) return;
+    animationFrame = 0;
+    if (!sceneWanted || document.hidden) return;
 
     const elapsedTime = clock.getElapsedTime();
 
@@ -290,7 +301,8 @@
     particles.rotation.x = Math.sin(elapsedTime * 0.01) * 0.03;
 
     renderer.render(scene, camera);
+    animationFrame = requestAnimationFrame(animate);
   }
 
-  animate();
+  startLoop();
 })();

@@ -17,6 +17,7 @@
   <body>
     <!-- Hero Video Background Layer (Hidden/Invisible until video actually plays; zero loading spinners) -->
     <div class="hero-video-backdrop" aria-hidden="true">
+      <div class="hero-video-poster"></div>
       <div id="yt-player-wrap" class="yt-player-wrap">
         <div id="yt-player"></div>
       </div>
@@ -591,8 +592,8 @@
       </div>
     </footer>
 
-    <!-- Ambient Video Control Button (Reveals once video plays) -->
-    <button id="video-toggle-btn" class="bg-video-control" type="button" aria-label="Toggle ambient background video">
+    <!-- Ambient video control: also available when autoplay was blocked -->
+    <button id="video-toggle-btn" class="bg-video-control" type="button" aria-label="Toggle ambient background video" aria-pressed="true">
       <span class="pulse-dot" aria-hidden="true"></span>
       <span id="video-toggle-label" data-i18n="video_ambient_label">Ambient Video</span>
     </button>
@@ -1325,226 +1326,8 @@
           // Gracefully retain pre-rendered static values
         });
 
-      // Ambient Hero Video (YouTube Background) Controller
-      // Set your YouTube video link or ID here once ready:
-      window.HERO_YOUTUBE_ID = window.HERO_YOUTUBE_ID || 'hmdfhspeU_Q';
-
-      // Check query string or localStorage for instant testing (e.g. ?video=ID_OR_LINK)
-      const urlParams = new URLSearchParams(window.location.search);
-      const queryVideo = urlParams.get('video') || localStorage.getItem('hyperix_hero_video');
-      if (queryVideo) {
-        window.HERO_YOUTUBE_ID = queryVideo;
-      }
-
-      let ytPlayer = null;
-
-      function extractYouTubeId(urlOrId) {
-        if (!urlOrId) return '';
-        const trimmed = urlOrId.trim();
-        if (/^[a-zA-Z0-9_-]{11}$/.test(trimmed)) return trimmed;
-        const match = trimmed.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/))([a-zA-Z0-9_-]{11})/);
-        return match ? match[1] : '';
-      }
-
-      window.setHeroVideo = function(urlOrId) {
-        const id = extractYouTubeId(urlOrId);
-        if (!id) {
-          console.warn('Invalid YouTube video link or ID');
-          return;
-        }
-        window.HERO_YOUTUBE_ID = id;
-        localStorage.setItem('hyperix_hero_video', id);
-        if (ytPlayer && typeof ytPlayer.loadVideoById === 'function') {
-          ytPlayer.loadVideoById({ videoId: id });
-          ytPlayer.mute();
-          ytPlayer.playVideo();
-        } else {
-          initYouTubeBackground();
-        }
-      };
-
-      function initYouTubeBackground() {
-        const videoId = extractYouTubeId(window.HERO_YOUTUBE_ID);
-        if (!videoId) return;
-
-        let hasRevealedVideo = false;
-
-        function loadPlayer() {
-          if (ytPlayer) return;
-          ytPlayer = new YT.Player('yt-player', {
-            videoId: videoId,
-            playerVars: {
-              autoplay: 1,
-              mute: 1,
-              controls: 0,
-              disablekb: 1,
-              fs: 0,
-              modestbranding: 1,
-              rel: 0,
-              playsinline: 1,
-              iv_load_policy: 3,
-              enablejsapi: 1,
-              origin: window.location.origin && window.location.origin.startsWith('http') ? window.location.origin : undefined
-            },
-            events: {
-              onReady: (event) => {
-                event.target.mute();
-                // Avoid calling playVideo() immediately because autoplay: 1 & mute: 1 already autoplays
-                // without triggering YouTube's user-gesture bezel. Only fallback if not playing after 600ms.
-                setTimeout(() => {
-                  if (typeof event.target.getPlayerState === 'function' && event.target.getPlayerState() !== YT.PlayerState.PLAYING) {
-                    event.target.playVideo();
-                  }
-                }, 600);
-              },
-              onStateChange: (event) => {
-                const backdrop = document.querySelector('.hero-video-backdrop');
-                const toggleBtn = document.getElementById('video-toggle-btn');
-                // Hide ALL loading/buffering indicators: ONLY reveal once PLAYING is completely stable
-                if (event.data === YT.PlayerState.PLAYING) {
-                  if (!hasRevealedVideo) {
-                    // Poll playback position: YouTube flashes its 2.0s center pause bezel [||] on startup.
-                    // By waiting until currentTime >= 2.5s (or fallback timeout), the bezel is 100% gone
-                    // before the video ever fades in.
-                    let pollCount = 0;
-                    const revealCheck = setInterval(() => {
-                      pollCount++;
-                      const curTime = typeof event.target.getCurrentTime === 'function' ? event.target.getCurrentTime() : 0;
-                      if (curTime >= 2.5 || pollCount >= 14) {
-                        clearInterval(revealCheck);
-                        backdrop?.classList.add('is-playing');
-                        toggleBtn?.classList.add('is-visible');
-                        toggleBtn?.classList.remove('is-paused');
-                        hasRevealedVideo = true;
-                        if (typeof window.stopThreeScene === 'function') {
-                          window.stopThreeScene();
-                        }
-                      }
-                    }, 250);
-                  } else {
-                    backdrop?.classList.add('is-playing');
-                    toggleBtn?.classList.remove('is-paused');
-                    if (typeof window.stopThreeScene === 'function') {
-                      window.stopThreeScene();
-                    }
-                  }
-                  const t = translations[currentLang] || translations.en;
-                  const label = document.getElementById('video-toggle-label');
-                  if (label) label.textContent = t.video_ambient_label;
-                } else if (event.data === YT.PlayerState.PAUSED) {
-                  // Only remove is-playing and switch back to Three.js if user explicitly paused via toggle button
-                  if (toggleBtn?.classList.contains('user-paused')) {
-                    backdrop?.classList.remove('is-playing');
-                    if (typeof window.startThreeScene === 'function') {
-                      window.startThreeScene();
-                    }
-                  }
-                  toggleBtn?.classList.add('is-paused');
-                  const t = translations[currentLang] || translations.en;
-                  const label = document.getElementById('video-toggle-label');
-                  if (label) label.textContent = t.video_ambient_paused;
-                } else if (event.data === YT.PlayerState.ENDED) {
-                  // Loop seamlessly without playlist parameter (avoids playlist Next/Prev buttons)
-                  event.target.seekTo(0);
-                  event.target.playVideo();
-                }
-              }
-            }
-          });
-        }
-
-        if (window.YT && window.YT.Player) {
-          loadPlayer();
-        } else {
-          const tag = document.createElement('script');
-          tag.src = 'https://www.youtube.com/iframe_api';
-          const firstScriptTag = document.getElementsByTagName('script')[0];
-          firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-          window.onYouTubeIframeAPIReady = loadPlayer;
-        }
-      }
-
-      initYouTubeBackground();
-
-      // Silky parallax scroll effect on hero video background for organic depth
-      let scrollTicking = false;
-      function updateHeroParallax() {
-        const scrollY = window.scrollY || window.pageYOffset;
-        if (scrollY <= 1400) {
-          const playerWrap = document.getElementById('yt-player-wrap');
-          if (playerWrap) {
-            const translateY = scrollY * 0.22;
-            playerWrap.style.transform = `translate(-50%, calc(-45% + ${translateY}px)) scale(1.5)`;
-          }
-        }
-      }
-
-      window.addEventListener('scroll', () => {
-        if (!scrollTicking) {
-          window.requestAnimationFrame(() => {
-            updateHeroParallax();
-            scrollTicking = false;
-          });
-          scrollTicking = true;
-        }
-      }, { passive: true });
-
-      // Pause video when hero section scrolls completely out of view (saves CPU/GPU)
-      if ('IntersectionObserver' in window) {
-        const heroObserver = new IntersectionObserver((entries) => {
-          entries.forEach((entry) => {
-            if (!ytPlayer || typeof ytPlayer.getPlayerState !== 'function') return;
-            const state = ytPlayer.getPlayerState();
-            const toggleBtn = document.getElementById('video-toggle-btn');
-            if (entry.isIntersecting) {
-              if (state === YT.PlayerState.PAUSED && !toggleBtn?.classList.contains('user-paused')) {
-                ytPlayer.playVideo();
-              }
-            } else {
-              // Only pause once hero is 100% scrolled offscreen
-              if (state === YT.PlayerState.PLAYING) {
-                ytPlayer.pauseVideo();
-              }
-            }
-          });
-        }, { threshold: 0 });
-
-        const heroEl = document.getElementById('top');
-        if (heroEl) heroObserver.observe(heroEl);
-      }
-
-      // Toggle Ambient Video Button
-      const videoToggleBtn = document.getElementById('video-toggle-btn');
-      if (videoToggleBtn) {
-        videoToggleBtn.addEventListener('click', () => {
-          if (!ytPlayer || typeof ytPlayer.getPlayerState !== 'function') return;
-          const state = ytPlayer.getPlayerState();
-          const backdrop = document.querySelector('.hero-video-backdrop');
-          const t = translations[currentLang] || translations.en;
-          const label = document.getElementById('video-toggle-label');
-          if (state === YT.PlayerState.PLAYING) {
-            ytPlayer.pauseVideo();
-            backdrop?.classList.remove('is-playing');
-            videoToggleBtn.classList.add('is-paused');
-            videoToggleBtn.classList.add('user-paused');
-            // Resume Three.js when video is manually paused
-            if (typeof window.startThreeScene === 'function') {
-              window.startThreeScene();
-            }
-            if (label) label.textContent = t.video_ambient_paused;
-          } else {
-            ytPlayer.playVideo();
-            backdrop?.classList.add('is-playing');
-            videoToggleBtn.classList.remove('is-paused');
-            videoToggleBtn.classList.remove('user-paused');
-            // Stop Three.js when video is manually resumed
-            if (typeof window.stopThreeScene === 'function') {
-              window.stopThreeScene();
-            }
-            if (label) label.textContent = t.video_ambient_label;
-          }
-        });
-      }
+      // Hero video playback and cinematic scroll stage are managed in hero-video.js.
     </script>
+    <script src="./hero-video.js"></script>
   </body>
 </html>
