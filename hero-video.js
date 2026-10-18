@@ -18,11 +18,14 @@
   const PLAYER_PAUSED = 2;
   const PLAYER_ENDED = 0;
   const PLAYER_BUFFERING = 3;
-  // YouTube's center play/pause bezel can outlive the PLAYING event (especially
-  // after a seek/resume). Let that provider-owned animation clear offscreen
-  // before compositing the iframe over the poster.
-  const REVEAL_DELAY_MS = 5200;
-  const MIN_PROGRESS_SECONDS = 4;
+  // Smart Reveal: YouTube controls its own overlays and adaptive bitrate. Use
+  // actual playback progress and the public buffered-fraction hint rather than
+  // holding every visitor on the poster for a fixed 5.2 seconds.
+  const FAST_REVEAL_MS = 1800;
+  const NORMAL_REVEAL_MS = 2900;
+  const MIN_FAST_PROGRESS = 1.5;
+  const MIN_NORMAL_PROGRESS = 2.4;
+  const BUFFER_AHEAD_FOR_FAST_PATH = 8;
   let player = null;
   let playerReady = false;
   let apiRequested = false;
@@ -95,6 +98,20 @@
     }
   }
 
+  function bufferedSecondsAhead(position) {
+    try {
+      if (!player || typeof player.getVideoLoadedFraction !== 'function' ||
+          typeof player.getDuration !== 'function') return NaN;
+      const fraction = Number(player.getVideoLoadedFraction());
+      const duration = Number(player.getDuration());
+      if (!Number.isFinite(fraction) || fraction <= 0 || fraction > 1 ||
+          !Number.isFinite(duration) || duration <= 0) return NaN;
+      return Math.max(0, fraction * duration - position);
+    } catch (_) {
+      return NaN;
+    }
+  }
+
   function concealFrame() {
     revealGeneration++;
     window.clearTimeout(revealTimer);
@@ -123,22 +140,40 @@
     let previousTime = currentTime();
     const initialTime = previousTime;
     let progressingSamples = 0;
+    let stalledSamples = 0;
+    const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+    const constrainedNetwork = !!(connection &&
+      (connection.saveData || /^(?:slow-)?2g$/.test(connection.effectiveType || '')));
 
     function probe() {
       if (generation !== revealGeneration || !shouldPlay() || state() !== PLAYER_PLAYING) return;
       const now = currentTime();
-      if (Number.isFinite(now) && Number.isFinite(previousTime) && now > previousTime + 0.045) {
-        progressingSamples++;
+      if (Number.isFinite(now) && Number.isFinite(previousTime)) {
+        const advance = now - previousTime;
+        if (advance > 0.045 && advance < 0.8) {
+          progressingSamples++;
+          stalledSamples = 0;
+        } else if (advance <= 0.045 || advance >= 0.8) {
+          stalledSamples++;
+          if (stalledSamples >= 3) progressingSamples = 0;
+        }
       }
       if (Number.isFinite(now)) previousTime = now;
       const elapsed = performance.now() - startedAt;
       const progress = now - initialTime;
-      if (elapsed >= REVEAL_DELAY_MS && progressingSamples >= 3 &&
-          Number.isFinite(progress) && progress >= MIN_PROGRESS_SECONDS) {
+      const ahead = bufferedSecondsAhead(now);
+      // A large loaded fraction is an optimization hint, NOT a guarantee that
+      // YouTube's transient center play/pause bezel is already gone.
+      const fast = !constrainedNetwork && elapsed >= FAST_REVEAL_MS &&
+        Number.isFinite(ahead) && ahead >= BUFFER_AHEAD_FOR_FAST_PATH &&
+        progress >= MIN_FAST_PROGRESS && progressingSamples >= 6;
+      const normal = elapsed >= NORMAL_REVEAL_MS &&
+        progress >= MIN_NORMAL_PROGRESS && progressingSamples >= 8;
+      if (stalledSamples === 0 && (fast || normal)) {
         backdrop.classList.add('is-frame-ready');
         return;
       }
-      // A stalled or blocked stream stays on the poster; never reveal on a timeout.
+      // No unconditional timeout reveal: offline/stalled players keep the poster.
       if (elapsed < 20000) revealTimer = window.setTimeout(probe, 160);
     }
     revealTimer = window.setTimeout(probe, 160);

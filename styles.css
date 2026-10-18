@@ -123,12 +123,12 @@ body {
 /* Reveal only after the current playback interval advances stably. */
 .hero-video-backdrop.is-frame-ready .yt-player-wrap {
   opacity: 0.94;
-  transition: opacity 1.25s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .hero-video-backdrop.is-frame-ready .hero-video-poster {
   opacity: 0;
-  transition: opacity 1.1s ease;
+  transition: opacity 0.8s ease;
 }
 
 /* Click-shield blocking all interactions from ever reaching YouTube iframe */
