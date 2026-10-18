@@ -82,8 +82,9 @@ body {
   transform: translate3d(-50%, -50%, 0);
   width: max(124vw, 220.45vh);
   width: max(124vw, 220.45dvh);
+  height: max(69.75vw, 124vh);
+  height: max(69.75vw, 124dvh);
   aspect-ratio: 16 / 9;
-  height: auto;
   pointer-events: none !important;
   opacity: 0;
   /* Conceal instantly on buffering / pause so the YouTube bezel cannot fade through. */
@@ -97,6 +98,8 @@ body {
   .yt-player-wrap {
     width: max(112vw, 199.12vh);
     width: max(112vw, 199.12dvh);
+    height: max(63vw, 112vh);
+    height: max(63vw, 112dvh);
   }
 }
 
@@ -105,6 +108,8 @@ body {
   .yt-player-wrap {
     width: max(117vw, 208vh);
     width: max(117vw, 208dvh);
+    height: max(65.8125vw, 117vh);
+    height: max(65.8125vw, 117dvh);
   }
 }
 
