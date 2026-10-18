@@ -15,6 +15,14 @@
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
+    <!-- Hero Video Background Layer (Hidden/Invisible until video actually plays; zero loading spinners) -->
+    <div class="hero-video-backdrop" aria-hidden="true">
+      <div id="yt-player-wrap" class="yt-player-wrap">
+        <div id="yt-player"></div>
+      </div>
+      <div class="hero-video-scrim"></div>
+    </div>
+
     <!-- Three.js 3D Background Canvas -->
     <canvas id="webgl-canvas" class="webgl-canvas" aria-hidden="true"></canvas>
 
@@ -581,6 +589,12 @@
       </div>
     </footer>
 
+    <!-- Ambient Video Control Button (Reveals once video plays) -->
+    <button id="video-toggle-btn" class="bg-video-control" type="button" aria-label="Toggle ambient background video">
+      <span class="pulse-dot" aria-hidden="true"></span>
+      <span id="video-toggle-label" data-i18n="video_ambient_label">Ambient Video</span>
+    </button>
+
     <!-- Three.js Library and 3D Scene Initialization -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="./three-scene.js"></script>
@@ -641,6 +655,9 @@
           footer_terms: "Terms",
           footer_support: "Support",
           footer_contact: "Contact <span aria-hidden=\"true\">↗</span>",
+
+          video_ambient_label: "Ambient Video",
+          video_ambient_paused: "Video Paused",
 
           rel_chip_latest: "Latest Release",
           rel_chip_stable: "Stable",
@@ -722,6 +739,9 @@
           footer_terms: "Điều khoản",
           footer_support: "Hỗ trợ",
           footer_contact: "Liên hệ <span aria-hidden=\"true\">↗</span>",
+
+          video_ambient_label: "Video nền",
+          video_ambient_paused: "Đã tạm dừng video",
 
           rel_chip_latest: "Bản mới nhất",
           rel_chip_stable: "Bản ổn định",
@@ -1302,6 +1322,156 @@
         .catch(() => {
           // Gracefully retain pre-rendered static values
         });
+
+      // Ambient Hero Video (YouTube Background) Controller
+      // Set your YouTube video link or ID here once ready:
+      window.HERO_YOUTUBE_ID = window.HERO_YOUTUBE_ID || '';
+
+      // Check query string or localStorage for instant testing (e.g. ?video=ID_OR_LINK)
+      const urlParams = new URLSearchParams(window.location.search);
+      const queryVideo = urlParams.get('video') || localStorage.getItem('hyperix_hero_video');
+      if (queryVideo) {
+        window.HERO_YOUTUBE_ID = queryVideo;
+      }
+
+      let ytPlayer = null;
+
+      function extractYouTubeId(urlOrId) {
+        if (!urlOrId) return '';
+        const trimmed = urlOrId.trim();
+        if (/^[a-zA-Z0-9_-]{11}$/.test(trimmed)) return trimmed;
+        const match = trimmed.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/))([a-zA-Z0-9_-]{11})/);
+        return match ? match[1] : '';
+      }
+
+      window.setHeroVideo = function(urlOrId) {
+        const id = extractYouTubeId(urlOrId);
+        if (!id) {
+          console.warn('Invalid YouTube video link or ID');
+          return;
+        }
+        window.HERO_YOUTUBE_ID = id;
+        localStorage.setItem('hyperix_hero_video', id);
+        if (ytPlayer && typeof ytPlayer.loadVideoById === 'function') {
+          ytPlayer.loadVideoById({ videoId: id });
+          ytPlayer.mute();
+          ytPlayer.playVideo();
+        } else {
+          initYouTubeBackground();
+        }
+      };
+
+      function initYouTubeBackground() {
+        const videoId = extractYouTubeId(window.HERO_YOUTUBE_ID);
+        if (!videoId) return;
+
+        function loadPlayer() {
+          if (ytPlayer) return;
+          ytPlayer = new YT.Player('yt-player', {
+            videoId: videoId,
+            playerVars: {
+              autoplay: 1,
+              mute: 1,
+              controls: 0,
+              showinfo: 0,
+              rel: 0,
+              loop: 1,
+              playlist: videoId,
+              playsinline: 1,
+              modestbranding: 1,
+              iv_load_policy: 3,
+              disablekb: 1,
+              fs: 0
+            },
+            events: {
+              onReady: (event) => {
+                event.target.mute();
+                event.target.playVideo();
+              },
+              onStateChange: (event) => {
+                const backdrop = document.querySelector('.hero-video-backdrop');
+                const toggleBtn = document.getElementById('video-toggle-btn');
+                // Hide ALL loading/buffering indicators: ONLY reveal when PLAYING
+                if (event.data === YT.PlayerState.PLAYING) {
+                  backdrop?.classList.add('is-playing');
+                  toggleBtn?.classList.add('is-visible');
+                  toggleBtn?.classList.remove('is-paused');
+                  const t = translations[currentLang] || translations.en;
+                  const label = document.getElementById('video-toggle-label');
+                  if (label) label.textContent = t.video_ambient_label;
+                } else if (event.data === YT.PlayerState.PAUSED) {
+                  toggleBtn?.classList.add('is-paused');
+                  const t = translations[currentLang] || translations.en;
+                  const label = document.getElementById('video-toggle-label');
+                  if (label) label.textContent = t.video_ambient_paused;
+                } else if (event.data === YT.PlayerState.ENDED) {
+                  event.target.playVideo();
+                }
+              }
+            }
+          });
+        }
+
+        if (window.YT && window.YT.Player) {
+          loadPlayer();
+        } else {
+          const tag = document.createElement('script');
+          tag.src = 'https://www.youtube.com/iframe_api';
+          const firstScriptTag = document.getElementsByTagName('script')[0];
+          firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+          window.onYouTubeIframeAPIReady = loadPlayer;
+        }
+      }
+
+      initYouTubeBackground();
+
+      // Pause video when hero section scrolls out of view (saves CPU/GPU)
+      if ('IntersectionObserver' in window) {
+        const heroObserver = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (!ytPlayer || typeof ytPlayer.getPlayerState !== 'function') return;
+            const state = ytPlayer.getPlayerState();
+            const toggleBtn = document.getElementById('video-toggle-btn');
+            if (entry.isIntersecting) {
+              if (state === YT.PlayerState.PAUSED && !toggleBtn?.classList.contains('user-paused')) {
+                ytPlayer.playVideo();
+              }
+            } else {
+              if (state === YT.PlayerState.PLAYING) {
+                ytPlayer.pauseVideo();
+              }
+            }
+          });
+        }, { threshold: 0.1 });
+
+        const heroEl = document.getElementById('top');
+        if (heroEl) heroObserver.observe(heroEl);
+      }
+
+      // Toggle Ambient Video Button
+      const videoToggleBtn = document.getElementById('video-toggle-btn');
+      if (videoToggleBtn) {
+        videoToggleBtn.addEventListener('click', () => {
+          if (!ytPlayer || typeof ytPlayer.getPlayerState !== 'function') return;
+          const state = ytPlayer.getPlayerState();
+          const backdrop = document.querySelector('.hero-video-backdrop');
+          const t = translations[currentLang] || translations.en;
+          const label = document.getElementById('video-toggle-label');
+          if (state === YT.PlayerState.PLAYING) {
+            ytPlayer.pauseVideo();
+            backdrop?.classList.remove('is-playing');
+            videoToggleBtn.classList.add('is-paused');
+            videoToggleBtn.classList.add('user-paused');
+            if (label) label.textContent = t.video_ambient_paused;
+          } else {
+            ytPlayer.playVideo();
+            backdrop?.classList.add('is-playing');
+            videoToggleBtn.classList.remove('is-paused');
+            videoToggleBtn.classList.remove('user-paused');
+            if (label) label.textContent = t.video_ambient_label;
+          }
+        });
+      }
     </script>
   </body>
 </html>

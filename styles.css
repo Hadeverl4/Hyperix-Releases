@@ -46,7 +46,118 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Three.js WebGL Background Canvas */
+/* Hero Video Background Layer */
+.hero-video-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  background-color: var(--bg-deep);
+}
+
+.yt-player-wrap {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100vw;
+  height: 56.25vw; /* 16:9 aspect ratio */
+  min-height: 100vh;
+  min-width: 177.78vh; /* 16:9 aspect ratio */
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity;
+}
+
+.yt-player-wrap iframe {
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  border: none;
+}
+
+/* Reveal video with zero loading spinner once PLAYING is confirmed */
+.hero-video-backdrop.is-playing .yt-player-wrap {
+  opacity: 0.65;
+}
+
+/* Cinematic Scrim & Seamless Gradient Overlay */
+.hero-video-scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: 
+    radial-gradient(ellipse 85% 60% at 50% 25%, rgba(7, 10, 22, 0.35) 0%, rgba(7, 10, 22, 0.82) 65%, #070a16 100%),
+    linear-gradient(to bottom, rgba(7, 10, 22, 0.25) 0%, transparent 16%, rgba(7, 10, 22, 0.85) 75%, #070a16 100%);
+  backdrop-filter: blur(1px);
+  -webkit-backdrop-filter: blur(1px);
+}
+
+/* When video plays, subtly adjust Three.js canvas & orbs */
+.hero-video-backdrop.is-playing ~ .webgl-canvas {
+  opacity: 0.45;
+  transition: opacity 1.4s ease;
+}
+
+.hero-video-backdrop.is-playing ~ .bg-glow-orb {
+  opacity: 0.4;
+  transition: opacity 1.4s ease;
+}
+
+/* Floating Ambient Video Control Button */
+.bg-video-control {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 99;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.85rem;
+  background: rgba(14, 20, 38, 0.72);
+  border: 1px solid var(--edge);
+  border-radius: 9999px;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  color: var(--ink-muted);
+  font-family: inherit;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(6px);
+}
+
+.bg-video-control.is-visible {
+  opacity: 0.85;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.bg-video-control:hover {
+  opacity: 1;
+  color: var(--ink-primary);
+  border-color: rgba(129, 140, 248, 0.5);
+  background: rgba(20, 28, 54, 0.9);
+  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.25);
+  transform: translateY(-2px);
+}
+
+.bg-video-control.is-paused .pulse-dot {
+  background: #94a3b8;
+  box-shadow: none;
+  animation: none;
+}
+
 .webgl-canvas {
   position: fixed;
   top: 0;
