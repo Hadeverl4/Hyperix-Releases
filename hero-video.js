@@ -18,7 +18,11 @@
   const PLAYER_PAUSED = 2;
   const PLAYER_ENDED = 0;
   const PLAYER_BUFFERING = 3;
-  const REVEAL_DELAY_MS = 2300;
+  // YouTube's center play/pause bezel can outlive the PLAYING event (especially
+  // after a seek/resume). Let that provider-owned animation clear offscreen
+  // before compositing the iframe over the poster.
+  const REVEAL_DELAY_MS = 5200;
+  const MIN_PROGRESS_SECONDS = 4;
   let player = null;
   let playerReady = false;
   let apiRequested = false;
@@ -117,6 +121,7 @@
     const generation = revealGeneration;
     const startedAt = performance.now();
     let previousTime = currentTime();
+    const initialTime = previousTime;
     let progressingSamples = 0;
 
     function probe() {
@@ -127,12 +132,14 @@
       }
       if (Number.isFinite(now)) previousTime = now;
       const elapsed = performance.now() - startedAt;
-      if (elapsed >= REVEAL_DELAY_MS && progressingSamples >= 3) {
+      const progress = now - initialTime;
+      if (elapsed >= REVEAL_DELAY_MS && progressingSamples >= 3 &&
+          Number.isFinite(progress) && progress >= MIN_PROGRESS_SECONDS) {
         backdrop.classList.add('is-frame-ready');
         return;
       }
       // A stalled or blocked stream stays on the poster; never reveal on a timeout.
-      if (elapsed < 12000) revealTimer = window.setTimeout(probe, 160);
+      if (elapsed < 20000) revealTimer = window.setTimeout(probe, 160);
     }
     revealTimer = window.setTimeout(probe, 160);
   }
