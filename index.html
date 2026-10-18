@@ -22,6 +22,7 @@
       </div>
       <div class="hero-video-blocker"></div>
       <div class="hero-video-scrim"></div>
+      <div class="hero-video-horizon"></div>
     </div>
 
     <!-- Three.js 3D Background Canvas -->
@@ -1388,27 +1389,45 @@
             events: {
               onReady: (event) => {
                 event.target.mute();
-                event.target.playVideo();
+                // Avoid calling playVideo() immediately because autoplay: 1 & mute: 1 already autoplays
+                // without triggering YouTube's user-gesture bezel. Only fallback if not playing after 600ms.
+                setTimeout(() => {
+                  if (typeof event.target.getPlayerState === 'function' && event.target.getPlayerState() !== YT.PlayerState.PLAYING) {
+                    event.target.playVideo();
+                  }
+                }, 600);
               },
               onStateChange: (event) => {
                 const backdrop = document.querySelector('.hero-video-backdrop');
                 const toggleBtn = document.getElementById('video-toggle-btn');
-                // Hide ALL loading/buffering indicators: ONLY reveal once PLAYING is stable
+                // Hide ALL loading/buffering indicators: ONLY reveal once PLAYING is completely stable
                 if (event.data === YT.PlayerState.PLAYING) {
-                  // YouTube flashes the large center play/pause bezel [||] for ~1.2s upon starting.
-                  // We wait 1300ms on first play so the [||] bezel has completely faded out to 0 opacity
-                  // before we fade in the video background.
-                  const revealDelay = hasRevealedVideo ? 0 : 1300;
-                  setTimeout(() => {
+                  if (!hasRevealedVideo) {
+                    // Poll playback position: YouTube flashes its 2.0s center pause bezel [||] on startup.
+                    // By waiting until currentTime >= 2.5s (or fallback timeout), the bezel is 100% gone
+                    // before the video ever fades in.
+                    let pollCount = 0;
+                    const revealCheck = setInterval(() => {
+                      pollCount++;
+                      const curTime = typeof event.target.getCurrentTime === 'function' ? event.target.getCurrentTime() : 0;
+                      if (curTime >= 2.5 || pollCount >= 14) {
+                        clearInterval(revealCheck);
+                        backdrop?.classList.add('is-playing');
+                        toggleBtn?.classList.add('is-visible');
+                        toggleBtn?.classList.remove('is-paused');
+                        hasRevealedVideo = true;
+                        if (typeof window.stopThreeScene === 'function') {
+                          window.stopThreeScene();
+                        }
+                      }
+                    }, 250);
+                  } else {
                     backdrop?.classList.add('is-playing');
-                    toggleBtn?.classList.add('is-visible');
                     toggleBtn?.classList.remove('is-paused');
-                    hasRevealedVideo = true;
-                    // Completely turn off Three.js 3D canvas and animation loop when video is playing
                     if (typeof window.stopThreeScene === 'function') {
                       window.stopThreeScene();
                     }
-                  }, revealDelay);
+                  }
                   const t = translations[currentLang] || translations.en;
                   const label = document.getElementById('video-toggle-label');
                   if (label) label.textContent = t.video_ambient_label;
@@ -1446,6 +1465,29 @@
       }
 
       initYouTubeBackground();
+
+      // Silky parallax scroll effect on hero video background for organic depth
+      let scrollTicking = false;
+      function updateHeroParallax() {
+        const scrollY = window.scrollY || window.pageYOffset;
+        if (scrollY <= 1400) {
+          const playerWrap = document.getElementById('yt-player-wrap');
+          if (playerWrap) {
+            const translateY = scrollY * 0.22;
+            playerWrap.style.transform = `translate(-50%, calc(-45% + ${translateY}px)) scale(1.5)`;
+          }
+        }
+      }
+
+      window.addEventListener('scroll', () => {
+        if (!scrollTicking) {
+          window.requestAnimationFrame(() => {
+            updateHeroParallax();
+            scrollTicking = false;
+          });
+          scrollTicking = true;
+        }
+      }, { passive: true });
 
       // Pause video when hero section scrolls completely out of view (saves CPU/GPU)
       if ('IntersectionObserver' in window) {
