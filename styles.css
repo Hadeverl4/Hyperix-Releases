@@ -76,17 +76,36 @@ body {
   position: absolute;
   top: 50%;
   left: 50%;
-  /* Overscan remains static: only the compositor fades this layer. */
-  transform: translate3d(-50%, -50%, 0) scale(1.5);
-  width: 100vw;
-  height: 56.25vw; /* 16:9 aspect ratio */
-  min-height: 100vh;
-  min-width: 177.78vh; /* 16:9 aspect ratio */
+  /* Render the 16:9 player at its actual cover size instead of stretching an
+     already-composited iframe by 150%. YouTube controls its own adaptive bitrate.
+     The modest extra bleed keeps its edge overlays outside the visible stage. */
+  transform: translate3d(-50%, -50%, 0);
+  width: max(124vw, 220.45vh);
+  width: max(124vw, 220.45dvh);
+  aspect-ratio: 16 / 9;
+  height: auto;
   pointer-events: none !important;
   opacity: 0;
   /* Conceal instantly on buffering / pause so the YouTube bezel cannot fade through. */
   transition: none;
   will-change: opacity;
+}
+
+/* On portrait/mobile screens the 16:9 cover already crops widely; do not
+   waste additional video pixels on a desktop-sized overscan margin. */
+@media (max-width: 760px) {
+  .yt-player-wrap {
+    width: max(112vw, 199.12vh);
+    width: max(112vw, 199.12dvh);
+  }
+}
+
+/* Large desktop panels need less proportional bleed to hide edge chrome. */
+@media (min-width: 2400px) {
+  .yt-player-wrap {
+    width: max(117vw, 208vh);
+    width: max(117vw, 208dvh);
+  }
 }
 
 .yt-player-wrap iframe {
