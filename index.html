@@ -20,6 +20,7 @@
       <div id="yt-player-wrap" class="yt-player-wrap">
         <div id="yt-player"></div>
       </div>
+      <div class="hero-video-blocker"></div>
       <div class="hero-video-scrim"></div>
     </div>
 
@@ -1373,15 +1374,14 @@
               autoplay: 1,
               mute: 1,
               controls: 0,
-              showinfo: 0,
-              rel: 0,
-              loop: 1,
-              playlist: videoId,
-              playsinline: 1,
-              modestbranding: 1,
-              iv_load_policy: 3,
               disablekb: 1,
-              fs: 0
+              fs: 0,
+              modestbranding: 1,
+              rel: 0,
+              playsinline: 1,
+              iv_load_policy: 3,
+              enablejsapi: 1,
+              origin: window.location.origin && window.location.origin.startsWith('http') ? window.location.origin : undefined
             },
             events: {
               onReady: (event) => {
@@ -1391,20 +1391,33 @@
               onStateChange: (event) => {
                 const backdrop = document.querySelector('.hero-video-backdrop');
                 const toggleBtn = document.getElementById('video-toggle-btn');
-                // Hide ALL loading/buffering indicators: ONLY reveal when PLAYING
+                // Hide ALL loading/buffering indicators: ONLY reveal once PLAYING is stable
                 if (event.data === YT.PlayerState.PLAYING) {
-                  backdrop?.classList.add('is-playing');
-                  toggleBtn?.classList.add('is-visible');
-                  toggleBtn?.classList.remove('is-paused');
+                  setTimeout(() => {
+                    backdrop?.classList.add('is-playing');
+                    toggleBtn?.classList.add('is-visible');
+                    toggleBtn?.classList.remove('is-paused');
+                    // Completely turn off Three.js 3D canvas and animation loop when video is playing
+                    if (typeof window.stopThreeScene === 'function') {
+                      window.stopThreeScene();
+                    }
+                  }, 250);
                   const t = translations[currentLang] || translations.en;
                   const label = document.getElementById('video-toggle-label');
                   if (label) label.textContent = t.video_ambient_label;
                 } else if (event.data === YT.PlayerState.PAUSED) {
+                  backdrop?.classList.remove('is-playing');
                   toggleBtn?.classList.add('is-paused');
+                  // Completely turn back on Three.js 3D effect when video is paused/off
+                  if (typeof window.startThreeScene === 'function') {
+                    window.startThreeScene();
+                  }
                   const t = translations[currentLang] || translations.en;
                   const label = document.getElementById('video-toggle-label');
                   if (label) label.textContent = t.video_ambient_paused;
                 } else if (event.data === YT.PlayerState.ENDED) {
+                  // Loop seamlessly without playlist parameter (avoids playlist Next/Prev buttons)
+                  event.target.seekTo(0);
                   event.target.playVideo();
                 }
               }
@@ -1462,12 +1475,20 @@
             backdrop?.classList.remove('is-playing');
             videoToggleBtn.classList.add('is-paused');
             videoToggleBtn.classList.add('user-paused');
+            // Resume Three.js when video is manually paused
+            if (typeof window.startThreeScene === 'function') {
+              window.startThreeScene();
+            }
             if (label) label.textContent = t.video_ambient_paused;
           } else {
             ytPlayer.playVideo();
             backdrop?.classList.add('is-playing');
             videoToggleBtn.classList.remove('is-paused');
             videoToggleBtn.classList.remove('user-paused');
+            // Stop Three.js when video is manually resumed
+            if (typeof window.stopThreeScene === 'function') {
+              window.stopThreeScene();
+            }
             if (label) label.textContent = t.video_ambient_label;
           }
         });

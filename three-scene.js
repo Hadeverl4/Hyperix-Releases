@@ -239,6 +239,23 @@
     if (isRunning) clock.getDelta(); // reset delta so objects don't jump
   });
 
+  window.stopThreeScene = function() {
+    isRunning = false;
+    if (canvas) {
+      canvas.style.display = 'none';
+    }
+  };
+
+  window.startThreeScene = function() {
+    if (!isRunning) {
+      isRunning = true;
+      clock.getDelta();
+      if (canvas) {
+        canvas.style.display = 'block';
+      }
+    }
+  };
+
   function animate() {
     requestAnimationFrame(animate);
     if (!isRunning) return;

@@ -63,14 +63,15 @@ body {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  /* Scale 1.3 to push all native YouTube edge controls, titles, and watermarks outside viewport */
+  transform: translate(-50%, -50%) scale(1.3);
   width: 100vw;
   height: 56.25vw; /* 16:9 aspect ratio */
   min-height: 100vh;
   min-width: 177.78vh; /* 16:9 aspect ratio */
   pointer-events: none;
   opacity: 0;
-  transition: opacity 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity;
 }
 
@@ -81,33 +82,43 @@ body {
   border: none;
 }
 
-/* Reveal video with zero loading spinner once PLAYING is confirmed */
+/* Reveal video prominently with zero loading spinner once PLAYING is confirmed */
 .hero-video-backdrop.is-playing .yt-player-wrap {
-  opacity: 0.65;
+  opacity: 0.92;
 }
 
-/* Cinematic Scrim & Seamless Gradient Overlay */
-.hero-video-scrim {
+/* Click-shield blocking all interactions from ever reaching YouTube iframe */
+.hero-video-blocker {
   position: absolute;
   inset: 0;
   z-index: 1;
-  pointer-events: none;
-  background:
-    radial-gradient(ellipse 85% 60% at 50% 25%, rgba(7, 10, 22, 0.35) 0%, rgba(7, 10, 22, 0.82) 65%, #070a16 100%),
-    linear-gradient(to bottom, rgba(7, 10, 22, 0.25) 0%, transparent 16%, rgba(7, 10, 22, 0.85) 75%, #070a16 100%);
-  backdrop-filter: blur(1px);
-  -webkit-backdrop-filter: blur(1px);
+  pointer-events: auto;
+  background: transparent;
 }
 
-/* When video plays, subtly adjust Three.js canvas & orbs */
+/* Cinematic Scrim & Seamless Gradient Overlay - Focused so 4K video is vivid & text is 100% readable */
+.hero-video-scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 95% 75% at 50% 25%, rgba(7, 10, 22, 0.15) 0%, rgba(7, 10, 22, 0.55) 65%, #070a16 100%),
+    linear-gradient(to bottom, rgba(7, 10, 22, 0.35) 0%, transparent 16%, transparent 60%, rgba(7, 10, 22, 0.9) 85%, #070a16 100%);
+}
+
+/* When video plays: completely turn OFF Three.js canvas & glowing orbs */
 .hero-video-backdrop.is-playing ~ .webgl-canvas {
-  opacity: 0.45;
-  transition: opacity 1.4s ease;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  transition: opacity 0.8s ease, visibility 0.8s ease;
 }
 
 .hero-video-backdrop.is-playing ~ .bg-glow-orb {
-  opacity: 0.4;
-  transition: opacity 1.4s ease;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  transition: opacity 0.8s ease, visibility 0.8s ease;
 }
 
 /* Floating Ambient Video Control Button */
@@ -167,6 +178,7 @@ body {
   z-index: 0;
   pointer-events: none;
   opacity: 0.95;
+  transition: opacity 0.8s ease, visibility 0.8s ease;
 }
 
 /* Decorative Atmospheric Gradients */
@@ -176,6 +188,7 @@ body {
   filter: blur(130px);
   pointer-events: none;
   z-index: 0;
+  transition: opacity 0.8s ease, visibility 0.8s ease;
 }
 .bg-glow-1 {
   top: -15vh;
@@ -395,6 +408,7 @@ h1 {
   line-height: 1.02;
   letter-spacing: -0.055em;
   color: #ffffff;
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.85), 0 1px 4px rgba(0, 0, 0, 0.95);
 }
 
 h1 span {
@@ -407,11 +421,12 @@ h1 span {
 .lede {
   max-width: 660px;
   margin: 0;
-  color: var(--ink-secondary);
+  color: #cbd5e1;
   font-size: 1.22rem;
-  font-weight: 400;
+  font-weight: 450;
   line-height: 1.68;
   letter-spacing: -0.01em;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.9);
 }
 
 /* Actions & Buttons */
