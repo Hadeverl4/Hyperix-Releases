@@ -271,11 +271,16 @@
     animationFrame = 0;
     if (!sceneWanted || document.hidden) return;
 
-    const elapsedTime = clock.getElapsedTime();
+    const deltaSeconds = Math.min(clock.getDelta(), 0.05);
+    const elapsedTime = clock.elapsedTime;
+    // Maintain the original 60 Hz motion while adapting to the display's
+    // requestAnimationFrame cadence (60/90/120/144/165 Hz and beyond).
+    const frameScale = deltaSeconds * 60;
+    const cameraBlend = 1 - Math.pow(1 - 0.04, frameScale);
 
     // Smooth Camera Lerp
-    camera.position.x += (targetCameraX - camera.position.x) * 0.04;
-    camera.position.y += (targetCameraY - camera.position.y - (scrollY * 0.004)) * 0.04;
+    camera.position.x += (targetCameraX - camera.position.x) * cameraBlend;
+    camera.position.y += (targetCameraY - camera.position.y - (scrollY * 0.004)) * cameraBlend;
     camera.lookAt(0, 0, 0);
 
     // Rotate Entire Voxel System slowly
@@ -286,9 +291,9 @@
     for (let i = 0; i < cubes.length; i++) {
       const { holder, rotSpeed, floatParams } = cubes[i];
 
-      holder.rotation.x += rotSpeed.x;
-      holder.rotation.y += rotSpeed.y;
-      holder.rotation.z += rotSpeed.z;
+      holder.rotation.x += rotSpeed.x * frameScale;
+      holder.rotation.y += rotSpeed.y * frameScale;
+      holder.rotation.z += rotSpeed.z * frameScale;
 
       // Floating sine wave animation
       const t = elapsedTime * floatParams.speed + floatParams.phase;

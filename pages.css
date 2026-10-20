@@ -1,0 +1,20 @@
+/* Shared editorial treatment for the Hyperix legal and support pages. */
+body { background:#07090d; }
+.policy-page { max-width:1500px; margin:auto; padding:0 clamp(20px,4.8vw,86px) 100px; min-height:calc(100svh - 160px); }
+.policy-page { padding-top:0; }
+.policy-page nav { width:100%; }
+.policy-document { max-width:1100px; padding:clamp(65px,9vw,145px) 0 100px; margin:0 auto; }
+.policy-page .policy-document { width:100%; box-sizing:border-box; background:none; border:0; border-radius:0; box-shadow:none; backdrop-filter:none; -webkit-backdrop-filter:none; }
+.policy-page nav { margin-bottom:0; }
+.policy-document .eyebrow-badge { background:none; border:0; padding:0; box-shadow:none; }
+.policy-document .eyebrow { color:#a4a9b5; letter-spacing:.2em; }
+.policy-document h1 { max-width:1020px; font-size:clamp(3rem,6.4vw,7rem); font-weight:600; line-height:1.03; letter-spacing:-.065em; text-wrap:balance; margin:18px 0 24px; }
+.policy-page .policy-document h1 { font-size:clamp(3rem,6.4vw,7rem); font-weight:600; letter-spacing:-.065em; line-height:1.03; }
+.policy-document .lede { max-width:760px; font-size:clamp(1rem,1.4vw,1.2rem); color:#aeb1b9; line-height:1.75; margin-bottom:clamp(55px,8vw,110px); }
+.policy-page .policy-document .lede { border:0; padding:0; margin-bottom:clamp(55px,8vw,110px); }
+.policy-document h2 { max-width:850px; border-top:1px solid rgba(255,255,255,.14); padding-top:32px; margin:40px 0 16px; font-size:clamp(1.3rem,2.3vw,2.2rem); line-height:1.18; font-weight:600; letter-spacing:-.04em; }
+.policy-document p:not(.lede):not(.eyebrow) { max-width:850px; line-height:1.85; color:#acafb8; font-size:clamp(.94rem,1.05vw,1.06rem); }
+.policy-document a { color:#f4f5f8; text-underline-offset:4px; }
+body > footer { max-width:1500px; margin:auto; padding:35px clamp(20px,4.8vw,86px) 55px; border-top:1px solid rgba(255,255,255,.18); }
+@media(max-width:760px) { .policy-page{padding-inline:20px}.policy-document{padding-top:68px}.policy-document h1{font-size:clamp(2.65rem,10vw,4.5rem)}.policy-document h2{margin-top:32px}.policy-page nav{height:66px} }
+@media(prefers-reduced-motion:reduce){.policy-document *{scroll-behavior:auto}}

@@ -18,14 +18,16 @@
   const PLAYER_PAUSED = 2;
   const PLAYER_ENDED = 0;
   const PLAYER_BUFFERING = 3;
-  // Smart Reveal: YouTube controls its own overlays and adaptive bitrate. Use
-  // actual playback progress and the public buffered-fraction hint rather than
-  // holding every visitor on the poster for a fixed 5.2 seconds.
-  const FAST_REVEAL_MS = 1800;
-  const NORMAL_REVEAL_MS = 2900;
-  const MIN_FAST_PROGRESS = 1.5;
-  const MIN_NORMAL_PROGRESS = 2.4;
-  const BUFFER_AHEAD_FOR_FAST_PATH = 8;
+  // Smart Reveal: YouTube overlays are iframe-owned. Observe several seconds
+  // of actual playback before exposing the iframe on first load and resume.
+  // A fresh document reload also creates YouTube's own transient play bezel.
+  // Treat first playback like a resume instead of taking the fast reveal path.
+  const INITIAL_REVEAL_MS = 4800;
+  const INITIAL_PROGRESS_SECONDS = 4.0;
+  // Returning to the Hero triggers YouTube's own pause/play bezel. Its duration
+  // is not exposed via the IFrame API, so conceal longer on subsequent resumes.
+  const RESUME_REVEAL_MS = 4800;
+  const RESUME_PROGRESS_SECONDS = 4.0;
   let player = null;
   let playerReady = false;
   let apiRequested = false;
@@ -36,6 +38,7 @@
   let revealTimer = 0;
   let revealGeneration = 0;
   let stagePresence = 1;
+  let hasRevealedOnce = false;
 
   function getTranslation(key, fallback) {
     if (typeof translations === 'undefined' || typeof currentLang === 'undefined') return fallback;
@@ -126,6 +129,7 @@
 
   function setVideoMode(enabled) {
     backdrop.classList.toggle('is-playing', enabled);
+    // Suspend the Three.js render loop whenever video owns the background.
     if (enabled || document.hidden || stagePresence < 0.02 || motionPreference.matches) {
       if (typeof window.stopThreeScene === 'function') window.stopThreeScene();
     } else if (typeof window.startThreeScene === 'function') {
@@ -141,9 +145,6 @@
     const initialTime = previousTime;
     let progressingSamples = 0;
     let stalledSamples = 0;
-    const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
-    const constrainedNetwork = !!(connection &&
-      (connection.saveData || /^(?:slow-)?2g$/.test(connection.effectiveType || '')));
 
     function probe() {
       if (generation !== revealGeneration || !shouldPlay() || state() !== PLAYER_PLAYING) return;
@@ -161,16 +162,14 @@
       if (Number.isFinite(now)) previousTime = now;
       const elapsed = performance.now() - startedAt;
       const progress = now - initialTime;
-      const ahead = bufferedSecondsAhead(now);
-      // A large loaded fraction is an optimization hint, NOT a guarantee that
-      // YouTube's transient center play/pause bezel is already gone.
-      const fast = !constrainedNetwork && elapsed >= FAST_REVEAL_MS &&
-        Number.isFinite(ahead) && ahead >= BUFFER_AHEAD_FOR_FAST_PATH &&
-        progress >= MIN_FAST_PROGRESS && progressingSamples >= 6;
-      const normal = elapsed >= NORMAL_REVEAL_MS &&
-        progress >= MIN_NORMAL_PROGRESS && progressingSamples >= 8;
-      if (stalledSamples === 0 && (fast || normal)) {
+      // YouTube does not expose overlay visibility through its IFrame API.
+      const normal = elapsed >= (hasRevealedOnce ? RESUME_REVEAL_MS : INITIAL_REVEAL_MS) &&
+        progress >= (hasRevealedOnce ? RESUME_PROGRESS_SECONDS : INITIAL_PROGRESS_SECONDS) &&
+        progressingSamples >= 8;
+      if (stalledSamples === 0 && normal) {
         backdrop.classList.add('is-frame-ready');
+        hasRevealedOnce = true;
+        document.body.classList.add('cinematic-loaded');
         return;
       }
       // No unconditional timeout reveal: offline/stalled players keep the poster.
@@ -292,7 +291,7 @@
     backdrop.style.setProperty('--hero-presence', stagePresence.toFixed(4));
     toggle.classList.toggle('is-offstage', stagePresence < 0.02);
 
-    // Hysteresis prevents rapid pause/resume at the bottom of the fade.
+    // Hysteresis avoids rapid pause/resume at the bottom of the fade.
     const nextAllowsPlayback = scrollAllowsPlayback
       ? stagePresence > 0.005
       : stagePresence > 0.10;
