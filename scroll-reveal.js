@@ -16,7 +16,6 @@
     '#content-sources .content-sources-disclaimer',
     '#gallery .showcase-heading > div',
     '#gallery .gallery-toolbar',
-    '#gallery #gallery-track',
     '#changelog .changelog-header',
     '#changelog .release-entry',
     '#changelog .changelog-expand-bar',
@@ -58,6 +57,25 @@
   }
 
   document.querySelectorAll(selectors.join(',')).forEach(register);
+
+  // Gallery must remain visible even if an observer never fires (small
+  // viewports, browser throttling, browser back/forward cache, JS failures).
+  // Entrance is an enhancement, never a prerequisite for seeing screenshots.
+  const gallery = document.getElementById('gallery');
+  const galleryTrack = document.getElementById('gallery-track');
+  if (gallery && galleryTrack && !reduced.matches) {
+    let entered = false;
+    const enterGallery = () => {
+      if (entered) return;
+      entered = true;
+      galleryTrack.classList.add('gallery-entrance');
+      galleryObserver.disconnect();
+    };
+    const galleryObserver = new IntersectionObserver(entries => {
+      if (entries.some(entry => entry.isIntersecting)) enterGallery();
+    }, { threshold: 0, rootMargin: '0px 0px -8% 0px' });
+    galleryObserver.observe(gallery);
+  }
 
   // New GitHub release entries can be inserted after the initial page parse.
   // Register only newly added cards; do not reanimate already revealed items.
