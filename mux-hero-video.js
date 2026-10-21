@@ -168,14 +168,19 @@
   syncToggle();
   updateStage();
   if (reduced.matches) { setMode(false); return; }
-  if (video.canPlayType('application/vnd.apple.mpegurl')) {
-    select(nextIndex());
-  } else {
+  // Prefer hls.js on MSE-capable browsers. Some Windows browsers report
+  // partial HLS support but reject direct .m3u8 with MEDIA_ERR_SRC_NOT_SUPPORTED.
+  // Native HLS is used only when Media Source Extensions are unavailable.
+  if (window.MediaSource && typeof window.MediaSource.isTypeSupported === 'function') {
     const script = document.createElement('script');
     script.src = 'https://cdn.jsdelivr.net/npm/hls.js@1.5.17/dist/hls.min.js';
     script.async = true;
     script.onload = function () {
-      if (!window.Hls || !window.Hls.isSupported()) { showPosterOnError(); return; }
+      if (!window.Hls || !window.Hls.isSupported()) {
+        if (video.canPlayType('application/vnd.apple.mpegurl')) select(nextIndex());
+        else showPosterOnError('HLS unsupported');
+        return;
+      }
       hls = new window.Hls({ enableWorker: true, lowLatencyMode: false, capLevelToPlayerSize: true, startLevel: 0, abrEwmaDefaultEstimate: 1000000 });
       hls.on(window.Hls.Events.ERROR, function (_, data) {
         if (!data.fatal) return;
@@ -188,5 +193,9 @@
     };
     script.onerror = showPosterOnError;
     document.head.appendChild(script);
+  } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+    select(nextIndex());
+  } else {
+    showPosterOnError('Neither MSE nor native HLS is available');
   }
 })();
