@@ -2,7 +2,7 @@
 (function () {
   'use strict';
   const backdrop = document.querySelector('.hero-video-backdrop');
-  const wrap = document.getElementById('yt-player');
+  const wrap = document.getElementById('mux-player');
   const hero = document.getElementById('top');
   const toggle = document.getElementById('video-toggle-btn');
   const label = document.getElementById('video-toggle-label');
@@ -28,7 +28,6 @@
   let active = -1;
   let queue = [];
   let failed = false;
-  let started = false;
   let startupTimer = 0;
   let scrollQueued = false;
   let stagePresence = 1;
@@ -54,18 +53,16 @@
       if (typeof window.stopThreeScene === 'function') window.stopThreeScene();
     } else if (typeof window.startThreeScene === 'function') window.startThreeScene();
   }
-  function fallback() {
+  function showPosterOnError() {
     if (failed) return;
     failed = true;
     window.clearTimeout(startupTimer);
     video.pause();
     if (hls) { hls.destroy(); hls = null; }
-    video.remove();
     backdrop.classList.remove('is-frame-ready', 'is-playing');
     toggle.classList.remove('is-visible');
-    const script = document.createElement('script');
-    script.src = './hero-video.js';
-    document.head.appendChild(script);
+    setMode(false);
+    console.warn('Hyperix: Mux hero playback unavailable; retaining static background.');
   }
   function shuffleQueue() {
     const pool = assets.map((_, i) => i).filter(i => i !== active);
@@ -90,10 +87,9 @@
     active = index;
     backdrop.classList.remove('is-frame-ready');
     video.pause();
-    started = false;
     window.clearTimeout(startupTimer);
     // A stalled/unavailable Mux asset must never leave the Hero empty.
-    startupTimer = window.setTimeout(fallback, 14000);
+    startupTimer = window.setTimeout(showPosterOnError, 14000);
     const url = 'https://stream.mux.com/' + assets[index].id + '.m3u8';
     if (hls) hls.loadSource(url);
     else { video.src = url; video.load(); }
@@ -126,7 +122,6 @@
 
   video.addEventListener('playing', function () {
     if (!shouldPlay()) { video.pause(); return; }
-    started = true;
     window.clearTimeout(startupTimer);
     backdrop.classList.add('is-frame-ready');
     document.body.classList.add('cinematic-loaded');
@@ -135,7 +130,7 @@
   });
   video.addEventListener('ended', function () { select(nextIndex()); });
   video.addEventListener('canplay', playIfAllowed);
-  video.addEventListener('error', fallback);
+  video.addEventListener('error', showPosterOnError);
   video.addEventListener('waiting', function () {
     // Keep the last displayed frame during buffering; do not flash poster.
   });
@@ -151,7 +146,7 @@
   window.addEventListener('resize', scrollUpdate, { passive: true });
   if (typeof reduced.addEventListener === 'function') reduced.addEventListener('change', playIfAllowed);
 
-  // Keep original YouTube player available as an emergency fallback.
+  // Mux is the sole media source. On failure the cinematic backdrop stays static.
   wrap.appendChild(video);
   syncToggle();
   updateStage();
@@ -163,13 +158,13 @@
     script.src = 'https://cdn.jsdelivr.net/npm/hls.js@1.5.17/dist/hls.min.js';
     script.async = true;
     script.onload = function () {
-      if (!window.Hls || !window.Hls.isSupported()) { fallback(); return; }
+      if (!window.Hls || !window.Hls.isSupported()) { showPosterOnError(); return; }
       hls = new window.Hls({ enableWorker: true, lowLatencyMode: false, capLevelToPlayerSize: true });
-      hls.on(window.Hls.Events.ERROR, function (_, data) { if (data.fatal) fallback(); });
+      hls.on(window.Hls.Events.ERROR, function (_, data) { if (data.fatal) showPosterOnError(); });
       hls.attachMedia(video);
       hls.on(window.Hls.Events.MEDIA_ATTACHED, function () { select(nextIndex()); });
     };
-    script.onerror = fallback;
+    script.onerror = showPosterOnError;
     document.head.appendChild(script);
   }
 })();
