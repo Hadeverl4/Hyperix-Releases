@@ -17,7 +17,6 @@
     <link rel="stylesheet" href="./styles.css" />
     <link rel="stylesheet" href="./cinematic.css" />
     <link rel="stylesheet" href="./mobile-polish.css" />
-    <link rel="stylesheet" href="./friends-showcase.css" />
     <style>html.splash-locked,html.splash-locked body{overflow:hidden!important;overscroll-behavior:none}</style>
     <script>window.hyperixSplashStart=performance.now();document.documentElement.classList.add('splash-locked');if('scrollRestoration' in history)history.scrollRestoration='manual';window.scrollTo(0,0);setTimeout(function(){if(document.body)document.body.classList.add('cinematic-min-elapsed','cinematic-timeout')},3000);</script>
   </head>
@@ -163,34 +162,6 @@
             <span class="p2p-wave-burst" aria-hidden="true"></span>
             <span class="p2p-wave-label"><span data-i18n="p2p_demo_button">Play with friends</span></span>
           </button>
-        </div>
-        <div class="friends-showcase" id="friends-showcase" aria-label="Hyperix friends UI interactive preview">
-          <div class="friends-showcase-copy">
-            <span class="p2p-demo-kicker" data-i18n="friends_demo_kicker">YOUR FRIENDS, ALL IN ONE PLACE</span>
-            <h3 data-i18n="friends_demo_title">A familiar place to play together.</h3>
-            <p data-i18n="friends_demo_body">Switch tabs, choose a friend and preview the way Hyperix brings people together. This is an interactive preview, not a live account.</p>
-          </div>
-          <div class="friends-mock" id="friends-mock">
-            <div class="friends-mock-profile"><span class="friends-face face-owner" aria-hidden="true">👨🏻</span><div><strong>Classicjony</strong><small data-i18n="friends_online">Online</small></div><i class="friends-dot online"></i></div>
-            <div class="friends-mock-tabs" role="tablist" aria-label="Friends preview tabs">
-              <button type="button" class="is-active" role="tab" aria-selected="true" aria-controls="friends-preview-list" id="friends-tab-list" data-friends-tab="list" aria-label="Friends">♧</button>
-              <button type="button" role="tab" aria-selected="false" aria-controls="friends-preview-time" id="friends-tab-time" data-friends-tab="time" aria-label="Playtime">◷</button>
-            </div>
-            <button type="button" class="friends-mock-play" id="friends-mock-play" data-i18n="p2p_demo_button">Play with friends</button>
-            <section id="friends-preview-list" role="tabpanel" aria-labelledby="friends-tab-list" class="friends-mock-pane">
-              <div class="friends-mock-heading"><strong data-i18n="friends_count">Friends · 4</strong><button type="button" id="friends-mock-add" aria-label="Add friend">+</button></div>
-              <div class="friends-mock-add" id="friends-mock-add-pane" hidden><input type="text" maxlength="24" placeholder="Friend username" aria-label="Friend username"/><button type="button" data-i18n="friends_demo_add">Preview</button></div>
-              <div class="friends-mock-group" data-i18n="friends_online_count">ONLINE · 1</div>
-              <button class="friends-mock-row" type="button" aria-pressed="false"><span class="friends-face face-steve" aria-hidden="true">🟫</span><span><strong>Test</strong><small data-i18n="friends_idle">Idle</small></span><i class="friends-dot idle"></i></button>
-              <div class="friends-mock-group" data-i18n="friends_offline_count">OFFLINE · 3</div>
-              <button class="friends-mock-row" type="button" aria-pressed="false"><span class="friends-face face-alex" aria-hidden="true">🟧</span><span><strong>DamQuy1213456</strong><small data-i18n="friends_offline">Offline</small></span><i class="friends-dot offline"></i></button>
-              <button class="friends-mock-row" type="button" aria-pressed="false"><span class="friends-face face-pink" aria-hidden="true">🌸</span><span><strong>KBDestroy</strong><small data-i18n="friends_offline">Offline</small></span><i class="friends-dot offline"></i></button>
-              <button class="friends-mock-row" type="button" aria-pressed="false"><span class="friends-face face-steve" aria-hidden="true">🟫</span><span><strong>SuperTomIIIII</strong><small data-i18n="friends_offline">Offline</small></span><i class="friends-dot offline"></i></button>
-            </section>
-            <section id="friends-preview-time" role="tabpanel" aria-labelledby="friends-tab-time" class="friends-mock-pane" hidden><div class="friends-mock-heading"><strong data-i18n="friends_time_title">Playtime</strong></div><div class="friends-mock-time">◷ <strong>12h 45m</strong><small data-i18n="friends_time_note">Example playtime this week</small></div></section>
-            <div class="friends-mock-bottom"><strong><span>♧</span> <span data-i18n="friends_tip_heading">DID YOU KNOW?</span></strong><p data-i18n="friends_tip_body">Resource packs can change Minecraft visuals and sounds without changing the game logic.</p></div>
-            <p class="friends-mock-feedback" id="friends-mock-feedback" role="status" aria-live="polite" data-i18n="friends_demo_notice">Interactive UI preview — no real invitations are sent.</p>
-          </div>
         </div>
         <p class="p2p-preview-lede" data-i18n="p2p_lede">A more natural way to play together is taking shape: host an existing world or a managed Vanilla server, share a room, and let friends join without exposing a public Minecraft port.</p>
         <div class="p2p-preview-flow" aria-label="P2P preview workflow">
@@ -745,7 +716,6 @@
     <script src="./hash-toggle.js" defer></script>
     <script src="./scroll-reveal.js" defer></script>
     <script src="./p2p-wave-demo.js" defer></script>
-    <script src="./friends-showcase.js" defer></script>
     <!-- Three.js Library and 3D Scene Initialization -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="./three-scene.js"></script>
@@ -1053,7 +1023,6 @@
       Object.assign(translations.en, { nav_features: 'Features', nav_gallery: 'Gallery', p2p_step1_label:'01 / HOST', p2p_step2_label:'02 / SHARE', p2p_step3_label:'03 / PLAY' });
       Object.assign(translations.vi, window.hyperixVietnameseCopy || {});
       Object.assign(translations.en, {shot_6_title:'Play with friends',shot_6_desc:'Open your Minecraft world and invite friends to play together.'});
-      Object.assign(translations.en, {friends_demo_kicker:'YOUR FRIENDS, ALL IN ONE PLACE',friends_demo_title:'A familiar place to play together.',friends_demo_body:'Switch tabs, choose a friend and preview how Hyperix brings people together. This is an interactive demonstration, not a live account.',friends_online:'Online',friends_idle:'Idle',friends_offline:'Offline',friends_count:'Friends · 4',friends_online_count:'ONLINE · 1',friends_offline_count:'OFFLINE · 3',friends_demo_add:'Preview',friends_time_title:'Playtime',friends_time_note:'Example playtime this week',friends_tip_heading:'DID YOU KNOW?',friends_tip_body:'Resource packs can change Minecraft visuals and sounds without changing the game logic.',friends_demo_notice:'Interactive UI preview — no real invitations are sent.'});
       if (window.hyperixEnglishScreenshots) screenshotsLocalized.en = window.hyperixEnglishScreenshots;
       if (window.hyperixVietnameseScreenshots) screenshotsLocalized.vi = window.hyperixVietnameseScreenshots;
       let currentLang = 'en';
