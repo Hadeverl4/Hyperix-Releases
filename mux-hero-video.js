@@ -39,6 +39,8 @@
   const targetHeight = window.matchMedia('(max-width: 760px)').matches ? 720 : 1080;
   let hdLevel = -1;
   let revealCheck = 0;
+  let transitioning = false;
+  const TRANSITION_MS = 550;
 
   function translate(key, fallback) {
     if (typeof translations === 'undefined' || typeof currentLang === 'undefined') return fallback;
@@ -94,6 +96,7 @@
     });
   }
   function select(index) {
+    transitioning = true;
     active = index;
     if (poster) poster.style.setProperty('--mux-poster',
       'url("https://image.mux.com/' + assets[index].id + '/thumbnail.jpg?width=1920&time=2")');
@@ -162,6 +165,7 @@
       window.clearInterval(revealCheck);
       attemptedAssets = 0;
       backdrop.classList.add('is-frame-ready');
+      transitioning = false;
       document.body.classList.add('cinematic-loaded');
       setMode(true);
       toggle.classList.add('is-visible');
@@ -169,7 +173,16 @@
     checkHD();
     revealCheck = window.setInterval(checkHD, 180);
   });
-  video.addEventListener('ended', function () { select(nextIndex()); });
+  video.addEventListener('ended', function () {
+    if (failed || transitioning) return;
+    // Fade to the next video's Mux thumbnail before swapping HLS sources.
+    // The following reveal only occurs after the HD quality/buffer gate passes.
+    backdrop.classList.add('is-switching-video');
+    window.setTimeout(function () {
+      select(nextIndex());
+      backdrop.classList.remove('is-switching-video');
+    }, reduced.matches ? 0 : TRANSITION_MS);
+  });
   video.addEventListener('loadeddata', function () { mediaReady = true; playIfAllowed(); });
   video.addEventListener('canplay', function () { mediaReady = true; playIfAllowed(); });
   video.addEventListener('error', function () {
