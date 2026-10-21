@@ -13,7 +13,9 @@
   const assets = [
     { name: 'MC1', id: '00m4KvMbPUiaNbc02QT8U83UvsiG89200uB5yTbpWkobHY' },
     { name: 'MC2', id: 'seVqgltNya0099900pZysNjdlXJbrw4cUd4P9Dgo2sQFk' },
-    { name: 'MC3', id: 'rhA866nNT8M02v7eO7qyjVX34wf9KqEKAbQIFKGiQ8CE' }
+    { name: 'MC3', id: 'rhA866nNT8M02v7eO7qyjVX34wf9KqEKAbQIFKGiQ8CE' },
+    { name: 'MC4', id: 'zzmd2ow601Hz9u5qGYiSS3hA6SUy2LpBDeCsYvwbyggA' },
+    { name: 'MC5', id: '2jpRturVniygW5TrVFQcJHdJpqIsqeVsm01QgsEcu5bU' }
   ];
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
   const video = document.createElement('video');
