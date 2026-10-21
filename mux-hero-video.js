@@ -41,6 +41,8 @@
   let revealCheck = 0;
   let transitioning = false;
   const TRANSITION_MS = 550;
+  let transitionTimer = 0;
+  let revealedAsset = -1;
 
   function translate(key, fallback) {
     if (typeof translations === 'undefined' || typeof currentLang === 'undefined') return fallback;
@@ -68,6 +70,7 @@
     failed = true;
     window.clearTimeout(startupTimer);
     window.clearInterval(revealCheck);
+    window.clearTimeout(transitionTimer);
     video.pause();
     if (hls) { hls.destroy(); hls = null; }
     backdrop.classList.remove('is-frame-ready', 'is-playing');
@@ -102,6 +105,7 @@
       'url("https://image.mux.com/' + assets[index].id + '/thumbnail.jpg?width=1920&time=2")');
     attemptedAssets++;
     backdrop.classList.remove('is-frame-ready');
+    revealedAsset = -1;
     video.pause();
     mediaReady = false;
     window.clearInterval(revealCheck);
@@ -144,6 +148,9 @@
 
   video.addEventListener('playing', function () {
     if (!shouldPlay()) { video.pause(); return; }
+    // A pause/resume event must not restart a reveal animation for the same
+    // asset; it would flash the poster during normal HLS state changes.
+    if (revealedAsset === active) return;
     // Never reveal a 270p/480p rendition merely because it is playing.
     window.clearInterval(revealCheck);
     const checkHD = function () {
@@ -164,6 +171,10 @@
       window.clearTimeout(startupTimer);
       window.clearInterval(revealCheck);
       attemptedAssets = 0;
+      revealedAsset = active;
+      // Keep the entire transition masked until the next HD frame is decoded.
+      // Remove the exit mask BEFORE enabling the entry opacity transition.
+      backdrop.classList.remove('is-switching-video');
       backdrop.classList.add('is-frame-ready');
       transitioning = false;
       document.body.classList.add('cinematic-loaded');
@@ -177,10 +188,11 @@
     if (failed || transitioning) return;
     // Fade to the next video's Mux thumbnail before swapping HLS sources.
     // The following reveal only occurs after the HD quality/buffer gate passes.
+    transitioning = true;
     backdrop.classList.add('is-switching-video');
-    window.setTimeout(function () {
+    window.clearTimeout(transitionTimer);
+    transitionTimer = window.setTimeout(function () {
       select(nextIndex());
-      backdrop.classList.remove('is-switching-video');
     }, reduced.matches ? 0 : TRANSITION_MS);
   });
   video.addEventListener('loadeddata', function () { mediaReady = true; playIfAllowed(); });
