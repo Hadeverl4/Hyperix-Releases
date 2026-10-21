@@ -720,7 +720,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="./three-scene.js"></script>
 
-    <script src="./vi-copy-polish.js"></script>
+    <script src="./vi-copy-polish.js?v=gallery-lang-20261021b"></script>
     <!-- Dialog & Interaction Scripts -->
     <script>
       // Internationalization (i18n) Data
@@ -1199,6 +1199,10 @@
             el.innerHTML = translations[lang][key];
           }
         });
+        // Set the large Gallery heading from the authoritative language state.
+        // Do not allow a deferred slider refresh to restore a stale translation.
+        const showcaseHeading = document.getElementById('showcase-title');
+        if (showcaseHeading) showcaseHeading.textContent = translations[lang].showcase_title;
         document.querySelectorAll('#gallery-track .screenshot img').forEach((img, index) => {
           const entry = (screenshotsLocalized[lang] || screenshotsLocalized.en)[index];
           if (!entry) return;
@@ -1536,6 +1540,6 @@
     </script>
     <script src="./mux-hero-video.js"></script>
     <script src="./spotify-music.js"></script>
-    <script src="./gallery-slider.js"></script>
+    <script src="./gallery-slider.js?v=gallery-lang-20261021b"></script>
   </body>
 </html>

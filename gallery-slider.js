@@ -8,7 +8,6 @@
   const slides=Array.from(rail.querySelectorAll('.screenshot'));
   // The number of slides may grow when new launcher screenshots are added.
   const counter=document.querySelector('.gallery-toolbar > span');
-  const title=document.getElementById('showcase-title');
   const description=document.getElementById('gallery-feature-desc');
   const activeFeature=document.getElementById('gallery-active-feature');
   const reduced=window.matchMedia('(prefers-reduced-motion: reduce)');
