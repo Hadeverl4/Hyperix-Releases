@@ -62,6 +62,8 @@ window.hyperixVietnameseCopy = {
   shot_4_desc: 'Theo dõi trạng thái, độ trễ và số người đang chơi trên máy chủ.',
   shot_5_title: 'Skin và bản xem trước 3D',
   shot_5_desc: 'Xem nhân vật dưới dạng 3D, đổi skin và tùy chỉnh diện mạo.',
+  shot_6_title: 'Chơi cùng bạn bè',
+  shot_6_desc: 'Mở thế giới Minecraft của bạn và mời bạn bè cùng tham gia.',
   changelog_eyebrow: 'NHẬT KÝ PHÁT HÀNH',
   changelog_title: 'Mỗi bản cập nhật, một trải nghiệm tốt hơn.',
   filter_all: 'Tất cả phiên bản',
@@ -102,9 +104,18 @@ window.hyperixVietnameseCopy = {
 };
 
 window.hyperixVietnameseScreenshots = [
-  {image:'./assets/homescreen.png',title:'Thư viện Minecraft',desc:'Tất cả bộ cài của bạn, rõ ràng và dễ tìm.',alt:'Giao diện thư viện Minecraft trong Hyperix'},
-  {image:'./assets/instance-detail.png',title:'Quản lý bộ cài',desc:'Kiểm soát mod, tài nguyên và tệp của từng bộ cài.',alt:'Màn hình quản lý bộ cài Minecraft'},
-  {image:'./assets/discovery.png',title:'Khám phá Modrinth',desc:'Tìm nội dung mới từ nguồn chính thức.',alt:'Giao diện khám phá dự án Modrinth'},
-  {image:'./assets/servers.png',title:'Máy chủ nhiều người chơi',desc:'Xem độ trễ, trạng thái và số người chơi.',alt:'Danh sách máy chủ Minecraft'},
-  {image:'./assets/skin-selector.png',title:'Skin và xem trước 3D',desc:'Thử diện mạo nhân vật trong không gian 3D.',alt:'Trình xem trước skin Minecraft 3D'}
+  {image:'./assets/screenshots/homescreen-vi.png',title:'Thư viện Minecraft',desc:'Tất cả bộ cài của bạn, rõ ràng và dễ tìm.',alt:'Thư viện Minecraft trong Hyperix bằng tiếng Việt'},
+  {image:'./assets/screenshots/instance-detail-vi.png',title:'Quản lý bộ cài',desc:'Kiểm soát mod, tài nguyên và tệp của từng bộ cài.',alt:'Chi tiết bộ cài Minecraft bằng tiếng Việt'},
+  {image:'./assets/screenshots/discover-vi.png',title:'Khám phá Modrinth',desc:'Tìm nội dung mới từ nguồn chính thức.',alt:'Khám phá nội dung Minecraft bằng tiếng Việt'},
+  {image:'./assets/screenshots/servers-vi.png',title:'Máy chủ nhiều người chơi',desc:'Xem độ trễ, trạng thái và số người chơi.',alt:'Danh sách máy chủ Minecraft bằng tiếng Việt'},
+  {image:'./assets/screenshots/skin-selector-vi.png',title:'Skin và xem trước 3D',desc:'Thử diện mạo nhân vật trong không gian 3D.',alt:'Chọn skin và xem trước 3D bằng tiếng Việt'},
+  {image:'./assets/screenshots/play-with-friends-vi.png',title:'Chơi cùng bạn bè',desc:'Mở thế giới Minecraft và mời bạn bè tham gia.',alt:'Tính năng chơi cùng bạn bè trong Hyperix bằng tiếng Việt'}
+];
+window.hyperixEnglishScreenshots = [
+  {image:'./assets/screenshots/homescreen-en.png',title:'Instance library',desc:'Keep your Minecraft installations easy to find and manage.',alt:'Hyperix instance library in English'},
+  {image:'./assets/screenshots/instance-detail-en.png',title:'Instance detail',desc:'Manage mods, resources, and files for each installation.',alt:'Minecraft instance detail in English'},
+  {image:'./assets/screenshots/discover-en.png',title:'Modrinth discovery',desc:'Find compatible Minecraft community content.',alt:'Hyperix content discovery in English'},
+  {image:'./assets/screenshots/servers-en.png',title:'Multiplayer servers',desc:'View latency, status, and player counts.',alt:'Minecraft server list in English'},
+  {image:'./assets/screenshots/skin-selector-en.png',title:'Skin selector & 3D preview',desc:'Preview skins and customize your character.',alt:'Minecraft skin selector in English'},
+  {image:'./assets/screenshots/play-with-friends-en.png',title:'Play with friends',desc:'Open your Minecraft world and invite friends to play together.',alt:'Play with friends in Hyperix in English'}
 ];

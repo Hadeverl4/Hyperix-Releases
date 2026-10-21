@@ -266,6 +266,17 @@
               <span data-i18n="shot_5_desc">Preview skins in interactive 3D, switch variants, and customize your look.</span>
             </figcaption>
           </figure>
+          <figure class="screenshot friends-shot">
+            <div class="screenshot-frame">
+              <div class="gallery-art">
+                <img src="./assets/screenshots/play-with-friends-en.png" alt="Hyperix Play with friends screen" loading="lazy" />
+              </div>
+            </div>
+            <figcaption>
+              <strong data-i18n="shot_6_title">Play with friends</strong>
+              <span data-i18n="shot_6_desc">Manage your Minecraft worlds and invite friends to play together.</span>
+            </figcaption>
+          </figure>
         </div>
       </section>
 
@@ -641,7 +652,7 @@
         <div class="dialog-topbar">
           <div class="dialog-meta">
             <span class="dialog-badge"><span class="pulse-dot" aria-hidden="true"></span> <span id="dialog-title-text">Instance library</span></span>
-            <span class="dialog-index-counter" id="dialog-counter">1 / 5</span>
+            <span class="dialog-index-counter" id="dialog-counter">1 / 6</span>
           </div>
           <button class="dialog-close" type="button" aria-label="Close image preview">✕</button>
         </div>
@@ -1011,6 +1022,8 @@
       // Natural Vietnamese copy takes precedence over legacy translations.
       Object.assign(translations.en, { nav_features: 'Features', nav_gallery: 'Gallery', p2p_step1_label:'01 / HOST', p2p_step2_label:'02 / SHARE', p2p_step3_label:'03 / PLAY' });
       Object.assign(translations.vi, window.hyperixVietnameseCopy || {});
+      Object.assign(translations.en, {shot_6_title:'Play with friends',shot_6_desc:'Open your Minecraft world and invite friends to play together.'});
+      if (window.hyperixEnglishScreenshots) screenshotsLocalized.en = window.hyperixEnglishScreenshots;
       if (window.hyperixVietnameseScreenshots) screenshotsLocalized.vi = window.hyperixVietnameseScreenshots;
       let currentLang = 'en';
 
@@ -1185,6 +1198,12 @@
           if (translations[lang] && translations[lang][key] !== undefined) {
             el.innerHTML = translations[lang][key];
           }
+        });
+        document.querySelectorAll('#gallery-track .screenshot img').forEach((img, index) => {
+          const entry = (screenshotsLocalized[lang] || screenshotsLocalized.en)[index];
+          if (!entry) return;
+          if (img.getAttribute('src') !== entry.image) img.src = entry.image;
+          img.alt = entry.alt;
         });
         // Static microcopy and accessibility names outside the i18n attributes.
         const cue = document.querySelector('.hero-scroll-cue');

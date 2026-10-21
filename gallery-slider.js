@@ -6,6 +6,7 @@
   const next=document.getElementById('gallery-next');
   if(!section||!rail||!prev||!next)return;
   const slides=Array.from(rail.querySelectorAll('.screenshot'));
+  // The number of slides may grow when new launcher screenshots are added.
   const counter=document.querySelector('.gallery-toolbar > span');
   const title=document.getElementById('showcase-title');
   const description=document.getElementById('gallery-feature-desc');
@@ -89,5 +90,5 @@
   rail.addEventListener('pointercancel',()=>{startX=null;startY=null;dragPointer=null;rail.classList.remove('is-dragging');});
   paint();
   updateFeature();
-  document.querySelectorAll('.lang-btn').forEach(button => button.addEventListener('click', () => window.setTimeout(paint, 0)));
+  document.querySelectorAll('.lang-btn').forEach(button => button.addEventListener('click', () => window.setTimeout(() => { paint(); updateFeature(); }, 0)));
 })();
