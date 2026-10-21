@@ -309,5 +309,12 @@
     animationFrame = requestAnimationFrame(animate);
   }
 
-  startLoop();
+  // Hero owns the initial viewport; the Mux controller starts this scene only
+  // once the Features section enters view.
+  const featureStart = document.getElementById('features');
+  if (featureStart && featureStart.getBoundingClientRect().top >= window.innerHeight * 0.95) {
+    window.stopThreeScene();
+  } else {
+    startLoop();
+  }
 })();

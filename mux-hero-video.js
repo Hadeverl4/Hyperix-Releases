@@ -5,6 +5,7 @@
   const poster = document.querySelector('.hero-video-poster');
   const wrap = document.getElementById('mux-player');
   const hero = document.getElementById('top');
+  const features = document.getElementById('features');
   const toggle = document.getElementById('video-toggle-btn');
   const label = document.getElementById('video-toggle-label');
   if (!backdrop || !wrap || !hero || !toggle) return;
@@ -43,6 +44,8 @@
   const TRANSITION_MS = 550;
   let transitionTimer = 0;
   let revealedAsset = -1;
+  let HlsEngine = null;
+  let sourceGeneration = 0;
 
   function translate(key, fallback) {
     if (typeof translations === 'undefined' || typeof currentLang === 'undefined') return fallback;
@@ -61,7 +64,9 @@
   }
   function setMode(enabled) {
     backdrop.classList.toggle('is-playing', enabled);
-    if (enabled || document.hidden || stagePresence < 0.02 || reduced.matches) {
+    const featuresVisible = features && features.getBoundingClientRect().top < window.innerHeight * 0.95;
+    backdrop.classList.toggle('is-features-visible', Boolean(featuresVisible));
+    if (!featuresVisible || document.hidden || reduced.matches) {
       if (typeof window.stopThreeScene === 'function') window.stopThreeScene();
     } else if (typeof window.startThreeScene === 'function') window.startThreeScene();
   }
@@ -92,7 +97,7 @@
   }
   function playIfAllowed() {
     if (!shouldPlay()) { video.pause(); return; }
-    if (!mediaReady && !video.currentSrc && !video.src) return;
+    if (!mediaReady) return;
     const result = video.play();
     if (result && typeof result.catch === 'function') result.catch(function (err) {
       console.warn('Hyperix Mux play() failed:', err && err.name);
@@ -101,6 +106,7 @@
   function select(index) {
     transitioning = true;
     active = index;
+    const generation = ++sourceGeneration;
     // Keep the same cached poster across HLS source changes. Changing the
     // poster URL during its opacity animation causes a full-screen flash.
     attemptedAssets++;
@@ -117,9 +123,33 @@
       else showPosterOnError('all assets timed out');
     }, 9000);
     const url = 'https://stream.mux.com/' + assets[index].id + '.m3u8';
-    if (hls) hls.loadSource(url);
-    else { video.src = url; video.load(); }
-    playIfAllowed();
+    if (HlsEngine) {
+      // An ended MediaSource may not resume after loadSource alone. A fresh
+      // HLS/MSE instance per asset clears the previous video's end state.
+      if (hls) { hls.destroy(); hls = null; }
+      video.removeAttribute('src');
+      video.load();
+      const engine = new HlsEngine({ enableWorker: true, lowLatencyMode: false,
+        capLevelToPlayerSize: false, startLevel: -1, abrEwmaDefaultEstimate: 5000000 });
+      hls = engine;
+      engine.on(HlsEngine.Events.MEDIA_ATTACHED, function () {
+        if (generation === sourceGeneration && !failed) engine.loadSource(url);
+      });
+      engine.on(HlsEngine.Events.MANIFEST_PARSED, function () {
+        if (generation !== sourceGeneration || failed) return;
+        hdLevel = engine.levels.findIndex(level => level.height >= targetHeight);
+        if (hdLevel < 0) { showPosterOnError('no HD rendition meets ' + targetHeight + 'p'); return; }
+        engine.startLevel = hdLevel;
+        engine.loadLevel = hdLevel;
+      });
+      engine.on(HlsEngine.Events.ERROR, function (_, data) {
+        if (!data.fatal || generation !== sourceGeneration || failed) return;
+        console.warn('Hyperix Mux HLS fatal error:', data.type, data.details);
+        if (attemptedAssets < assets.length) select(nextIndex());
+        else showPosterOnError(data.details);
+      });
+      engine.attachMedia(video);
+    } else { video.src = url; video.load(); }
   }
   function updateVisibility() {
     const box = hero.getBoundingClientRect();
@@ -136,9 +166,15 @@
     const t = Math.max(0, Math.min(1, (window.scrollY - start) / (end - start)));
     const smooth = t * t * t * (t * (t * 6 - 15) + 10);
     stagePresence = 1 - smooth;
+    if (features) {
+      const featureTop = features.getBoundingClientRect().top;
+      stagePresence = Math.min(stagePresence,
+        Math.max(0, Math.min(1, (featureTop - window.innerHeight * 0.12) / (window.innerHeight * 0.6))));
+    }
     backdrop.style.setProperty('--hero-presence', stagePresence.toFixed(4));
     toggle.classList.toggle('is-offstage', stagePresence < 0.02);
     updateVisibility();
+    setMode(backdrop.classList.contains('is-frame-ready'));
   }
   function scrollUpdate() {
     if (scrollQueued) return;
@@ -235,26 +271,8 @@
         else showPosterOnError('HLS unsupported');
         return;
       }
-      hls = new window.Hls({ enableWorker: true, lowLatencyMode: false, capLevelToPlayerSize: false, startLevel: -1, abrEwmaDefaultEstimate: 5000000 });
-      hls.on(window.Hls.Events.MANIFEST_PARSED, function () {
-        const levels = hls.levels;
-        hdLevel = levels.findIndex(level => level.height >= targetHeight);
-        if (hdLevel === -1) {
-          showPosterOnError('no HD rendition meets ' + targetHeight + 'p');
-          return;
-        }
-        // Pin the chosen HD rendition; never downgrade into blurred video.
-        hls.startLevel = hdLevel;
-        hls.loadLevel = hdLevel;
-      });
-      hls.on(window.Hls.Events.ERROR, function (_, data) {
-        if (!data.fatal) return;
-        console.warn('Hyperix Mux HLS fatal error:', data.type, data.details);
-        if (attemptedAssets < assets.length) select(nextIndex());
-        else showPosterOnError(data.details);
-      });
-      hls.attachMedia(video);
-      hls.on(window.Hls.Events.MEDIA_ATTACHED, function () { select(nextIndex()); });
+      HlsEngine = window.Hls;
+      select(nextIndex());
     };
     script.onerror = showPosterOnError;
     document.head.appendChild(script);
