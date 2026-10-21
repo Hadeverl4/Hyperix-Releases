@@ -81,7 +81,7 @@
         <p class="lede" data-i18n="hero_lede">Hyperix helps players create and manage isolated Minecraft instances, organize local content, and understand what belongs to each setup.</p>
 
         <div class="actions">
-          <a class="store-badge-btn" id="ms-store-btn" href="https://apps.microsoft.com/detail/9nk9fxtbt77t" target="_blank" rel="noreferrer" aria-label="Get Hyperix Launcher on Microsoft Store">
+          <a class="store-badge-btn" id="ms-store-btn" href="#available-platforms" aria-label="Jump to Hyperix platform availability">
             <svg class="ms-store-logo" viewBox="0 0 24 24" aria-hidden="true">
               <rect x="1" y="1" width="10" height="10" fill="#f25022" rx="1.5" />
               <rect x="13" y="1" width="10" height="10" fill="#7fba00" rx="1.5" />
@@ -94,7 +94,7 @@
             </div>
           </a>
 
-          <a class="button primary" id="primary-download-btn" href="https://github.com/Hadeverl4/Hyperix-Releases/releases/download/v1.1.9/Hyperix-Launcher_1.1.9_x64-setup.exe">
+          <a class="button primary" id="primary-download-btn" href="#available-platforms">
             <svg class="button-icon" viewBox="0 0 24 24" aria-hidden="true">
               <path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.551H10.949M0 12.6h9.75V22.05L0 20.7m10.949-8.1H24V24l-13.051-1.8" />
             </svg>
@@ -622,11 +622,12 @@
         </div>
       </section>
 
-      <section class="status editorial-status" aria-label="Project status">
+      <section class="status editorial-status" id="available-platforms" aria-label="Project status">
         <p class="eyebrow" style="margin-bottom: 0.8rem; color: #818cf8;" data-i18n="status_eyebrow">Project status</p>
         <h2 data-i18n="status_title">Available on Microsoft Store & Independent Windows Release.</h2>
         <p data-i18n="status_desc">Hyperix is certified on the Microsoft Store and available as an independent release. It is a non-commercial project with no advertisements, subscriptions, paid tiers, or bundled third-party software.</p>
         <div class="editorial-cta">
+          <a id="available-windows-download" href="https://github.com/Hadeverl4/Hyperix-Releases/releases/download/v1.1.9/Hyperix-Launcher_1.1.9_x64-setup.exe">Download for Windows ↓</a>
           <a href="https://apps.microsoft.com/detail/9nk9fxtbt77t" target="_blank" rel="noreferrer">Microsoft Store <span aria-hidden="true">↗</span></a>
           <a href="./support.html">Support <span aria-hidden="true">↗</span></a>
         </div>
@@ -1431,9 +1432,11 @@
           // 2. Update Primary Download Button & SHA-256
           const exeAsset = latest.assets && latest.assets.find((a) => a.name && a.name.endsWith('.exe'));
           if (exeAsset) {
-            const primaryBtn = document.getElementById('primary-download-btn');
-            if (primaryBtn && exeAsset.browser_download_url) {
-              primaryBtn.href = exeAsset.browser_download_url;
+            const platformDownload = document.getElementById('available-windows-download');
+            // Hero CTAs intentionally scroll to the platform section.
+            // Direct installer links remain available in release entries.
+            if (platformDownload && exeAsset.browser_download_url) {
+              platformDownload.href = exeAsset.browser_download_url;
             }
 
             if (exeAsset.digest && exeAsset.digest.startsWith('sha256:')) {
