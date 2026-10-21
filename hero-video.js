@@ -31,8 +31,6 @@
   let playerReady = false;
   let apiRequested = false;
   let userPaused = false;
-  let heroIntersecting = true;
-  let scrollAllowsPlayback = true;
   let scrollPending = false;
   let revealTimer = 0;
   let revealGeneration = 0;
@@ -122,8 +120,9 @@
   }
 
   function shouldPlay() {
-    return !userPaused && !motionPreference.matches && !document.hidden &&
-      heroIntersecting && scrollAllowsPlayback;
+    // Keep muted ambient playback continuous across scrolling. Only explicit
+    // pause, background tabs, and reduced-motion preference suspend playback.
+    return !userPaused && !motionPreference.matches && !document.hidden;
   }
 
   function setVideoMode(enabled) {
@@ -291,14 +290,7 @@
     backdrop.style.setProperty('--hero-presence', stagePresence.toFixed(4));
     toggle.classList.toggle('is-offstage', stagePresence < 0.02);
 
-    // Hysteresis avoids rapid pause/resume at the bottom of the fade.
-    const nextAllowsPlayback = scrollAllowsPlayback
-      ? stagePresence > 0.005
-      : stagePresence > 0.10;
-    if (nextAllowsPlayback !== scrollAllowsPlayback) {
-      scrollAllowsPlayback = nextAllowsPlayback;
-      syncPlayback();
-    }
+    // Scrolling only fades the fixed background; it never pauses the player.
     if (!backdrop.classList.contains('is-playing')) setVideoMode(false);
   }
 
@@ -352,14 +344,6 @@
   document.querySelectorAll('.lang-btn').forEach(function (button) {
     button.addEventListener('click', syncToggle);
   });
-
-  if ('IntersectionObserver' in window) {
-    const observer = new IntersectionObserver(function (entries) {
-      heroIntersecting = entries[0].isIntersecting;
-      syncPlayback();
-    }, { threshold: 0 });
-    observer.observe(hero);
-  }
 
   window.addEventListener('scroll', queueScrollUpdate, { passive: true });
   window.addEventListener('resize', queueScrollUpdate, { passive: true });
