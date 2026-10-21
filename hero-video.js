@@ -18,16 +18,15 @@
   const PLAYER_PAUSED = 2;
   const PLAYER_ENDED = 0;
   const PLAYER_BUFFERING = 3;
-  // Smart Reveal: YouTube overlays are iframe-owned. Observe several seconds
-  // of actual playback before exposing the iframe on first load and resume.
+  // Smart Reveal: YouTube overlays are iframe-owned. Wait for stable playback
+  // on first load, but use a shorter check when resuming an existing player.
   // A fresh document reload also creates YouTube's own transient play bezel.
   // Treat first playback like a resume instead of taking the fast reveal path.
   const INITIAL_REVEAL_MS = 4800;
   const INITIAL_PROGRESS_SECONDS = 4.0;
-  // Returning to the Hero triggers YouTube's own pause/play bezel. Its duration
-  // is not exposed via the IFrame API, so conceal longer on subsequent resumes.
-  const RESUME_REVEAL_MS = 4800;
-  const RESUME_PROGRESS_SECONDS = 4.0;
+  // Resume should not repeat the initial multi-second concealment delay.
+  const RESUME_REVEAL_MS = 480;
+  const RESUME_PROGRESS_SECONDS = 0.25;
   let player = null;
   let playerReady = false;
   let apiRequested = false;
@@ -165,8 +164,9 @@
       // YouTube does not expose overlay visibility through its IFrame API.
       const normal = elapsed >= (hasRevealedOnce ? RESUME_REVEAL_MS : INITIAL_REVEAL_MS) &&
         progress >= (hasRevealedOnce ? RESUME_PROGRESS_SECONDS : INITIAL_PROGRESS_SECONDS) &&
-        progressingSamples >= 8;
+        progressingSamples >= (hasRevealedOnce ? 2 : 8);
       if (stalledSamples === 0 && normal) {
+        if (hasRevealedOnce) backdrop.classList.add('has-revealed-before');
         backdrop.classList.add('is-frame-ready');
         hasRevealedOnce = true;
         document.body.classList.add('cinematic-loaded');
