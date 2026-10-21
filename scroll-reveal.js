@@ -14,8 +14,7 @@
     '#content-sources .content-sources-intro',
     '#content-sources .content-source-copy',
     '#content-sources .content-sources-disclaimer',
-    '#gallery .showcase-heading > div',
-    '#gallery .gallery-toolbar',
+    // Gallery heading and screenshots share one entrance trigger below.
     '#changelog .changelog-header',
     '#changelog .release-entry',
     '#changelog .changelog-expand-bar',
@@ -63,12 +62,16 @@
   // Entrance is an enhancement, never a prerequisite for seeing screenshots.
   const gallery = document.getElementById('gallery');
   const galleryTrack = document.getElementById('gallery-track');
+  const galleryHeading = gallery && gallery.querySelector('.showcase-heading > div');
+  const galleryToolbar = gallery && gallery.querySelector('.gallery-toolbar');
   if (gallery && galleryTrack && !reduced.matches) {
     let entered = false;
     const enterGallery = () => {
       if (entered) return;
       entered = true;
       galleryTrack.classList.add('gallery-entrance');
+      if (galleryHeading) galleryHeading.classList.add('gallery-entrance');
+      if (galleryToolbar) galleryToolbar.classList.add('gallery-entrance');
       galleryObserver.disconnect();
     };
     const galleryObserver = new IntersectionObserver(entries => {

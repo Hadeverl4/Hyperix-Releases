@@ -624,6 +624,8 @@ body.cinematic-timeout .official-music-dock {
 /* Gallery entrance is independent of the stacked-slide transforms. */
 #gallery #gallery-track {opacity:1;translate:none;}
 #gallery #gallery-track.gallery-entrance {animation:gallery-stage-enter 1.15s cubic-bezier(.12,1,.24,1) both;}
+#gallery .showcase-heading > div.gallery-entrance,#gallery .gallery-toolbar.gallery-entrance{animation:gallery-copy-enter 1.15s cubic-bezier(.12,1,.24,1) both;}
+@keyframes gallery-copy-enter{from{opacity:0;translate:0 20px}to{opacity:1;translate:0 0}}
 @keyframes gallery-stage-enter {from{opacity:0;translate:min(19vw,260px) 0}to{opacity:1;translate:0 0}}
 @media(prefers-reduced-motion:reduce) {#gallery #gallery-track.gallery-entrance{animation:none;opacity:1;translate:none;}}
 @media(max-width:760px) {

@@ -2,6 +2,7 @@
   'use strict';
   const widget = document.getElementById('music-widget');
   const status = document.getElementById('soundtrack-label');
+  const localized = (vi, en) => document.documentElement.lang === 'vi' ? vi : en;
   const mount = document.getElementById('spotify-embed');
   const trigger = document.getElementById('spotify-vinyl-trigger');
   const artwork = trigger?.querySelector('.official-vinyl-cover');
@@ -101,7 +102,7 @@
       height: 152
     }, (ready) => {
       controller = ready;
-      status.textContent = 'Official Spotify player';
+      status.textContent = localized('Trình phát Spotify chính thức', 'Official Spotify player');
       controller.addListener('playback_started', ({data}) => {
         if (data?.playingURI) updateTrackArtwork(data.playingURI);
       });
@@ -113,11 +114,11 @@
           resumeAfterTabReturn = true;
           try { controller.pause(); } catch (_) { /* Best effort. */ }
         }
-        if (!data.isBuffering) status.textContent = data.isPaused ? 'Ready to play' : 'Now playing';
+        if (!data.isBuffering) status.textContent = data.isPaused ? localized('Sẵn sàng phát', 'Ready to play') : localized('Đang phát', 'Now playing');
       });
       // Spotify may block this until a user gesture, and may offer previews only.
       if (!document.hidden) {
-        try { controller.play(); } catch (_) { status.textContent = 'Press play on Spotify'; }
+        try { controller.play(); } catch (_) { status.textContent = localized('Nhấn phát trên Spotify', 'Press play on Spotify'); }
       }
     });
   };
@@ -131,7 +132,7 @@
   function tryAfterGesture() {
     if (firstGestureAttempted || !controller || document.hidden) return;
     firstGestureAttempted = true;
-    try { controller.play(); } catch (_) { status.textContent = 'Press play on Spotify'; }
+    try { controller.play(); } catch (_) { status.textContent = localized('Nhấn phát trên Spotify', 'Press play on Spotify'); }
   }
   // Attempt once again after the first real interaction. Spotify playback still
   // depends on its own restrictions; never synthesize user gestures.

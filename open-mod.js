@@ -7,8 +7,8 @@
   const validCurseForgeId = provider !== 'curseforge' || (id !== null && /^[1-9][0-9]*$/.test(id) && Number.isSafeInteger(Number(id)))
 
   if (params.size !== 2 || !validProvider || !validId || !validCurseForgeId) {
-    document.getElementById('heading').textContent = 'This mod link is invalid'
-    document.getElementById('description').textContent = 'Ask the sender to copy a new link from Hyperix.'
+    document.getElementById('heading').textContent = 'Liên kết mod không hợp lệ'
+    document.getElementById('description').textContent = 'Hãy nhờ người gửi tạo lại liên kết chia sẻ từ Hyperix.'
     return
   }
 

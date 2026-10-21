@@ -52,8 +52,8 @@
           <span>Hyperix <em>Launcher</em></span>
         </a>
         <div class="nav-right">
-          <a class="source-link nav-discover" href="#features">Features</a>
-          <a class="source-link nav-discover" href="#gallery">Gallery</a>
+          <a class="source-link nav-discover" href="#features" data-i18n="nav_features">Features</a>
+          <a class="source-link nav-discover" href="#gallery" data-i18n="nav_gallery">Gallery</a>
           <a class="source-link" href="#changelog" data-i18n="nav_changelog">Changelog</a>
           <span class="release-badge" id="live-version-badge"><span class="pulse-dot" aria-hidden="true"></span> <span id="live-version-text">v1.1.9 Live</span></span>
           <a class="source-link" id="nav-store-link" href="https://apps.microsoft.com/detail/9nk9fxtbt77t" target="_blank" rel="noreferrer" data-i18n="nav_store">Microsoft Store <span aria-hidden="true">↗</span></a>
@@ -165,9 +165,9 @@
         </div>
         <p class="p2p-preview-lede" data-i18n="p2p_lede">A more natural way to play together is taking shape: host an existing world or a managed Vanilla server, share a room, and let friends join without exposing a public Minecraft port.</p>
         <div class="p2p-preview-flow" aria-label="P2P preview workflow">
-          <article class="p2p-preview-step"><span>01 / HOST</span><strong data-i18n="p2p_step1_title">Choose your world</strong><p data-i18n="p2p_step1_body">Start from an existing world or a managed Vanilla server.</p></article>
-          <article class="p2p-preview-step"><span>02 / SHARE</span><strong data-i18n="p2p_step2_title">Invite your friends</strong><p data-i18n="p2p_step2_body">Create a room and share an invitation with the people you choose.</p></article>
-          <article class="p2p-preview-step"><span>03 / PLAY</span><strong data-i18n="p2p_step3_title">Join the adventure</strong><p data-i18n="p2p_step3_body">Connect through Hyperix while your Minecraft world stays under your control.</p></article>
+          <article class="p2p-preview-step"><span data-i18n="p2p_step1_label">01 / HOST</span><strong data-i18n="p2p_step1_title">Choose your world</strong><p data-i18n="p2p_step1_body">Start from an existing world or a managed Vanilla server.</p></article>
+          <article class="p2p-preview-step"><span data-i18n="p2p_step2_label">02 / SHARE</span><strong data-i18n="p2p_step2_title">Invite your friends</strong><p data-i18n="p2p_step2_body">Create a room and share an invitation with the people you choose.</p></article>
+          <article class="p2p-preview-step"><span data-i18n="p2p_step3_label">03 / PLAY</span><strong data-i18n="p2p_step3_title">Join the adventure</strong><p data-i18n="p2p_step3_body">Connect through Hyperix while your Minecraft world stays under your control.</p></article>
         </div>
         <div class="p2p-preview-foot">
           <p data-i18n="p2p_disclaimer">Technical preview. Internet P2P/relay compatibility, cross-network gameplay, and production rollout are still being validated. Not included in the current stable download.</p>
@@ -1009,6 +1009,7 @@
       };
 
       // Natural Vietnamese copy takes precedence over legacy translations.
+      Object.assign(translations.en, { nav_features: 'Features', nav_gallery: 'Gallery', p2p_step1_label:'01 / HOST', p2p_step2_label:'02 / SHARE', p2p_step3_label:'03 / PLAY' });
       Object.assign(translations.vi, window.hyperixVietnameseCopy || {});
       if (window.hyperixVietnameseScreenshots) screenshotsLocalized.vi = window.hyperixVietnameseScreenshots;
       let currentLang = 'en';
@@ -1185,6 +1186,18 @@
             el.innerHTML = translations[lang][key];
           }
         });
+        // Static microcopy and accessibility names outside the i18n attributes.
+        const cue = document.querySelector('.hero-scroll-cue');
+        if (cue) {
+          cue.firstChild.textContent = lang === 'vi' ? 'KHÁM PHÁ HYPERIX ' : 'EXPLORE HYPERIX ';
+          cue.setAttribute('aria-label', lang === 'vi' ? 'Khám phá các tính năng Hyperix' : 'Explore Hyperix features');
+        }
+        const galleryTrack = document.getElementById('gallery-track');
+        if (galleryTrack) galleryTrack.setAttribute('aria-label', lang === 'vi' ? 'Vuốt để xem ảnh giao diện Hyperix' : 'Swipe through Hyperix screenshots');
+        const prevShot = document.getElementById('gallery-prev');
+        const nextShot = document.getElementById('gallery-next');
+        if (prevShot) prevShot.setAttribute('aria-label', lang === 'vi' ? 'Ảnh trước' : 'Previous screenshot');
+        if (nextShot) nextShot.setAttribute('aria-label', lang === 'vi' ? 'Ảnh tiếp theo' : 'Next screenshot');
 
         // Update release-btn labels across timeline
         document.querySelectorAll('.release-btn.primary').forEach(el => {

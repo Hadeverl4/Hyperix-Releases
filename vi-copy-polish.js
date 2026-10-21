@@ -1,5 +1,7 @@
 /* Polished Vietnamese UI copy, kept separate from legacy translations. */
 window.hyperixVietnameseCopy = {
+  nav_features: 'Tính năng', nav_gallery: 'Thư viện ảnh',
+  p2p_step1_label: '01 / TẠO PHÒNG', p2p_step2_label: '02 / CHIA SẺ', p2p_step3_label: '03 / CÙNG CHƠI',
   page_title: 'Hyperix Launcher — Trình khởi chạy Minecraft cho Windows',
   meta_description: 'Hyperix giúp bạn cài đặt, sắp xếp và quản lý các phiên bản Minecraft riêng biệt, dễ dàng và an toàn.',
   nav_changelog: 'Lịch sử cập nhật',

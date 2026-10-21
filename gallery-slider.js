@@ -39,7 +39,7 @@
       description.textContent='';
     }
     prev.disabled=index===0; next.disabled=index===slides.length-1;
-    if(counter)counter.textContent=String(index+1).padStart(2,'0')+' — '+String(slides.length).padStart(2,'0')+' / EXPLORE THE EXPERIENCE';
+    if(counter)counter.textContent=String(index+1).padStart(2,'0')+' - '+String(slides.length).padStart(2,'0')+' / '+(document.documentElement.lang==='vi'?'KHÃM PHÃ GIAO DIá»†N':'EXPLORE THE EXPERIENCE');
   }
   function move(step){
     const target=Math.min(slides.length-1,Math.max(0,index+step));
@@ -89,4 +89,5 @@
   rail.addEventListener('pointercancel',()=>{startX=null;startY=null;dragPointer=null;rail.classList.remove('is-dragging');});
   paint();
   updateFeature();
+  document.querySelectorAll('.lang-btn').forEach(button => button.addEventListener('click', () => window.setTimeout(paint, 0)));
 })();
