@@ -1,0 +1,43 @@
+/* Hyperix mobile: layouts, touch targets and readable Vietnamese copy. */
+@media (max-width: 760px) {
+  html { scrollbar-gutter: auto; }
+  body { overflow-x: clip; }
+  main { width: 100%; max-width: 100%; padding-inline: clamp(16px, 5vw, 28px); }
+  main > section, .hero, .principles, .showcase, .content-sources,
+  .p2p-preview, .status { min-width: 0; }
+  .hero { min-height: min(830px, 100svh); padding-top: clamp(108px, 16svh, 160px); padding-bottom: 72px; }
+  .hero h1 { font-size: clamp(2.65rem, 12vw, 5rem); line-height: 1.04; letter-spacing: -.06em; overflow-wrap: anywhere; }
+  .hero .lede { font-size: clamp(.94rem, 3.9vw, 1.1rem); line-height: 1.65; max-width: 36ch; }
+  .hero .actions { width: 100%; display: flex; flex-wrap: wrap; gap: 12px; align-items: stretch; }
+  .hero .actions > a { min-height: 48px; max-width: 100%; }
+  .hero .actions .store-badge-btn, .hero .actions #primary-download-btn { flex: 1 1 175px; justify-content: center; }
+  .hero .actions > .secondary { flex: 1 1 100%; text-align: center; justify-content: center; }
+  .download-notice { max-width: 100%; }
+  .content-sources-intro h2, .features-headline, .p2p-preview h2,
+  .showcase h2, .status h2 { overflow-wrap: anywhere; hyphens: auto; }
+  .content-sources .content-sources-stage { grid-template-columns: minmax(0, 1fr); }
+  .content-source-copy { min-width: 0; min-height: 0; }
+  .content-source-copy h3 { font-size: clamp(2.25rem, 10vw, 4rem); }
+  .content-sources-logos { min-width: 0; }
+  .editorial-cta { display: flex; flex-wrap: wrap; gap: 12px; }
+  .editorial-cta a { min-height: 44px; display: inline-flex; align-items: center; }
+  .p2p-demo { grid-template-columns: minmax(0, 1fr); }
+  .p2p-wave-button { touch-action: manipulation; }
+  #features, #available-platforms { scroll-margin-top: 76px; }
+  #webgl-canvas { pointer-events: none; }
+}
+
+@media (max-width: 430px) {
+  main { padding-inline: 18px; }
+  .hero h1 { font-size: clamp(2.5rem, 11.8vw, 3.7rem); }
+  .hero .actions > .store-badge-btn, .hero .actions > #primary-download-btn {
+    flex-basis: 100%; width: 100%;
+  }
+  .hero .actions > a { min-height: 50px; }
+  .p2p-demo { padding: 20px 16px; }
+  .content-sources-intro h2 { font-size: clamp(2.8rem, 12vw, 4.4rem); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .content-source-token, .scroll-reveal { animation: none !important; }
+}

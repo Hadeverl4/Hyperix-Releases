@@ -16,6 +16,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png?v=artwork-20261020" />
     <link rel="stylesheet" href="./styles.css" />
     <link rel="stylesheet" href="./cinematic.css" />
+    <link rel="stylesheet" href="./mobile-polish.css" />
     <style>html.splash-locked,html.splash-locked body{overflow:hidden!important;overscroll-behavior:none}</style>
     <script>window.hyperixSplashStart=performance.now();document.documentElement.classList.add('splash-locked');if('scrollRestoration' in history)history.scrollRestoration='manual';window.scrollTo(0,0);setTimeout(function(){if(document.body)document.body.classList.add('cinematic-min-elapsed','cinematic-timeout')},3000);</script>
   </head>
@@ -708,6 +709,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="./three-scene.js"></script>
 
+    <script src="./vi-copy-polish.js"></script>
     <!-- Dialog & Interaction Scripts -->
     <script>
       // Internationalization (i18n) Data
@@ -1006,6 +1008,9 @@
         ]
       };
 
+      // Natural Vietnamese copy takes precedence over legacy translations.
+      Object.assign(translations.vi, window.hyperixVietnameseCopy || {});
+      if (window.hyperixVietnameseScreenshots) screenshotsLocalized.vi = window.hyperixVietnameseScreenshots;
       let currentLang = 'en';
 
       // Changelog Filter & Expand Logic
