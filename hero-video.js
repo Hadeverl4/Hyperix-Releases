@@ -27,6 +27,9 @@
   // Resume should not repeat the initial multi-second concealment delay.
   const RESUME_REVEAL_MS = 480;
   const RESUME_PROGRESS_SECONDS = 0.25;
+  // YouTube may show its play bezel longer after a background-tab resume.
+  const TAB_RESUME_REVEAL_MS = 2200;
+  const TAB_RESUME_PROGRESS_SECONDS = 1.5;
   let player = null;
   let playerReady = false;
   let apiRequested = false;
@@ -36,6 +39,7 @@
   let revealGeneration = 0;
   let stagePresence = 1;
   let hasRevealedOnce = false;
+  let tabResumePending = false;
 
   function getTranslation(key, fallback) {
     if (typeof translations === 'undefined' || typeof currentLang === 'undefined') return fallback;
@@ -137,6 +141,8 @@
 
   function revealAfterStablePlayback() {
     concealFrame();
+    const tabResume = tabResumePending;
+    tabResumePending = false;
     const generation = revealGeneration;
     const startedAt = performance.now();
     let previousTime = currentTime();
@@ -161,8 +167,11 @@
       const elapsed = performance.now() - startedAt;
       const progress = now - initialTime;
       // YouTube does not expose overlay visibility through its IFrame API.
-      const normal = elapsed >= (hasRevealedOnce ? RESUME_REVEAL_MS : INITIAL_REVEAL_MS) &&
-        progress >= (hasRevealedOnce ? RESUME_PROGRESS_SECONDS : INITIAL_PROGRESS_SECONDS) &&
+      const requiredMs = !hasRevealedOnce ? INITIAL_REVEAL_MS :
+        tabResume ? TAB_RESUME_REVEAL_MS : RESUME_REVEAL_MS;
+      const requiredProgress = !hasRevealedOnce ? INITIAL_PROGRESS_SECONDS :
+        tabResume ? TAB_RESUME_PROGRESS_SECONDS : RESUME_PROGRESS_SECONDS;
+      const normal = elapsed >= requiredMs && progress >= requiredProgress &&
         progressingSamples >= (hasRevealedOnce ? 2 : 8);
       if (stalledSamples === 0 && normal) {
         if (hasRevealedOnce) backdrop.classList.add('has-revealed-before');
@@ -217,7 +226,13 @@
       return;
     }
     const playbackState = state();
-    if (playbackState !== PLAYER_PLAYING && playbackState !== PLAYER_BUFFERING) player.playVideo();
+    if (playbackState === PLAYER_PLAYING && tabResumePending) {
+      // Browsers may keep muted video running in background; reveal again even
+      // if no PLAYING state-change event is emitted on tab activation.
+      revealAfterStablePlayback();
+    } else if (playbackState !== PLAYER_PLAYING && playbackState !== PLAYER_BUFFERING) {
+      player.playVideo();
+    }
   }
 
   function createPlayer() {
@@ -347,7 +362,14 @@
 
   window.addEventListener('scroll', queueScrollUpdate, { passive: true });
   window.addEventListener('resize', queueScrollUpdate, { passive: true });
-  document.addEventListener('visibilitychange', syncPlayback);
+  document.addEventListener('visibilitychange', function () {
+    if (document.hidden) {
+      // Hide before pausing, preventing YouTube's transient pause bezel.
+      concealFrame();
+      tabResumePending = true;
+    }
+    syncPlayback();
+  });
   if (typeof motionPreference.addEventListener === 'function') {
     motionPreference.addEventListener('change', function () {
       syncPlayback();
