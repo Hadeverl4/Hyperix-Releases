@@ -31,6 +31,7 @@
   let startupTimer = 0;
   let scrollQueued = false;
   let stagePresence = 1;
+  let mediaReady = false;
 
   function translate(key, fallback) {
     if (typeof translations === 'undefined' || typeof currentLang === 'undefined') return fallback;
@@ -78,22 +79,23 @@
   }
   function playIfAllowed() {
     if (!shouldPlay()) { video.pause(); return; }
+    if (!mediaReady || video.readyState < HTMLMediaElement.HAVE_CURRENT_DATA) return;
     const result = video.play();
-    if (result && typeof result.catch === 'function') result.catch(function () {
-      // Autoplay may be blocked; keep the static poster rather than looping.
+    if (result && typeof result.catch === 'function') result.catch(function (err) {
+      console.warn('Hyperix Mux play() failed:', err && err.name);
     });
   }
   function select(index) {
     active = index;
     backdrop.classList.remove('is-frame-ready');
     video.pause();
+    mediaReady = false;
     window.clearTimeout(startupTimer);
     // A stalled/unavailable Mux asset must never leave the Hero empty.
     startupTimer = window.setTimeout(showPosterOnError, 14000);
     const url = 'https://stream.mux.com/' + assets[index].id + '.m3u8';
     if (hls) hls.loadSource(url);
     else { video.src = url; video.load(); }
-    playIfAllowed();
   }
   function updateVisibility() {
     const box = hero.getBoundingClientRect();
@@ -129,7 +131,8 @@
     toggle.classList.add('is-visible');
   });
   video.addEventListener('ended', function () { select(nextIndex()); });
-  video.addEventListener('canplay', playIfAllowed);
+  video.addEventListener('loadeddata', function () { mediaReady = true; playIfAllowed(); });
+  video.addEventListener('canplay', function () { mediaReady = true; playIfAllowed(); });
   video.addEventListener('error', showPosterOnError);
   video.addEventListener('waiting', function () {
     // Keep the last displayed frame during buffering; do not flash poster.
@@ -160,7 +163,11 @@
     script.onload = function () {
       if (!window.Hls || !window.Hls.isSupported()) { showPosterOnError(); return; }
       hls = new window.Hls({ enableWorker: true, lowLatencyMode: false, capLevelToPlayerSize: true });
-      hls.on(window.Hls.Events.ERROR, function (_, data) { if (data.fatal) showPosterOnError(); });
+      hls.on(window.Hls.Events.ERROR, function (_, data) {
+        if (!data.fatal) return;
+        console.warn('Hyperix Mux HLS fatal error:', data.type, data.details);
+        showPosterOnError();
+      });
       hls.attachMedia(video);
       hls.on(window.Hls.Events.MEDIA_ATTACHED, function () { select(nextIndex()); });
     };
