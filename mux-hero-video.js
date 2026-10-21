@@ -16,6 +16,8 @@
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
   const video = document.createElement('video');
   video.muted = true;
+  video.defaultMuted = true;
+  video.setAttribute('muted', '');
   video.autoplay = true;
   video.playsInline = true;
   video.preload = 'auto';
@@ -32,6 +34,7 @@
   let scrollQueued = false;
   let stagePresence = 1;
   let mediaReady = false;
+  let attemptedAssets = 0;
 
   function translate(key, fallback) {
     if (typeof translations === 'undefined' || typeof currentLang === 'undefined') return fallback;
@@ -54,7 +57,7 @@
       if (typeof window.stopThreeScene === 'function') window.stopThreeScene();
     } else if (typeof window.startThreeScene === 'function') window.startThreeScene();
   }
-  function showPosterOnError() {
+  function showPosterOnError(reason) {
     if (failed) return;
     failed = true;
     window.clearTimeout(startupTimer);
@@ -63,7 +66,7 @@
     backdrop.classList.remove('is-frame-ready', 'is-playing');
     toggle.classList.remove('is-visible');
     setMode(false);
-    console.warn('Hyperix: Mux hero playback unavailable; retaining static background.');
+    console.warn('Hyperix: Mux hero playback unavailable; retaining static background.', reason || 'unknown', assets[active] && assets[active].name, 'readyState=' + video.readyState, 'networkState=' + video.networkState);
   }
   function shuffleQueue() {
     const pool = assets.map((_, i) => i).filter(i => i !== active);
@@ -79,7 +82,7 @@
   }
   function playIfAllowed() {
     if (!shouldPlay()) { video.pause(); return; }
-    if (!mediaReady || video.readyState < HTMLMediaElement.HAVE_CURRENT_DATA) return;
+    if (!mediaReady && !video.currentSrc && !video.src) return;
     const result = video.play();
     if (result && typeof result.catch === 'function') result.catch(function (err) {
       console.warn('Hyperix Mux play() failed:', err && err.name);
@@ -87,15 +90,21 @@
   }
   function select(index) {
     active = index;
+    attemptedAssets++;
     backdrop.classList.remove('is-frame-ready');
     video.pause();
     mediaReady = false;
     window.clearTimeout(startupTimer);
     // A stalled/unavailable Mux asset must never leave the Hero empty.
-    startupTimer = window.setTimeout(showPosterOnError, 14000);
+    startupTimer = window.setTimeout(function () {
+      console.warn('Hyperix Mux startup timeout:', assets[active].name, 'readyState=' + video.readyState, 'networkState=' + video.networkState);
+      if (attemptedAssets < assets.length) select(nextIndex());
+      else showPosterOnError('all assets timed out');
+    }, 14000);
     const url = 'https://stream.mux.com/' + assets[index].id + '.m3u8';
     if (hls) hls.loadSource(url);
     else { video.src = url; video.load(); }
+    playIfAllowed();
   }
   function updateVisibility() {
     const box = hero.getBoundingClientRect();
@@ -125,6 +134,7 @@
   video.addEventListener('playing', function () {
     if (!shouldPlay()) { video.pause(); return; }
     window.clearTimeout(startupTimer);
+    attemptedAssets = 0;
     backdrop.classList.add('is-frame-ready');
     document.body.classList.add('cinematic-loaded');
     setMode(true);
@@ -133,7 +143,11 @@
   video.addEventListener('ended', function () { select(nextIndex()); });
   video.addEventListener('loadeddata', function () { mediaReady = true; playIfAllowed(); });
   video.addEventListener('canplay', function () { mediaReady = true; playIfAllowed(); });
-  video.addEventListener('error', showPosterOnError);
+  video.addEventListener('error', function () {
+    console.warn('Hyperix Mux HTMLVideoElement error:', video.error && video.error.code);
+    if (attemptedAssets < assets.length) select(nextIndex());
+    else showPosterOnError('video element error');
+  });
   video.addEventListener('waiting', function () {
     // Keep the last displayed frame during buffering; do not flash poster.
   });
@@ -162,11 +176,12 @@
     script.async = true;
     script.onload = function () {
       if (!window.Hls || !window.Hls.isSupported()) { showPosterOnError(); return; }
-      hls = new window.Hls({ enableWorker: true, lowLatencyMode: false, capLevelToPlayerSize: true });
+      hls = new window.Hls({ enableWorker: true, lowLatencyMode: false, capLevelToPlayerSize: true, startLevel: 0, abrEwmaDefaultEstimate: 1000000 });
       hls.on(window.Hls.Events.ERROR, function (_, data) {
         if (!data.fatal) return;
         console.warn('Hyperix Mux HLS fatal error:', data.type, data.details);
-        showPosterOnError();
+        if (attemptedAssets < assets.length) select(nextIndex());
+        else showPosterOnError(data.details);
       });
       hls.attachMedia(video);
       hls.on(window.Hls.Events.MEDIA_ATTACHED, function () { select(nextIndex()); });
