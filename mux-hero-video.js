@@ -2,6 +2,7 @@
 (function () {
   'use strict';
   const backdrop = document.querySelector('.hero-video-backdrop');
+  const poster = document.querySelector('.hero-video-poster');
   const wrap = document.getElementById('mux-player');
   const hero = document.getElementById('top');
   const toggle = document.getElementById('video-toggle-btn');
@@ -35,6 +36,9 @@
   let stagePresence = 1;
   let mediaReady = false;
   let attemptedAssets = 0;
+  const targetHeight = window.matchMedia('(max-width: 760px)').matches ? 720 : 1080;
+  let hdLevel = -1;
+  let revealCheck = 0;
 
   function translate(key, fallback) {
     if (typeof translations === 'undefined' || typeof currentLang === 'undefined') return fallback;
@@ -61,6 +65,7 @@
     if (failed) return;
     failed = true;
     window.clearTimeout(startupTimer);
+    window.clearInterval(revealCheck);
     video.pause();
     if (hls) { hls.destroy(); hls = null; }
     backdrop.classList.remove('is-frame-ready', 'is-playing');
@@ -90,17 +95,20 @@
   }
   function select(index) {
     active = index;
+    if (poster) poster.style.setProperty('--mux-poster',
+      'url("https://image.mux.com/' + assets[index].id + '/thumbnail.jpg?width=1920&time=2")');
     attemptedAssets++;
     backdrop.classList.remove('is-frame-ready');
     video.pause();
     mediaReady = false;
+    window.clearInterval(revealCheck);
     window.clearTimeout(startupTimer);
     // A stalled/unavailable Mux asset must never leave the Hero empty.
     startupTimer = window.setTimeout(function () {
       console.warn('Hyperix Mux startup timeout:', assets[active].name, 'readyState=' + video.readyState, 'networkState=' + video.networkState);
       if (attemptedAssets < assets.length) select(nextIndex());
       else showPosterOnError('all assets timed out');
-    }, 14000);
+    }, 9000);
     const url = 'https://stream.mux.com/' + assets[index].id + '.m3u8';
     if (hls) hls.loadSource(url);
     else { video.src = url; video.load(); }
@@ -133,12 +141,33 @@
 
   video.addEventListener('playing', function () {
     if (!shouldPlay()) { video.pause(); return; }
-    window.clearTimeout(startupTimer);
-    attemptedAssets = 0;
-    backdrop.classList.add('is-frame-ready');
-    document.body.classList.add('cinematic-loaded');
-    setMode(true);
-    toggle.classList.add('is-visible');
+    // Never reveal a 270p/480p rendition merely because it is playing.
+    window.clearInterval(revealCheck);
+    const checkHD = function () {
+      if (!shouldPlay()) return;
+      const level = hls && hls.levels[hls.currentLevel];
+      const qualityOK = hls ? Boolean(level && level.height >= targetHeight) :
+        video.videoHeight >= targetHeight;
+      const t = video.currentTime;
+      const buffered = video.buffered;
+      let secondsAhead = 0;
+      for (let i = 0; i < buffered.length; i++) {
+        if (buffered.start(i) <= t && buffered.end(i) >= t) {
+          secondsAhead = buffered.end(i) - t;
+          break;
+        }
+      }
+      if (!qualityOK || secondsAhead < 1.5) return;
+      window.clearTimeout(startupTimer);
+      window.clearInterval(revealCheck);
+      attemptedAssets = 0;
+      backdrop.classList.add('is-frame-ready');
+      document.body.classList.add('cinematic-loaded');
+      setMode(true);
+      toggle.classList.add('is-visible');
+    };
+    checkHD();
+    revealCheck = window.setInterval(checkHD, 180);
   });
   video.addEventListener('ended', function () { select(nextIndex()); });
   video.addEventListener('loadeddata', function () { mediaReady = true; playIfAllowed(); });
@@ -181,7 +210,18 @@
         else showPosterOnError('HLS unsupported');
         return;
       }
-      hls = new window.Hls({ enableWorker: true, lowLatencyMode: false, capLevelToPlayerSize: true, startLevel: 0, abrEwmaDefaultEstimate: 1000000 });
+      hls = new window.Hls({ enableWorker: true, lowLatencyMode: false, capLevelToPlayerSize: false, startLevel: -1, abrEwmaDefaultEstimate: 5000000 });
+      hls.on(window.Hls.Events.MANIFEST_PARSED, function () {
+        const levels = hls.levels;
+        hdLevel = levels.findIndex(level => level.height >= targetHeight);
+        if (hdLevel === -1) {
+          showPosterOnError('no HD rendition meets ' + targetHeight + 'p');
+          return;
+        }
+        // Pin the chosen HD rendition; never downgrade into blurred video.
+        hls.startLevel = hdLevel;
+        hls.loadLevel = hdLevel;
+      });
       hls.on(window.Hls.Events.ERROR, function (_, data) {
         if (!data.fatal) return;
         console.warn('Hyperix Mux HLS fatal error:', data.type, data.details);

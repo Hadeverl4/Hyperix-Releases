@@ -26,14 +26,15 @@
       finish();
     };
     intro.addEventListener('transitionend', onEnd);
-    // The intro opacity fade takes 1.7s; a watchdog handles interrupted transitions.
+    // The intro opacity fade takes .55s; watchdog covers interrupted transitions.
     fallback = window.setTimeout(() => {
       intro.removeEventListener('transitionend', onEnd);
       finish();
-    }, 2100);
+    }, 900);
   };
-  const ready = () => document.body.classList.contains('cinematic-loaded') ||
-    document.body.classList.contains('cinematic-timeout');
+  const ready = () => document.body.classList.contains('cinematic-min-elapsed') &&
+    (document.body.classList.contains('cinematic-loaded') ||
+     document.body.classList.contains('cinematic-timeout'));
   if (ready()) beginFinish();
   else {
     const observer = new MutationObserver(() => {

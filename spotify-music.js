@@ -64,7 +64,8 @@
   }, { passive:true });
 
   // Preserve the cinematic intro timeout independently of the soundtrack.
-  const fallback = window.setTimeout(() => document.body.classList.add('cinematic-timeout'), 6500);
+  const fallback = window.setTimeout(() => document.body.classList.add('cinematic-timeout'),
+    Math.max(0, 3000 - (performance.now() - (window.hyperixSplashStart || performance.now()))));
   const observer = new MutationObserver(() => {
     if (!document.body.classList.contains('cinematic-loaded')) return;
     window.clearTimeout(fallback);

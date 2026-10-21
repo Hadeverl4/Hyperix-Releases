@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="./styles.css" />
     <link rel="stylesheet" href="./cinematic.css" />
     <style>html.splash-locked,html.splash-locked body{overflow:hidden!important;overscroll-behavior:none}</style>
-    <script>document.documentElement.classList.add('splash-locked');if('scrollRestoration' in history)history.scrollRestoration='manual';window.scrollTo(0,0);</script>
+    <script>window.hyperixSplashStart=performance.now();document.documentElement.classList.add('splash-locked');if('scrollRestoration' in history)history.scrollRestoration='manual';window.scrollTo(0,0);setTimeout(function(){if(document.body)document.body.classList.add('cinematic-min-elapsed','cinematic-timeout')},3000);</script>
   </head>
   <body>
     <div class="cinematic-intro" id="cinematic-intro" aria-hidden="true">
