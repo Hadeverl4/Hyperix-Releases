@@ -101,8 +101,8 @@
   function select(index) {
     transitioning = true;
     active = index;
-    if (poster) poster.style.setProperty('--mux-poster',
-      'url("https://image.mux.com/' + assets[index].id + '/thumbnail.jpg?width=1920&time=2")');
+    // Keep the same cached poster across HLS source changes. Changing the
+    // poster URL during its opacity animation causes a full-screen flash.
     attemptedAssets++;
     backdrop.classList.remove('is-frame-ready');
     revealedAsset = -1;
