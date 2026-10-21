@@ -11,7 +11,6 @@
   const title=document.getElementById('showcase-title');
   const description=document.getElementById('gallery-feature-desc');
   const activeFeature=document.getElementById('gallery-active-feature');
-  const initialTitle=title ? title.innerHTML : '';
   const reduced=window.matchMedia('(prefers-reduced-motion: reduce)');
   let index=0, startX=null, startY=null, dragPointer=null, outgoing=-1, settleTimer=0, titleTimer=0, lastMoveAt=0, streak=0;
   function updateFeature(){
@@ -33,14 +32,13 @@
       slide.setAttribute('aria-hidden',String(delta!==0));
     });
     section.style.setProperty('--gallery-heading-opacity','1');
-    if(title) {
-      title.innerHTML=initialTitle;
-    }
+    // The page language switch owns the localized showcase heading.
+    // Do not restore the English heading cached at slider initialization.
     if(description) {
       description.textContent='';
     }
     prev.disabled=index===0; next.disabled=index===slides.length-1;
-    if(counter)counter.textContent=String(index+1).padStart(2,'0')+' - '+String(slides.length).padStart(2,'0')+' / '+(document.documentElement.lang==='vi'?'KHÃM PHÃ GIAO DIá»†N':'EXPLORE THE EXPERIENCE');
+    if(counter)counter.textContent=String(index+1).padStart(2,'0')+' - '+String(slides.length).padStart(2,'0')+' / '+(document.documentElement.lang==='vi'?'KHÁM PHÁ GIAO DIỆN':'EXPLORE THE EXPERIENCE');
   }
   function move(step){
     const target=Math.min(slides.length-1,Math.max(0,index+step));
