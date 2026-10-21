@@ -56,7 +56,7 @@ window.hyperixVietnameseCopy = {
   shot_1_desc: 'Nhìn nhanh tất cả các bộ cài và tìm đúng phiên bản bạn muốn chơi.',
   shot_2_title: 'Quản lý bộ cài',
   shot_2_desc: 'Xem mod, gói tài nguyên và tệp dữ liệu của từng bộ cài ở cùng một nơi.',
-  shot_3_title: 'Khám phá Modrinth',
+  shot_3_title: 'Khám phá Modrinth/CurseForge',
   shot_3_desc: 'Tìm các dự án phù hợp thông qua API chính thức của Modrinth.',
   shot_4_title: 'Danh sách máy chủ',
   shot_4_desc: 'Theo dõi trạng thái, độ trễ và số người đang chơi trên máy chủ.',
@@ -106,7 +106,7 @@ window.hyperixVietnameseCopy = {
 window.hyperixVietnameseScreenshots = [
   {image:'./assets/screenshots/homescreen-vi.png',title:'Thư viện Minecraft',desc:'Tất cả bộ cài của bạn, rõ ràng và dễ tìm.',alt:'Thư viện Minecraft trong Hyperix bằng tiếng Việt'},
   {image:'./assets/screenshots/instance-detail-vi.png',title:'Quản lý bộ cài',desc:'Kiểm soát mod, tài nguyên và tệp của từng bộ cài.',alt:'Chi tiết bộ cài Minecraft bằng tiếng Việt'},
-  {image:'./assets/screenshots/discover-vi.png',title:'Khám phá Modrinth',desc:'Tìm nội dung mới từ nguồn chính thức.',alt:'Khám phá nội dung Minecraft bằng tiếng Việt'},
+  {image:'./assets/screenshots/discover-vi.png',title:'Khám phá Modrinth/CurseForge',desc:'Tìm nội dung mới từ nguồn chính thức.',alt:'Khám phá Modrinth và CurseForge bằng tiếng Việt'},
   {image:'./assets/screenshots/servers-vi.png',title:'Máy chủ nhiều người chơi',desc:'Xem độ trễ, trạng thái và số người chơi.',alt:'Danh sách máy chủ Minecraft bằng tiếng Việt'},
   {image:'./assets/screenshots/skin-selector-vi.png',title:'Skin và xem trước 3D',desc:'Thử diện mạo nhân vật trong không gian 3D.',alt:'Chọn skin và xem trước 3D bằng tiếng Việt'},
   {image:'./assets/screenshots/play-with-friends-vi.png',title:'Chơi cùng bạn bè',desc:'Mở thế giới Minecraft và mời bạn bè tham gia.',alt:'Tính năng chơi cùng bạn bè trong Hyperix bằng tiếng Việt'}
@@ -114,7 +114,7 @@ window.hyperixVietnameseScreenshots = [
 window.hyperixEnglishScreenshots = [
   {image:'./assets/screenshots/homescreen-en.png',title:'Instance library',desc:'Keep your Minecraft installations easy to find and manage.',alt:'Hyperix instance library in English'},
   {image:'./assets/screenshots/instance-detail-en.png',title:'Instance detail',desc:'Manage mods, resources, and files for each installation.',alt:'Minecraft instance detail in English'},
-  {image:'./assets/screenshots/discover-en.png',title:'Modrinth discovery',desc:'Find compatible Minecraft community content.',alt:'Hyperix content discovery in English'},
+  {image:'./assets/screenshots/discover-en.png',title:'Modrinth/CurseForge discovery',desc:'Find compatible Minecraft community content.',alt:'Explore Modrinth and CurseForge in English'},
   {image:'./assets/screenshots/servers-en.png',title:'Multiplayer servers',desc:'View latency, status, and player counts.',alt:'Minecraft server list in English'},
   {image:'./assets/screenshots/skin-selector-en.png',title:'Skin selector & 3D preview',desc:'Preview skins and customize your character.',alt:'Minecraft skin selector in English'},
   {image:'./assets/screenshots/play-with-friends-en.png',title:'Play with friends',desc:'Open your Minecraft world and invite friends to play together.',alt:'Play with friends in Hyperix in English'}
