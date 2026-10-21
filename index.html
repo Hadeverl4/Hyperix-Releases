@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="./styles.css" />
     <link rel="stylesheet" href="./cinematic.css" />
     <link rel="stylesheet" href="./mobile-polish.css" />
+    <link rel="stylesheet" href="./p2p-showcase.css" />
     <style>html.splash-locked,html.splash-locked body{overflow:hidden!important;overscroll-behavior:none}</style>
     <script>window.hyperixSplashStart=performance.now();document.documentElement.classList.add('splash-locked');if('scrollRestoration' in history)history.scrollRestoration='manual';window.scrollTo(0,0);setTimeout(function(){if(document.body)document.body.classList.add('cinematic-min-elapsed','cinematic-timeout')},3000);</script>
   </head>
@@ -164,6 +165,23 @@
           </button>
         </div>
         <p class="p2p-preview-lede" data-i18n="p2p_lede">A more natural way to play together is taking shape: host an existing world or a managed Vanilla server, share a room, and let friends join without exposing a public Minecraft port.</p>
+        <div class="p2p-cinematic-showcase" id="p2p-cinematic-showcase" aria-label="Play with friends launcher showcase">
+          <div class="p2p-cinematic-heading">
+            <span data-i18n="p2p_showcase_kicker">PLAY WITH FRIENDS / SHOWCASE</span>
+            <h3 data-i18n="p2p_showcase_title">Your world, shared with friends.</h3>
+            <p data-i18n="p2p_showcase_subtitle">A familiar place to start playing together, straight from Hyperix.</p>
+          </div>
+          <div class="p2p-cinematic-visual">
+            <div class="p2p-cinematic-glow" aria-hidden="true"></div>
+            <div class="p2p-cinematic-wave" aria-hidden="true"></div>
+            <div class="p2p-cinematic-wave" aria-hidden="true"></div>
+            <div class="p2p-cinematic-wave" aria-hidden="true"></div>
+            <div class="p2p-cinematic-frame">
+              <img id="p2p-showcase-image" src="./assets/screenshots/play-with-friendsmd-en.png" alt="Hyperix launcher Play with friends showcase" loading="lazy" decoding="async" />
+            </div>
+          </div>
+          <p class="p2p-cinematic-caption" data-i18n="p2p_showcase_note">Preview of the Play with friends experience inside Hyperix Launcher.</p>
+        </div>
         <div class="p2p-preview-flow" aria-label="P2P preview workflow">
           <article class="p2p-preview-step"><span data-i18n="p2p_step1_label">01 / HOST</span><strong data-i18n="p2p_step1_title">Choose your world</strong><p data-i18n="p2p_step1_body">Start from an existing world or a managed Vanilla server.</p></article>
           <article class="p2p-preview-step"><span data-i18n="p2p_step2_label">02 / SHARE</span><strong data-i18n="p2p_step2_title">Invite your friends</strong><p data-i18n="p2p_step2_body">Create a room and share an invitation with the people you choose.</p></article>
@@ -716,6 +734,7 @@
     <script src="./hash-toggle.js" defer></script>
     <script src="./scroll-reveal.js" defer></script>
     <script src="./p2p-wave-demo.js" defer></script>
+    <script src="./p2p-showcase.js" defer></script>
     <!-- Three.js Library and 3D Scene Initialization -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="./three-scene.js"></script>
@@ -1021,6 +1040,7 @@
 
       // Natural Vietnamese copy takes precedence over legacy translations.
       Object.assign(translations.en, { nav_features: 'Features', nav_gallery: 'Gallery', p2p_step1_label:'01 / HOST', p2p_step2_label:'02 / SHARE', p2p_step3_label:'03 / PLAY' });
+      Object.assign(translations.en, {p2p_showcase_kicker:'PLAY WITH FRIENDS / SHOWCASE',p2p_showcase_title:'Your world, shared with friends.',p2p_showcase_subtitle:'A familiar place to start playing together, straight from Hyperix.',p2p_showcase_note:'Preview of the Play with friends experience inside Hyperix Launcher.'});
       Object.assign(translations.vi, window.hyperixVietnameseCopy || {});
       Object.assign(translations.en, {shot_6_title:'Play with friends',shot_6_desc:'Open your Minecraft world and invite friends to play together.'});
       if (window.hyperixEnglishScreenshots) screenshotsLocalized.en = window.hyperixEnglishScreenshots;
