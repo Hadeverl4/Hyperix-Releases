@@ -6,7 +6,7 @@
     '#installation .download-notice',
     '#features .features-intro',
     '#features .principle-card',
-    '#p2p-preview .p2p-preview-heading',
+    // P2P heading and screenshot share a dedicated entrance trigger.
     '#p2p-preview .p2p-demo',
     '#p2p-preview .p2p-preview-lede',
     '#p2p-preview .p2p-preview-step',

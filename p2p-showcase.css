@@ -35,3 +35,23 @@
 .p2p-cinematic-showcase.is-in-view .p2p-cinematic-wave{animation-name:p2p-wave-uncropped}
 @keyframes p2p-wave-uncropped{0%{opacity:0;transform:scale(.4)}15%{opacity:.5}75%{opacity:.12}100%{opacity:0;transform:scale(3.3)}}
 @media(max-width:760px){.p2p-cinematic-wave{width:19vw}}
+
+/* Unified section entrance: header and image reveal together. */
+.p2p-preview{min-height:100svh;padding-top:clamp(36px,5vh,65px)}
+.p2p-preview-heading--centered{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;width:min(1050px,96%);margin:0 auto;text-align:center}
+.p2p-preview-heading--centered>div{width:100%}
+.p2p-preview-heading--centered h2{max-width:1050px;margin:12px auto 0;text-align:center;font-size:clamp(2.8rem,7vw,6.2rem);line-height:.99;letter-spacing:-.065em}
+.p2p-preview-heading--centered .p2p-preview-tag{position:static;align-self:center;margin:8px auto 0}
+.p2p-preview>.p2p-preview-lede{max-width:780px;margin:15px auto 12px;text-align:center;line-height:1.65}
+.p2p-cinematic-showcase{--p2p-visibility:1;margin:12px auto 58px;padding:0 0 20px}
+.p2p-cinematic-visual{padding:8px 0 0;min-height:0;align-items:start}
+.p2p-cinematic-frame{width:min(58%,720px);opacity:0;transform:translateY(36px) scale(.985);transition:opacity .85s cubic-bezier(.22,1,.36,1),transform .85s cubic-bezier(.22,1,.36,1);will-change:opacity,transform;mask-image:linear-gradient(to bottom,#000 0%,#000 50%,rgba(0,0,0,.88) 67%,rgba(0,0,0,.42) 83%,transparent 100%);-webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 50%,rgba(0,0,0,.88) 67%,rgba(0,0,0,.42) 83%,transparent 100%)}
+.p2p-preview-heading--centered{opacity:0;transform:translateY(36px);transition:opacity .85s cubic-bezier(.22,1,.36,1),transform .85s cubic-bezier(.22,1,.36,1)}
+.p2p-preview.is-showcase-revealed .p2p-preview-heading--centered,.p2p-preview.is-showcase-revealed .p2p-cinematic-frame{opacity:1;transform:translateY(0) scale(1)}
+/* Keep each expanding ring's center at the midpoint of the image. */
+.p2p-cinematic-wave{left:50%;top:28%;width:min(16vw,190px);transform:translate(-50%,-50%) scale(.35)}
+.p2p-cinematic-glow{left:50%;top:28%;right:auto;bottom:auto;width:min(70vw,780px);height:min(48vw,540px);transform:translate(-50%,-50%);background:radial-gradient(ellipse,rgba(53,234,116,.24),rgba(30,152,77,.12) 35%,transparent 73%)}
+.p2p-cinematic-showcase.is-in-view .p2p-cinematic-wave{animation-name:p2p-wave-centered}
+@keyframes p2p-wave-centered{0%{opacity:0;transform:translate(-50%,-50%) scale(.35)}15%{opacity:.55}72%{opacity:.13}100%{opacity:0;transform:translate(-50%,-50%) scale(3.4)}}
+@media(max-width:760px){.p2p-preview{min-height:auto;padding-top:38px}.p2p-preview-heading--centered{width:96%;gap:8px}.p2p-preview-heading--centered h2{font-size:clamp(2.2rem,10vw,4rem)}.p2p-cinematic-frame{width:min(90%,620px)}.p2p-cinematic-wave{width:22vw}.p2p-cinematic-showcase{margin:10px auto 44px}}
+@media(prefers-reduced-motion:reduce){.p2p-preview-heading--centered,.p2p-cinematic-frame{opacity:1!important;transform:none!important;transition:none!important}}

@@ -1,6 +1,8 @@
 (() => {
   'use strict';
   const section = document.getElementById('p2p-cinematic-showcase');
+  const parent = document.getElementById('p2p-preview');
+  const heading = parent && parent.querySelector('.p2p-preview-heading');
   const image = document.getElementById('p2p-showcase-image');
   if (!section || !image) return;
   const sources = {
@@ -21,15 +23,13 @@
     animationPending = false;
     if (reduced.matches) {
       section.style.setProperty('--p2p-visibility', '1');
+      section.classList.add('is-in-view');
       return;
     }
     const rect = section.getBoundingClientRect();
     const height = window.innerHeight;
-    const enter = Math.max(0, Math.min(1, (height - rect.top) / (height * 0.65)));
-    const leave = Math.max(0, Math.min(1, rect.bottom / (height * 0.65)));
-    const presence = Math.min(enter, leave);
-    section.style.setProperty('--p2p-visibility', presence.toFixed(3));
-    section.classList.toggle('is-in-view', presence > 0.06 && !document.hidden);
+    const inView = rect.top < height && rect.bottom > 0 && !document.hidden;
+    section.classList.toggle('is-in-view', inView);
   }
   function schedule() {
     if (animationPending) return;
@@ -37,6 +37,18 @@
     requestAnimationFrame(update);
   }
   syncImage();
+  if (parent && heading) {
+    if (reduced.matches || !('IntersectionObserver' in window)) {
+      parent.classList.add('is-showcase-revealed');
+    } else {
+      const revealObserver = new IntersectionObserver(entries => {
+        if (!entries.some(entry => entry.isIntersecting)) return;
+        parent.classList.add('is-showcase-revealed');
+        revealObserver.disconnect();
+      }, {threshold:0.15,rootMargin:'0px 0px -12% 0px'});
+      revealObserver.observe(heading);
+    }
+  }
   update();
   window.addEventListener('scroll', schedule, {passive:true});
   window.addEventListener('resize', schedule, {passive:true});
