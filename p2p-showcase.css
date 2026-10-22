@@ -26,3 +26,12 @@
 .p2p-cinematic-caption{margin:0 auto 20px}
 .p2p-cinematic-showcase>.p2p-wave-button{display:block;width:min(460px,90%);min-height:88px;margin:10px auto 0;justify-self:center}
 @media(max-width:760px){.p2p-cinematic-frame{width:min(88%,610px)}.p2p-cinematic-wave{top:15%;width:27vw}.p2p-cinematic-showcase>.p2p-wave-button{min-height:75px;width:min(380px,92%)}.p2p-preview>.p2p-preview-lede{padding:0 14px}}
+
+/* Wave must remain visible outside the screenshot bounds, without being
+   abruptly cropped by the showcase container. Keep it behind the image. */
+.p2p-cinematic-showcase{overflow:visible}
+.p2p-cinematic-visual{isolation:isolate;overflow:visible}
+.p2p-cinematic-wave{z-index:0;width:min(13vw,170px)}
+.p2p-cinematic-showcase.is-in-view .p2p-cinematic-wave{animation-name:p2p-wave-uncropped}
+@keyframes p2p-wave-uncropped{0%{opacity:0;transform:scale(.4)}15%{opacity:.5}75%{opacity:.12}100%{opacity:0;transform:scale(3.3)}}
+@media(max-width:760px){.p2p-cinematic-wave{width:19vw}}
