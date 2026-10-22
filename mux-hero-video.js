@@ -86,10 +86,23 @@
     console.warn('Hyperix: Mux hero playback unavailable; retaining static background.', reason || 'unknown', assets[active] && assets[active].name, 'readyState=' + video.readyState, 'networkState=' + video.networkState);
   }
   function shuffleQueue() {
-    const pool = assets.map((_, i) => i).filter(i => i !== active);
+    // Every clip has the same chance to be first; each cycle includes all
+    // five clips exactly once. Avoid only an immediate repeat at cycle edges.
+    const pool = assets.map((_, i) => i);
+    function uniform(max) {
+      if (!window.crypto || !window.crypto.getRandomValues) return Math.floor(Math.random() * max);
+      const values = new Uint32Array(1);
+      const limit = Math.floor(4294967296 / max) * max;
+      do { window.crypto.getRandomValues(values); } while (values[0] >= limit);
+      return values[0] % max;
+    }
     for (let i = pool.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
+      const j = uniform(i + 1);
       [pool[i], pool[j]] = [pool[j], pool[i]];
+    }
+    if (active >= 0 && pool[0] === active) {
+      const swap = 1 + uniform(pool.length - 1);
+      [pool[0], pool[swap]] = [pool[swap], pool[0]];
     }
     queue = pool;
   }
