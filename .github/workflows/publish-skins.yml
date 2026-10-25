@@ -1,0 +1,42 @@
+# Copy into Hyperix-Releases/.github/workflows/publish-skins.yml after setup review.
+name: Publish approved Hyperix skins
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '*/15 * * * *'
+permissions:
+  contents: write
+concurrency:
+  group: hyperix-approved-skins
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Prepare approved catalog and verified PNGs
+        run: node scripts/publish-skin-contributions.mjs
+        env:
+          HYPERIX_SKIN_PUBLIC_ENDPOINT: ${{ vars.HYPERIX_SKIN_PUBLIC_ENDPOINT }}
+          HYPERIX_SKIN_PUBLISH_KEY: ${{ secrets.HYPERIX_SKIN_PUBLISH_KEY }}
+      - name: Commit and publish atomically
+        shell: bash
+        run: |
+          git config user.name 'Hyperix Skin Publisher'
+          git config user.email 'hyperix-skin-publisher@users.noreply.github.com'
+          git add -- skin-directory.json skins/
+          if ! git diff --cached --quiet; then
+            git commit -m 'Publish approved Hyperix skins'
+            git push origin HEAD:main
+          fi
+      - name: Acknowledge only after successful push
+        run: node scripts/publish-skin-contributions.mjs --ack
+        env:
+          HYPERIX_SKIN_PUBLIC_ENDPOINT: ${{ vars.HYPERIX_SKIN_PUBLIC_ENDPOINT }}
+          HYPERIX_SKIN_PUBLISH_KEY: ${{ secrets.HYPERIX_SKIN_PUBLISH_KEY }}
