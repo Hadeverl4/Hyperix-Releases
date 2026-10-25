@@ -138,6 +138,72 @@
       "name": "Sandrone",
       "modelType": "slim",
       "skinUrl": "https://raw.githubusercontent.com/Hadeverl4/Hyperix-Releases/main/skins/community-b747eb96-2c80-47bb-b921-8a6e454bc358.png"
+    },
+    {
+      "id": "community-2e8d014e-6cf8-4743-9f73-4f4b71458178",
+      "name": "Mage",
+      "modelType": "default",
+      "skinUrl": "https://raw.githubusercontent.com/Hadeverl4/Hyperix-Releases/main/skins/community-2e8d014e-6cf8-4743-9f73-4f4b71458178.png"
+    },
+    {
+      "id": "community-31b33d86-ad7a-4e02-9ed6-ab729263b4cb",
+      "name": "White guy",
+      "modelType": "default",
+      "skinUrl": "https://raw.githubusercontent.com/Hadeverl4/Hyperix-Releases/main/skins/community-31b33d86-ad7a-4e02-9ed6-ab729263b4cb.png"
+    },
+    {
+      "id": "community-52a7c901-e2a2-4cb5-bb84-2b505f816e6e",
+      "name": "Slenderman",
+      "modelType": "default",
+      "skinUrl": "https://raw.githubusercontent.com/Hadeverl4/Hyperix-Releases/main/skins/community-52a7c901-e2a2-4cb5-bb84-2b505f816e6e.png"
+    },
+    {
+      "id": "community-6e2fc197-7110-406f-a080-79d7ef50ef82",
+      "name": "Blue anime girl",
+      "modelType": "slim",
+      "skinUrl": "https://raw.githubusercontent.com/Hadeverl4/Hyperix-Releases/main/skins/community-6e2fc197-7110-406f-a080-79d7ef50ef82.png"
+    },
+    {
+      "id": "community-7665a77b-e50b-42f5-9110-d2cd91853eff",
+      "name": "Black man",
+      "modelType": "default",
+      "skinUrl": "https://raw.githubusercontent.com/Hadeverl4/Hyperix-Releases/main/skins/community-7665a77b-e50b-42f5-9110-d2cd91853eff.png"
+    },
+    {
+      "id": "community-9bc46c22-e741-4e58-b313-6bf9ebc88f5d",
+      "name": "Gura",
+      "modelType": "slim",
+      "skinUrl": "https://raw.githubusercontent.com/Hadeverl4/Hyperix-Releases/main/skins/community-9bc46c22-e741-4e58-b313-6bf9ebc88f5d.png"
+    },
+    {
+      "id": "community-a2347af1-113d-457a-b61a-52a41a68cfab",
+      "name": "Hutao",
+      "modelType": "slim",
+      "skinUrl": "https://raw.githubusercontent.com/Hadeverl4/Hyperix-Releases/main/skins/community-a2347af1-113d-457a-b61a-52a41a68cfab.png"
+    },
+    {
+      "id": "community-a454e074-c9b3-46fe-bbe6-93ce70707b52",
+      "name": "Cute pink girl",
+      "modelType": "slim",
+      "skinUrl": "https://raw.githubusercontent.com/Hadeverl4/Hyperix-Releases/main/skins/community-a454e074-c9b3-46fe-bbe6-93ce70707b52.png"
+    },
+    {
+      "id": "community-dd144f3b-6df0-4270-b7a6-9977b032a762",
+      "name": "Reverse Steve",
+      "modelType": "default",
+      "skinUrl": "https://raw.githubusercontent.com/Hadeverl4/Hyperix-Releases/main/skins/community-dd144f3b-6df0-4270-b7a6-9977b032a762.png"
+    },
+    {
+      "id": "community-e8c33b06-4796-418e-8da1-77d9434cac16",
+      "name": "Reze",
+      "modelType": "slim",
+      "skinUrl": "https://raw.githubusercontent.com/Hadeverl4/Hyperix-Releases/main/skins/community-e8c33b06-4796-418e-8da1-77d9434cac16.png"
+    },
+    {
+      "id": "community-ea8b95d9-618c-4b02-b439-c09e2951362b",
+      "name": "Gojo",
+      "modelType": "default",
+      "skinUrl": "https://raw.githubusercontent.com/Hadeverl4/Hyperix-Releases/main/skins/community-ea8b95d9-618c-4b02-b439-c09e2951362b.png"
     }
   ]
 }
