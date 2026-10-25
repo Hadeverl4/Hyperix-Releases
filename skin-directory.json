@@ -1,4 +1,11 @@
 {
   "schemaVersion": 1,
-  "skins": []
+  "skins": [
+    {
+      "id": "community-a0a47c6b-b8c6-4d70-9288-fec719264941",
+      "name": "HalfEnderman",
+      "modelType": "default",
+      "skinUrl": "https://raw.githubusercontent.com/Hadeverl4/Hyperix-Releases/main/skins/community-a0a47c6b-b8c6-4d70-9288-fec719264941.png"
+    }
+  ]
 }
