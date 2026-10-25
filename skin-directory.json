@@ -132,6 +132,12 @@
       "name": "Buff Hitler",
       "modelType": "default",
       "skinUrl": "https://raw.githubusercontent.com/Hadeverl4/Hyperix-Releases/main/skins/community-f8937922-15bc-4898-af39-c35ff9ec4278.png"
+    },
+    {
+      "id": "community-b747eb96-2c80-47bb-b921-8a6e454bc358",
+      "name": "Sandrone",
+      "modelType": "slim",
+      "skinUrl": "https://raw.githubusercontent.com/Hadeverl4/Hyperix-Releases/main/skins/community-b747eb96-2c80-47bb-b921-8a6e454bc358.png"
     }
   ]
 }
