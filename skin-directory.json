@@ -6,6 +6,132 @@
       "name": "HalfEnderman",
       "modelType": "default",
       "skinUrl": "https://raw.githubusercontent.com/Hadeverl4/Hyperix-Releases/main/skins/community-a0a47c6b-b8c6-4d70-9288-fec719264941.png"
+    },
+    {
+      "id": "community-076d00a1-dbac-4707-9e7a-a013434b513c",
+      "name": "Homelander",
+      "modelType": "default",
+      "skinUrl": "https://raw.githubusercontent.com/Hadeverl4/Hyperix-Releases/main/skins/community-076d00a1-dbac-4707-9e7a-a013434b513c.png"
+    },
+    {
+      "id": "community-1e1ec6f8-c20a-4a8e-858a-4a891c770aa7",
+      "name": "Miku",
+      "modelType": "slim",
+      "skinUrl": "https://raw.githubusercontent.com/Hadeverl4/Hyperix-Releases/main/skins/community-1e1ec6f8-c20a-4a8e-858a-4a891c770aa7.png"
+    },
+    {
+      "id": "community-25bdf2c9-06db-4eba-97fe-94de8e23cb92",
+      "name": "Duolingo",
+      "modelType": "default",
+      "skinUrl": "https://raw.githubusercontent.com/Hadeverl4/Hyperix-Releases/main/skins/community-25bdf2c9-06db-4eba-97fe-94de8e23cb92.png"
+    },
+    {
+      "id": "community-2f87639b-00e7-4023-a959-d6f82d5919b6",
+      "name": "Finn the human!",
+      "modelType": "slim",
+      "skinUrl": "https://raw.githubusercontent.com/Hadeverl4/Hyperix-Releases/main/skins/community-2f87639b-00e7-4023-a959-d6f82d5919b6.png"
+    },
+    {
+      "id": "community-3062f78a-6ce7-4008-92b4-b0365ac13301",
+      "name": "Technoblade",
+      "modelType": "default",
+      "skinUrl": "https://raw.githubusercontent.com/Hadeverl4/Hyperix-Releases/main/skins/community-3062f78a-6ce7-4008-92b4-b0365ac13301.png"
+    },
+    {
+      "id": "community-62a1791d-b648-409b-931b-31154d59a507",
+      "name": "Steve holding Steve",
+      "modelType": "default",
+      "skinUrl": "https://raw.githubusercontent.com/Hadeverl4/Hyperix-Releases/main/skins/community-62a1791d-b648-409b-931b-31154d59a507.png"
+    },
+    {
+      "id": "community-63a2754c-6302-4c1e-a4ec-85a5b321bee2",
+      "name": "Evil Morty",
+      "modelType": "slim",
+      "skinUrl": "https://raw.githubusercontent.com/Hadeverl4/Hyperix-Releases/main/skins/community-63a2754c-6302-4c1e-a4ec-85a5b321bee2.png"
+    },
+    {
+      "id": "community-904c1853-bd47-43ce-8a68-60ccf57f4ade",
+      "name": "Kimono Girl",
+      "modelType": "slim",
+      "skinUrl": "https://raw.githubusercontent.com/Hadeverl4/Hyperix-Releases/main/skins/community-904c1853-bd47-43ce-8a68-60ccf57f4ade.png"
+    },
+    {
+      "id": "community-962c1f1b-f0c4-48b8-b6d5-47bd6e40ee8f",
+      "name": "Dream",
+      "modelType": "default",
+      "skinUrl": "https://raw.githubusercontent.com/Hadeverl4/Hyperix-Releases/main/skins/community-962c1f1b-f0c4-48b8-b6d5-47bd6e40ee8f.png"
+    },
+    {
+      "id": "community-a2115489-5d42-40e5-bfdc-83f06b3576fa",
+      "name": "Herobrine",
+      "modelType": "default",
+      "skinUrl": "https://raw.githubusercontent.com/Hadeverl4/Hyperix-Releases/main/skins/community-a2115489-5d42-40e5-bfdc-83f06b3576fa.png"
+    },
+    {
+      "id": "community-a7cdd9b8-3bf7-4b38-a9ae-22ee794e224b",
+      "name": "Furina",
+      "modelType": "slim",
+      "skinUrl": "https://raw.githubusercontent.com/Hadeverl4/Hyperix-Releases/main/skins/community-a7cdd9b8-3bf7-4b38-a9ae-22ee794e224b.png"
+    },
+    {
+      "id": "community-aaa44221-1648-4800-abb5-4e070537ea9a",
+      "name": "Honkai: Star Rail - Castorice",
+      "modelType": "slim",
+      "skinUrl": "https://raw.githubusercontent.com/Hadeverl4/Hyperix-Releases/main/skins/community-aaa44221-1648-4800-abb5-4e070537ea9a.png"
+    },
+    {
+      "id": "community-b95f910f-567b-45ab-9025-5272e1d3c352",
+      "name": "Sans",
+      "modelType": "default",
+      "skinUrl": "https://raw.githubusercontent.com/Hadeverl4/Hyperix-Releases/main/skins/community-b95f910f-567b-45ab-9025-5272e1d3c352.png"
+    },
+    {
+      "id": "community-b9dd6a59-fad2-446c-a27c-96b4f6cf5814",
+      "name": "Zombie",
+      "modelType": "default",
+      "skinUrl": "https://raw.githubusercontent.com/Hadeverl4/Hyperix-Releases/main/skins/community-b9dd6a59-fad2-446c-a27c-96b4f6cf5814.png"
+    },
+    {
+      "id": "community-cd7903b3-2284-429b-ba75-0e7f9e913c7d",
+      "name": "Fake Diamond Armor",
+      "modelType": "default",
+      "skinUrl": "https://raw.githubusercontent.com/Hadeverl4/Hyperix-Releases/main/skins/community-cd7903b3-2284-429b-ba75-0e7f9e913c7d.png"
+    },
+    {
+      "id": "community-d1cc9317-b53f-474c-b112-a7a7031a8d4f",
+      "name": "kawaii steve",
+      "modelType": "slim",
+      "skinUrl": "https://raw.githubusercontent.com/Hadeverl4/Hyperix-Releases/main/skins/community-d1cc9317-b53f-474c-b112-a7a7031a8d4f.png"
+    },
+    {
+      "id": "community-d35626a0-e60a-4185-9a53-b70fdc5edad1",
+      "name": "Warden",
+      "modelType": "default",
+      "skinUrl": "https://raw.githubusercontent.com/Hadeverl4/Hyperix-Releases/main/skins/community-d35626a0-e60a-4185-9a53-b70fdc5edad1.png"
+    },
+    {
+      "id": "community-d41e5c23-420c-484f-b912-5cfabdee8687",
+      "name": "Deadking",
+      "modelType": "default",
+      "skinUrl": "https://raw.githubusercontent.com/Hadeverl4/Hyperix-Releases/main/skins/community-d41e5c23-420c-484f-b912-5cfabdee8687.png"
+    },
+    {
+      "id": "community-dd0da3dd-4dac-4044-8933-cfa209f6a82d",
+      "name": "Classicjony",
+      "modelType": "default",
+      "skinUrl": "https://raw.githubusercontent.com/Hadeverl4/Hyperix-Releases/main/skins/community-dd0da3dd-4dac-4044-8933-cfa209f6a82d.png"
+    },
+    {
+      "id": "community-f77a3db5-1ef2-434d-ae90-8c6d4599bad5",
+      "name": "Colombina",
+      "modelType": "default",
+      "skinUrl": "https://raw.githubusercontent.com/Hadeverl4/Hyperix-Releases/main/skins/community-f77a3db5-1ef2-434d-ae90-8c6d4599bad5.png"
+    },
+    {
+      "id": "community-f8937922-15bc-4898-af39-c35ff9ec4278",
+      "name": "Buff Hitler",
+      "modelType": "default",
+      "skinUrl": "https://raw.githubusercontent.com/Hadeverl4/Hyperix-Releases/main/skins/community-f8937922-15bc-4898-af39-c35ff9ec4278.png"
     }
   ]
 }
