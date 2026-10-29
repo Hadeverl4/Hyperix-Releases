@@ -204,6 +204,24 @@
       "name": "Gojo",
       "modelType": "default",
       "skinUrl": "https://raw.githubusercontent.com/Hadeverl4/Hyperix-Releases/main/skins/community-ea8b95d9-618c-4b02-b439-c09e2951362b.png"
+    },
+    {
+      "id": "community-0862f6fb-5eb6-4bfc-bc71-26ec8e528197",
+      "name": "Cool guy",
+      "modelType": "default",
+      "skinUrl": "https://raw.githubusercontent.com/Hadeverl4/Hyperix-Releases/main/skins/community-0862f6fb-5eb6-4bfc-bc71-26ec8e528197.png"
+    },
+    {
+      "id": "community-693b874e-c155-4df1-a70d-6892ca772e78",
+      "name": "Totem",
+      "modelType": "default",
+      "skinUrl": "https://raw.githubusercontent.com/Hadeverl4/Hyperix-Releases/main/skins/community-693b874e-c155-4df1-a70d-6892ca772e78.png"
+    },
+    {
+      "id": "community-ae5ffb50-c549-4e0a-9584-d5e8ebf41779",
+      "name": "CJ",
+      "modelType": "default",
+      "skinUrl": "https://raw.githubusercontent.com/Hadeverl4/Hyperix-Releases/main/skins/community-ae5ffb50-c549-4e0a-9584-d5e8ebf41779.png"
     }
   ]
 }
