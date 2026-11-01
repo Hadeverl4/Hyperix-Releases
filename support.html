@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-hx-particles="galaxy">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -7,27 +7,34 @@
     <title>Support — Hyperix Launcher</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <link rel="icon" type="image/x-icon" href="./favicon.ico" />
-    <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png" />
-    <link rel="icon" type="image/png" href="./assets/hyperix-logo.png" />
-    <link rel="apple-touch-icon" href="./assets/hyperix-logo.png" />
+    <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@1,6..72,400;1,6..72,500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="icon" type="image/x-icon" href="./favicon.ico?v=artwork-20261020" />
+    <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon-16x16.png?v=artwork-20261020" />
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png?v=artwork-20261020" />
+    <link rel="icon" type="image/png" sizes="48x48" href="./assets/favicon-48x48.png?v=artwork-20261020" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png?v=artwork-20261020" />
     <link rel="stylesheet" href="./styles.css" />
     <link rel="stylesheet" href="./cinematic.css" />
     <link rel="stylesheet" href="./pages.css" />
+    <link rel="stylesheet" href="./motion.css" />
+    <link rel="stylesheet" href="./hx-theme.css" />
   </head>
   <body>
+    <canvas id="webgl-canvas" class="webgl-canvas" aria-hidden="true"></canvas>
     <div class="bg-glow-orb bg-glow-1" aria-hidden="true"></div>
     <div class="bg-glow-orb bg-glow-2" aria-hidden="true"></div>
 
     <main class="policy-page">
       <nav aria-label="Primary navigation">
         <a class="brand" href="./index.html" aria-label="Hyperix Launcher home">
-          <img class="brand-mark" src="./assets/hyperix-logo.png" alt="" aria-hidden="true" />
+          <img class="brand-mark" src="./assets/hyperix-artwork-white.png" alt="" aria-hidden="true" />
           <span>Hyperix <em>Launcher</em></span>
         </a>
         <div class="nav-right">
-          <a class="source-link" href="./privacy.html" data-i18n="nav_privacy">Privacy</a>
+          <a class="source-link nav-discover" href="./index.html#features" data-i18n="nav_features">Features</a>
+          <a class="source-link nav-discover" href="./index.html#gallery" data-i18n="nav_gallery">Gallery</a>
+          <a class="source-link" href="./index.html#changelog" data-i18n="nav_changelog">Changelog</a>
+          <a class="source-link" id="nav-store-link" href="https://apps.microsoft.com/detail/9nk9fxtbt77t" target="_blank" rel="noreferrer" data-i18n="nav_store">Microsoft Store <span aria-hidden="true">↗</span></a>
           <div class="lang-switch" role="group" aria-label="Language selection">
             <button class="lang-btn" type="button" data-lang="en" aria-label="Switch to English">EN</button>
             <span class="lang-divider" aria-hidden="true">/</span>
@@ -57,15 +64,46 @@
       </article>
     </main>
 
-    <footer>
-      <span>Hyperix Launcher</span>
-      <div class="footer-links">
-        <a href="./privacy.html" data-i18n="footer_privacy">Privacy</a>
-        <a href="./terms.html" data-i18n="footer_terms">Terms</a>
-        <a href="./index.html" data-i18n="footer_home">Home</a>
+    <footer class="hx-footer">
+      <div class="hx-footer-top">
+        <div class="footer-identity">
+          <div class="footer-brand-row">
+            <span class="footer-brand-mark" aria-hidden="true"></span>
+            <span class="footer-wordmark" data-wordmark="HYPERIX">HYPERIX</span>
+          </div>
+          <small data-i18n="footer_tagline">Independent Minecraft launcher project</small>
+        </div>
+        <div class="hx-footer-cols" role="navigation" aria-label="Footer">
+          <div>
+            <span class="hx-footer-label" data-i18n="footer_col_product">Product</span>
+            <a href="./index.html#features" data-i18n="nav_features">Features</a>
+            <a href="./index.html#gallery" data-i18n="nav_gallery">Gallery</a>
+            <a href="./index.html#changelog" data-i18n="nav_changelog">Changelog</a>
+            <a href="./release-notes.html" data-i18n="footer_release_notes">Release notes</a>
+          </div>
+          <div>
+            <span class="hx-footer-label" data-i18n="footer_col_get">Get Hyperix</span>
+            <a href="https://apps.microsoft.com/detail/9nk9fxtbt77t" target="_blank" rel="noreferrer">Microsoft Store</a>
+            <a href="./index.html#available-platforms" data-i18n="footer_download">Download for Windows</a>
+            <a href="./index.html#contributors" data-i18n="footer_donate">Support development</a>
+          </div>
+          <div>
+            <span class="hx-footer-label" data-i18n="footer_col_help">Help &amp; legal</span>
+            <a href="./privacy.html" data-i18n="footer_privacy">Privacy</a>
+            <a href="./terms.html" data-i18n="footer_terms">Terms</a>
+            <a href="./support.html" data-i18n="footer_support">Support</a>
+            <a href="mailto:hyperix.contact@gmail.com" data-i18n="footer_contact">Contact <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="hx-footer-mark" aria-hidden="true">HYPERIX</div>
+      <div class="hx-footer-bottom">
+        <span>© Hyperix Launcher</span>
+        <span data-i18n="footer_disclaimer">Not an official Minecraft product. Not approved by or associated with Mojang or Microsoft.</span>
       </div>
     </footer>
 
+    <script src="./site-copy.js"></script>
     <script>
       const translations = {
         en: {
@@ -108,6 +146,12 @@
         }
       };
 
+      // Shared navigation/footer copy; page-specific keys keep precedence.
+      if (window.hyperixSiteCopy) {
+        translations.en = Object.assign({}, window.hyperixSiteCopy.en, translations.en);
+        translations.vi = Object.assign({}, window.hyperixSiteCopy.vi, translations.vi);
+      }
+
       function setLanguage(lang) {
         if (!translations[lang]) return;
         document.documentElement.lang = lang;
@@ -146,5 +190,10 @@
       const browserLang = (navigator.language || navigator.userLanguage || '').toLowerCase().startsWith('vi') ? 'vi' : 'en';
       setLanguage(savedLang || browserLang || 'en');
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+    <script src="./particle-morph.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.27/dist/lenis.min.js" integrity="sha384-R18XzqnxvVLEF+BYfhpmDx30v7eP83fAckyfoRzK7/Uf6nGqufcmsk0eAKo7S3RU" crossorigin="anonymous" defer></script>
+    <script src="./nav-state.js" defer></script>
+    <script src="./motion.js" defer></script>
   </body>
 </html>

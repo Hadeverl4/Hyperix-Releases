@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-hx-particles="galaxy">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -7,27 +7,34 @@
     <title>Privacy Policy — Hyperix Launcher</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <link rel="icon" type="image/x-icon" href="./favicon.ico" />
-    <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png" />
-    <link rel="icon" type="image/png" href="./assets/hyperix-logo.png" />
-    <link rel="apple-touch-icon" href="./assets/hyperix-logo.png" />
+    <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@1,6..72,400;1,6..72,500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="icon" type="image/x-icon" href="./favicon.ico?v=artwork-20261020" />
+    <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon-16x16.png?v=artwork-20261020" />
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png?v=artwork-20261020" />
+    <link rel="icon" type="image/png" sizes="48x48" href="./assets/favicon-48x48.png?v=artwork-20261020" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png?v=artwork-20261020" />
     <link rel="stylesheet" href="./styles.css" />
     <link rel="stylesheet" href="./cinematic.css" />
     <link rel="stylesheet" href="./pages.css" />
+    <link rel="stylesheet" href="./motion.css" />
+    <link rel="stylesheet" href="./hx-theme.css" />
   </head>
   <body>
+    <canvas id="webgl-canvas" class="webgl-canvas" aria-hidden="true"></canvas>
     <div class="bg-glow-orb bg-glow-1" aria-hidden="true"></div>
     <div class="bg-glow-orb bg-glow-2" aria-hidden="true"></div>
 
     <main class="policy-page">
       <nav aria-label="Primary navigation">
         <a class="brand" href="./index.html" aria-label="Hyperix Launcher home">
-          <img class="brand-mark" src="./assets/hyperix-logo.png" alt="" aria-hidden="true" />
+          <img class="brand-mark" src="./assets/hyperix-artwork-white.png" alt="" aria-hidden="true" />
           <span>Hyperix <em>Launcher</em></span>
         </a>
         <div class="nav-right">
-          <a class="source-link" href="./support.html" data-i18n="nav_support">Support</a>
+          <a class="source-link nav-discover" href="./index.html#features" data-i18n="nav_features">Features</a>
+          <a class="source-link nav-discover" href="./index.html#gallery" data-i18n="nav_gallery">Gallery</a>
+          <a class="source-link" href="./index.html#changelog" data-i18n="nav_changelog">Changelog</a>
+          <a class="source-link" id="nav-store-link" href="https://apps.microsoft.com/detail/9nk9fxtbt77t" target="_blank" rel="noreferrer" data-i18n="nav_store">Microsoft Store <span aria-hidden="true">↗</span></a>
           <div class="lang-switch" role="group" aria-label="Language selection">
             <button class="lang-btn" type="button" data-lang="en" aria-label="Switch to English">EN</button>
             <span class="lang-divider" aria-hidden="true">/</span>
@@ -50,8 +57,10 @@
         <p data-i18n="privacy_p_services">When you choose to use a feature, Hyperix connects directly to the relevant service: Microsoft, Xbox and Minecraft services for Microsoft sign-in and Minecraft play; Mojang services for game metadata/assets; Modrinth and, where enabled, CurseForge for content discovery and downloads; and Ely.by only when you select that provider. Those services process data under their own policies.</p>
 
         <h2 data-i18n="privacy_h2_telemetry">Technical telemetry</h2>
-        <p data-i18n="privacy_p_telemetry_1">A release sends technical telemetry only when it is built with a Hyperix collector endpoint and the <strong>Help improve Hyperix</strong> setting remains enabled. Starting with Hyperix 1.1.10, GitHub and Microsoft Store releases are built with this collector. Collected events are kept for 14 days; your network address is used only to rate-limit requests and is never stored. The allowlisted events are app start, Minecraft launch attempt, supervised game exit, and process-wait failure. They may contain the app version, operating-system/architecture, an ephemeral session identifier, bounded Minecraft version/loader, launch outcome and duration, and process exit status.</p>
+        <p data-i18n="privacy_p_telemetry_1">A release sends technical telemetry only when it is built with a Hyperix collector endpoint and the <strong>Help improve Hyperix</strong> setting remains enabled. Collected events are kept for 14 days; your network address is used only to rate-limit requests and is never stored. The allowlisted events are app start, Minecraft launch attempt, supervised game exit, process-wait failure and a rate-limited failure summary containing only a fixed operation group, action and error category. They may contain the app version, operating-system/architecture, an ephemeral session identifier, bounded Minecraft version/loader, launch outcome and duration, and process exit status.</p>
         <p data-i18n="privacy_p_telemetry_2">Telemetry never includes account names, authentication tokens/codes, instance IDs or names, server/world names, mod lists, filesystem paths, raw logs, screenshots, or play-time history. You can turn the setting off in Settings → Privacy; turning it off prevents future telemetry delivery.</p>
+
+        <p data-i18n="privacy_p_reports">Where report delivery is available, a bug report is sent only after your explicit consent. It includes your description and the diagnostic fields shown in the report dialog. To limit spam, the server stores a secret-keyed daily pseudonym derived from the connection address for up to 48 hours; it never stores the raw address. When Help improve Hyperix is enabled, up to 256 structured diagnostic events are retained in memory for the current session. Stable builds send this detailed context only with a report you approve. Turning the setting off clears it. Reports follow the 14-day retention period. Do not include passwords or other private information in your description.</p>
 
         <h2 data-i18n="privacy_h2_notdo">What Hyperix does not do</h2>
         <p data-i18n="privacy_p_notdo">Hyperix does not sell personal information, display advertising, run an in-app payment system, or re-host third-party mod files. It does not use local Minecraft worlds, mods, screenshots, or logs as technical telemetry.</p>
@@ -64,15 +73,46 @@
       </article>
     </main>
 
-    <footer>
-      <span>Hyperix Launcher</span>
-      <div class="footer-links">
-        <a href="./terms.html" data-i18n="footer_terms">Terms</a>
-        <a href="./support.html" data-i18n="footer_support">Support</a>
-        <a href="./index.html" data-i18n="footer_home">Home</a>
+    <footer class="hx-footer">
+      <div class="hx-footer-top">
+        <div class="footer-identity">
+          <div class="footer-brand-row">
+            <span class="footer-brand-mark" aria-hidden="true"></span>
+            <span class="footer-wordmark" data-wordmark="HYPERIX">HYPERIX</span>
+          </div>
+          <small data-i18n="footer_tagline">Independent Minecraft launcher project</small>
+        </div>
+        <div class="hx-footer-cols" role="navigation" aria-label="Footer">
+          <div>
+            <span class="hx-footer-label" data-i18n="footer_col_product">Product</span>
+            <a href="./index.html#features" data-i18n="nav_features">Features</a>
+            <a href="./index.html#gallery" data-i18n="nav_gallery">Gallery</a>
+            <a href="./index.html#changelog" data-i18n="nav_changelog">Changelog</a>
+            <a href="./release-notes.html" data-i18n="footer_release_notes">Release notes</a>
+          </div>
+          <div>
+            <span class="hx-footer-label" data-i18n="footer_col_get">Get Hyperix</span>
+            <a href="https://apps.microsoft.com/detail/9nk9fxtbt77t" target="_blank" rel="noreferrer">Microsoft Store</a>
+            <a href="./index.html#available-platforms" data-i18n="footer_download">Download for Windows</a>
+            <a href="./index.html#contributors" data-i18n="footer_donate">Support development</a>
+          </div>
+          <div>
+            <span class="hx-footer-label" data-i18n="footer_col_help">Help &amp; legal</span>
+            <a href="./privacy.html" data-i18n="footer_privacy">Privacy</a>
+            <a href="./terms.html" data-i18n="footer_terms">Terms</a>
+            <a href="./support.html" data-i18n="footer_support">Support</a>
+            <a href="mailto:hyperix.contact@gmail.com" data-i18n="footer_contact">Contact <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="hx-footer-mark" aria-hidden="true">HYPERIX</div>
+      <div class="hx-footer-bottom">
+        <span>© Hyperix Launcher</span>
+        <span data-i18n="footer_disclaimer">Not an official Minecraft product. Not approved by or associated with Mojang or Microsoft.</span>
       </div>
     </footer>
 
+    <script src="./site-copy.js"></script>
     <script>
       const translations = {
         en: {
@@ -87,8 +127,9 @@
           privacy_h2_services: "Services Hyperix connects to",
           privacy_p_services: "When you choose to use a feature, Hyperix connects directly to the relevant service: Microsoft, Xbox and Minecraft services for Microsoft sign-in and Minecraft play; Mojang services for game metadata/assets; Modrinth and, where enabled, CurseForge for content discovery and downloads; and Ely.by only when you select that provider. Those services process data under their own policies.",
           privacy_h2_telemetry: "Technical telemetry",
-          privacy_p_telemetry_1: "A release sends technical telemetry only when it is built with a Hyperix collector endpoint and the <strong>Help improve Hyperix</strong> setting remains enabled. Starting with Hyperix 1.1.10, GitHub and Microsoft Store releases are built with this collector. Collected events are kept for 14 days; your network address is used only to rate-limit requests and is never stored. The allowlisted events are app start, Minecraft launch attempt, supervised game exit, and process-wait failure. They may contain the app version, operating-system/architecture, an ephemeral session identifier, bounded Minecraft version/loader, launch outcome and duration, and process exit status.",
+          privacy_p_telemetry_1: "A release sends technical telemetry only when it is built with a Hyperix collector endpoint and the <strong>Help improve Hyperix</strong> setting remains enabled. Collected events are kept for 14 days; your network address is used only to rate-limit requests and is never stored. The allowlisted events are app start, Minecraft launch attempt, supervised game exit, process-wait failure and a rate-limited failure summary containing only a fixed operation group, action and error category. They may contain the app version, operating-system/architecture, an ephemeral session identifier, bounded Minecraft version/loader, launch outcome and duration, and process exit status.",
           privacy_p_telemetry_2: "Telemetry never includes account names, authentication tokens/codes, instance IDs or names, server/world names, mod lists, filesystem paths, raw logs, screenshots, or play-time history. You can turn the setting off in Settings → Privacy; turning it off prevents future telemetry delivery.",
+          privacy_p_reports: "Where report delivery is available, a bug report is sent only after your explicit consent. It includes your description and the diagnostic fields shown in the report dialog. To limit spam, the server stores a secret-keyed daily pseudonym derived from the connection address for up to 48 hours; it never stores the raw address. When Help improve Hyperix is enabled, up to 256 structured diagnostic events are retained in memory for the current session. Stable builds send this detailed context only with a report you approve. Turning the setting off clears it. Reports follow the 14-day retention period. Do not include passwords or other private information in your description.",
           privacy_h2_notdo: "What Hyperix does not do",
           privacy_p_notdo: "Hyperix does not sell personal information, display advertising, run an in-app payment system, or re-host third-party mod files. It does not use local Minecraft worlds, mods, screenshots, or logs as technical telemetry.",
           privacy_h2_retention: "Retention and control",
@@ -111,8 +152,9 @@
           privacy_h2_services: "Các dịch vụ Hyperix kết nối tới",
           privacy_p_services: "Khi bạn chọn sử dụng một tính năng, Hyperix chỉ kết nối trực tiếp đến dịch vụ tương ứng: Microsoft, Xbox và dịch vụ Minecraft để đăng nhập và khởi chạy game; dịch vụ Mojang cho siêu dữ liệu/tài nguyên game; Modrinth và CurseForge (nếu được bật) để tìm kiếm và tải nội dung; và Ely.by chỉ khi bạn chọn nhà cung cấp này. Các dịch vụ đó xử lý dữ liệu theo chính sách riêng của họ.",
           privacy_h2_telemetry: "Dữ liệu đo từ xa kỹ thuật (Telemetry)",
-          privacy_p_telemetry_1: "Bản phát hành chỉ gửi dữ liệu đo từ xa khi được biên dịch cùng với máy chủ thu thập của Hyperix và tùy chọn <strong>Hỗ trợ cải thiện Hyperix</strong> được bật. Từ Hyperix 1.1.10, các bản phát hành trên GitHub và Microsoft Store được biên dịch cùng máy chủ thu thập này. Dữ liệu được lưu 14 ngày; địa chỉ mạng của bạn chỉ dùng để giới hạn tần suất gửi và không bao giờ được lưu lại. Các sự kiện trong danh sách cho phép gồm: khởi động app, thử mở Minecraft, giám sát thoát game và lỗi chờ tiến trình. Dữ liệu có thể gồm: phiên bản app, hệ điều hành/kiến trúc, mã phiên ngẫu nhiên, phiên bản Minecraft/loader giới hạn, kết quả khởi chạy, thời gian và mã trạng thái kết thúc.",
+          privacy_p_telemetry_1: "Bản phát hành chỉ gửi dữ liệu đo từ xa khi được biên dịch cùng với máy chủ thu thập của Hyperix và tùy chọn <strong>Hỗ trợ cải thiện Hyperix</strong> được bật. Dữ liệu được lưu 14 ngày; địa chỉ mạng của bạn chỉ dùng để giới hạn tần suất gửi và không bao giờ được lưu lại. Các sự kiện cho phép gồm khởi động app, thử mở Minecraft, thoát game, lỗi chờ tiến trình và tóm tắt lỗi có giới hạn tần suất, chỉ gồm nhóm thao tác, thao tác và mã lỗi cố định. Dữ liệu có thể gồm: phiên bản app, hệ điều hành/kiến trúc, mã phiên ngẫu nhiên, phiên bản Minecraft/loader giới hạn, kết quả khởi chạy, thời gian và mã trạng thái kết thúc.",
           privacy_p_telemetry_2: "Dữ liệu đo từ xa tuyệt đối không bao giờ chứa tên tài khoản, token xác thực, ID/tên bản cài, tên máy chủ/thế giới, danh sách mod, đường dẫn thư mục, nhật ký thô, ảnh chụp màn hình hay lịch sử thời gian chơi. Bạn có thể tắt tùy chọn này bất cứ lúc nào trong Cài đặt → Quyền riêng tư; khi tắt, toàn bộ việc gửi dữ liệu sẽ bị chặn hoàn toàn.",
+          privacy_p_reports: "Ở bản hỗ trợ gửi báo lỗi, báo cáo chỉ được gửi sau khi bạn đồng ý rõ ràng, gồm mô tả và các trường chẩn đoán hiển thị trong hộp thoại. Để hạn chế spam, máy chủ lưu mã ẩn danh theo ngày được tạo bằng khóa bí mật từ địa chỉ kết nối tối đa 48 giờ; không lưu địa chỉ gốc. Khi bật Hỗ trợ cải thiện Hyperix, tối đa 256 sự kiện chẩn đoán có cấu trúc được giữ trong bộ nhớ của phiên hiện tại. Bản stable chỉ gửi phần chi tiết này cùng báo cáo bạn đồng ý gửi. Tắt tùy chọn sẽ xóa ngữ cảnh đó. Báo cáo được giữ 14 ngày. Không nhập mật khẩu hoặc thông tin riêng tư khác trong mô tả.",
           privacy_h2_notdo: "Những điều Hyperix không bao giờ làm",
           privacy_p_notdo: "Hyperix không bán thông tin cá nhân, không hiển thị quảng cáo, không tích hợp hệ thống thanh toán trong ứng dụng và không lưu trữ lại các tệp mod của bên thứ ba. Hyperix không sử dụng các thế giới Minecraft, mod, ảnh chụp màn hình hay nhật ký cục bộ làm dữ liệu kỹ thuật.",
           privacy_h2_retention: "Thời gian lưu trữ và quyền kiểm soát",
@@ -124,6 +166,12 @@
           footer_home: "Trang chủ"
         }
       };
+
+      // Shared navigation/footer copy; page-specific keys keep precedence.
+      if (window.hyperixSiteCopy) {
+        translations.en = Object.assign({}, window.hyperixSiteCopy.en, translations.en);
+        translations.vi = Object.assign({}, window.hyperixSiteCopy.vi, translations.vi);
+      }
 
       function setLanguage(lang) {
         if (!translations[lang]) return;
@@ -163,5 +211,10 @@
       const browserLang = (navigator.language || navigator.userLanguage || '').toLowerCase().startsWith('vi') ? 'vi' : 'en';
       setLanguage(savedLang || browserLang || 'en');
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+    <script src="./particle-morph.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.27/dist/lenis.min.js" integrity="sha384-R18XzqnxvVLEF+BYfhpmDx30v7eP83fAckyfoRzK7/Uf6nGqufcmsk0eAKo7S3RU" crossorigin="anonymous" defer></script>
+    <script src="./nav-state.js" defer></script>
+    <script src="./motion.js" defer></script>
   </body>
 </html>

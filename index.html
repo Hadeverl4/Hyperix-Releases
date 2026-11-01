@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preconnect" href="https://stream.mux.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@1,6..72,400;1,6..72,500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <link rel="icon" type="image/x-icon" href="./favicon.ico?v=artwork-20261020" />
     <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon-16x16.png?v=artwork-20261020" />
     <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png?v=artwork-20261020" />
@@ -18,8 +18,10 @@
     <link rel="stylesheet" href="./cinematic.css" />
     <link rel="stylesheet" href="./mobile-polish.css" />
     <link rel="stylesheet" href="./p2p-showcase.css" />
-    <style>html.splash-locked,html.splash-locked body{overflow:hidden!important;overscroll-behavior:none}</style>
-    <script>window.hyperixSplashStart=performance.now();document.documentElement.classList.add('splash-locked');if('scrollRestoration' in history)history.scrollRestoration='manual';window.scrollTo(0,0);setTimeout(function(){if(document.body)document.body.classList.add('cinematic-min-elapsed','cinematic-timeout')},3000);</script>
+    <link rel="stylesheet" href="./motion.css" />
+    <link rel="stylesheet" href="./hx-theme.css" />
+    <style>html.splash-locked,html.splash-locked body{overflow:hidden!important;overscroll-behavior:none}html.splash-skip .cinematic-intro{display:none!important}</style>
+    <script>/* Brand splash: ~1.4s on the first visit of a session, skipped afterwards. */window.hyperixSplashStart=performance.now();var hxSeen=false;try{hxSeen=sessionStorage.getItem('hyperix_splash_seen')==='1';sessionStorage.setItem('hyperix_splash_seen','1')}catch(e){}window.hyperixSplashMin=hxSeen?0:1400;document.documentElement.classList.add(hxSeen?'splash-skip':'splash-locked');if('scrollRestoration' in history)history.scrollRestoration='manual';window.scrollTo(0,0);function hxSplashMark(){if(document.body)document.body.classList.add('cinematic-min-elapsed','cinematic-timeout');else document.addEventListener('DOMContentLoaded',hxSplashMark,{once:true})}setTimeout(hxSplashMark,window.hyperixSplashMin);</script>
   </head>
   <body>
     <div class="cinematic-intro" id="cinematic-intro" aria-hidden="true">
@@ -83,7 +85,7 @@
         <p class="lede" data-i18n="hero_lede">Hyperix helps players create and manage isolated Minecraft instances, organize local content, and understand what belongs to each setup.</p>
 
         <div class="actions">
-          <a class="store-badge-btn" id="ms-store-btn" href="#available-platforms" aria-label="Jump to Hyperix platform availability">
+          <a class="store-badge-btn" id="ms-store-btn" href="https://apps.microsoft.com/detail/9nk9fxtbt77t" target="_blank" rel="noreferrer" aria-label="Get Hyperix from the Microsoft Store">
             <svg class="ms-store-logo" viewBox="0 0 24 24" aria-hidden="true">
               <rect x="1" y="1" width="10" height="10" fill="#f25022" rx="1.5" />
               <rect x="13" y="1" width="10" height="10" fill="#7fba00" rx="1.5" />
@@ -96,7 +98,7 @@
             </div>
           </a>
 
-          <a class="button primary" id="primary-download-btn" href="#available-platforms">
+          <a class="button primary" id="primary-download-btn" href="https://github.com/Hadeverl4/Hyperix-Releases/releases/download/v1.1.9/Hyperix-Launcher_1.1.9_x64-setup.exe">
             <svg class="button-icon" viewBox="0 0 24 24" aria-hidden="true">
               <path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.551H10.949M0 12.6h9.75V22.05L0 20.7m10.949-8.1H24V24l-13.051-1.8" />
             </svg>
@@ -106,106 +108,19 @@
 
           <a class="button secondary" href="#changelog" data-i18n="btn_changelog">Releases & Changelog <span aria-hidden="true">↓</span></a>
         </div>
-        <a class="hero-scroll-cue" href="#features" aria-label="Explore Hyperix features">EXPLORE HYPERIX <span aria-hidden="true">↓</span></a>
+        <p class="hx-hero-hint" data-i18n="hero_hint">The download button starts the installer directly. <a href="#installation">Verify the SHA-256 checksum ↓</a></p>
+        <a class="hero-scroll-cue" href="#gallery" aria-label="Explore Hyperix features">EXPLORE HYPERIX <span aria-hidden="true">↓</span></a>
+        </div>
+        <div class="hx-hero-meta">
+          <span data-i18n="hero_meta_platform">Windows · x64</span>
+          <span data-i18n="hero_meta_free">Free · No ads</span>
+          <span data-i18n="hero_meta_sources">Modrinth · CurseForge</span>
         </div>
       </section>
-      <section class="installation-section" id="installation" aria-label="Installation and verification">
-        <aside class="download-notice" aria-label="Windows download verification">
-          <div class="download-notice-header">
-            <strong data-i18n="notice_header">Windows Installation & Integrity</strong>
-          </div>
-          <p data-i18n="notice_body">For verified one-click installation and automatic background updates, get Hyperix directly from the <strong>Microsoft Store</strong>. If you are using the standalone direct installer (.exe) above, Windows SmartScreen may show a temporary warning for new releases. Always verify the SHA-256 checksum below before running.</p>
-          <button class="hash-toggle" type="button" id="hash-toggle" aria-expanded="false" aria-controls="hash-container" data-i18n="hash_show">Show SHA-256 checksum</button>
-          <div class="hash-container" id="hash-container" hidden>
-            <code id="sha256-code">v1.1.9 SHA-256: 15a9688a105a9aaf2f3475f14980fe26fb521c760488273a400e2f06a0c62344</code>
-            <button class="copy-hash-btn" type="button" id="copy-hash-btn" aria-label="Copy SHA-256 checksum" data-i18n="copy_btn">Copy</button>
-          </div>
-        </aside>
-      </section>
-
-      <section class="principles" id="features" aria-label="What Hyperix focuses on">
-        <div class="features-intro">
-          <span class="features-kicker"><span data-i18n="features_kicker">THE HYPERIX APPROACH</span> <span aria-hidden="true">/ 01—03</span></span>
-          <div class="features-title-lockup"><img src="./assets/hyperix-artwork-main.png" alt="" width="96" height="96" decoding="async" /><h2 data-i18n="features_headline">Crafted for<br /><em>your worlds.</em></h2></div>
-        </div>
-        <article class="principle-card">
-          <span class="number-tag">01</span>
-          <h3 data-i18n="principle_1_title">A world for every playstyle</h3>
-          <p data-i18n="principle_1_desc">Keep each Minecraft experience distinct, with its own worlds, mods, and settings — precisely where they belong.</p>
-        </article>
-        <article class="principle-card">
-          <span class="number-tag">02</span>
-          <h3 data-i18n="principle_2_title">Everything in its place</h3>
-          <p data-i18n="principle_2_desc">Find what you need, refine your setup, and stay in control of the details without the clutter.</p>
-        </article>
-        <article class="principle-card">
-          <span class="number-tag">03</span>
-          <h3 data-i18n="principle_3_title">Discovery with respect</h3>
-          <p data-i18n="principle_3_desc">Explore community creations through official sources, with the choices of their authors always respected.</p>
-        </article>
-      </section>
-
-      <section class="p2p-preview" id="p2p-preview" aria-labelledby="p2p-title">
-        <div class="p2p-preview-heading p2p-preview-heading--centered">
-          <div>
-            <p class="eyebrow" data-i18n="p2p_eyebrow">COMING TO HYPERIX / PLAY WITH FRIENDS</p>
-            <h2 id="p2p-title" data-i18n="p2p_title">Your world,<br /><em>shared with friends.</em></h2>
-          </div>
-          <span class="p2p-preview-tag" data-i18n="p2p_tag">IN DEVELOPMENT</span>
-        </div>
-        <p class="p2p-preview-lede" data-i18n="p2p_lede">Plug and play with friends: host an existing world or a managed Vanilla server, share a room, and let friends join without exposing a public Minecraft port.</p>
-        <div class="p2p-cinematic-showcase" id="p2p-cinematic-showcase" aria-label="Play with friends launcher showcase">
-          <div class="p2p-cinematic-visual">
-            <div class="p2p-cinematic-glow" aria-hidden="true"></div>
-            <div class="p2p-cinematic-wave" aria-hidden="true"></div>
-            <div class="p2p-cinematic-wave" aria-hidden="true"></div>
-            <div class="p2p-cinematic-wave" aria-hidden="true"></div>
-            <div class="p2p-cinematic-frame">
-              <img id="p2p-showcase-image" src="./assets/screenshots/play-with-friendsmd-en.png" alt="Hyperix launcher Play with friends showcase" loading="lazy" decoding="async" />
-            </div>
-          </div>
-          <p class="p2p-cinematic-caption" data-i18n="p2p_showcase_note">Preview of the Play with friends experience inside Hyperix Launcher.</p>
-          <button class="p2p-wave-button" id="p2p-wave-button" type="button">
-            <span class="p2p-wave-surface" aria-hidden="true"></span>
-            <span class="p2p-wave-burst" aria-hidden="true"></span>
-            <span class="p2p-wave-label"><span data-i18n="p2p_demo_button">Play with friends</span></span>
-          </button>
-        </div>
-        <div class="p2p-preview-flow" aria-label="P2P preview workflow">
-          <article class="p2p-preview-step"><span data-i18n="p2p_step1_label">01 / HOST</span><strong data-i18n="p2p_step1_title">Choose your world</strong><p data-i18n="p2p_step1_body">Start from an existing world or a managed Vanilla server.</p></article>
-          <article class="p2p-preview-step"><span data-i18n="p2p_step2_label">02 / SHARE</span><strong data-i18n="p2p_step2_title">Invite your friends</strong><p data-i18n="p2p_step2_body">Create a room and share an invitation with the people you choose.</p></article>
-          <article class="p2p-preview-step"><span data-i18n="p2p_step3_label">03 / PLAY</span><strong data-i18n="p2p_step3_title">Join the adventure</strong><p data-i18n="p2p_step3_body">Connect through Hyperix while your Minecraft world stays under your control.</p></article>
-        </div>
-        <div class="p2p-preview-foot">
-          <p data-i18n="p2p_disclaimer">Technical preview. Internet P2P/relay compatibility, cross-network gameplay, and production rollout are still being validated. Not included in the current stable download.</p>
-        </div>
-      </section>
-
-      <section class="content-sources" id="content-sources" aria-labelledby="content-sources-title">
-        <div class="content-sources-intro">
-          <p class="eyebrow" data-i18n="sources_eyebrow">COMMUNITY CONTENT / 01—02</p>
-          <h2 id="content-sources-title" data-i18n="sources_title">Explore beyond<br /><em>the ordinary.</em></h2>
-          <p data-i18n="sources_description">Discover Minecraft creations from two established community platforms.</p>
-        </div>
-        <div class="content-sources-stage">
-          <article class="content-source-copy">
-            <h3>Modrinth</h3>
-            <p data-i18n="source_modrinth_desc">Explore mods, modpacks, resource packs, and shaders shared by the Minecraft community on Modrinth.</p>
-            <a href="https://modrinth.com/" target="_blank" rel="noopener noreferrer" data-i18n="source_modrinth_link">Explore Modrinth ↗</a>
-          </article>
-          <article class="content-source-copy">
-            <h3>CurseForge</h3>
-            <p data-i18n="source_curseforge_desc">Find community-made Minecraft mods, modpacks, and resource packs in the CurseForge catalog.</p>
-            <a href="https://www.curseforge.com/minecraft" target="_blank" rel="noopener noreferrer" data-i18n="source_curseforge_link">Explore CurseForge ↗</a>
-          </article>
-        </div>
-        <p class="content-sources-disclaimer" data-i18n="sources_disclaimer">Modrinth and CurseForge are independent platforms. Their names and logos belong to their respective owners.</p>
-      </section>
-
       <section class="showcase" id="gallery" aria-labelledby="showcase-title">
         <div class="showcase-heading">
           <div>
-            <p class="eyebrow" style="margin-bottom: 0.6rem; color: #818cf8;" data-i18n="showcase_eyebrow">A closer look</p>
+            <p class="eyebrow" data-i18n="showcase_eyebrow">A closer look</p>
             <h2 id="showcase-title" data-i18n="showcase_title">A launcher built around the way players actually manage Minecraft.</h2>
             <p id="gallery-feature-desc" class="gallery-feature-desc" aria-live="polite"></p>
             <div id="gallery-active-feature" class="gallery-active-feature" aria-live="polite"><strong>Instance library</strong><span>Keep separate Minecraft setups visible at a glance.</span></div>
@@ -286,22 +201,194 @@
           </figure>
         </div>
       </section>
-
-
-
-      <!-- Changelog Section -->
+      <section class="principles" id="features" aria-label="What Hyperix focuses on">
+        <div class="features-intro">
+          <span class="features-kicker"><span data-i18n="features_kicker">THE HYPERIX APPROACH</span> <span aria-hidden="true">/ 01—06</span></span>
+          <div class="features-title-lockup"><img src="./assets/hyperix-artwork-main.png" alt="" width="96" height="96" decoding="async" /><h2 data-i18n="features_headline">Crafted for<br /><em>your worlds.</em></h2></div>
+        </div>
+        <article class="principle-card">
+          <span class="number-tag">01</span>
+          <h3 data-i18n="feat_1_title">Isolated instances</h3>
+          <p data-i18n="feat_1_desc">Every setup keeps its own mods, worlds, configs and resource packs, so one experiment never breaks another.</p>
+        </article>
+        <article class="principle-card">
+          <span class="number-tag">02</span>
+          <h3 data-i18n="feat_2_title">Modrinth &amp; CurseForge</h3>
+          <p data-i18n="feat_2_desc">Install mods, modpacks, resource packs, shaders and data packs from both catalogs, filtered to match your instance's loader and version.</p>
+        </article>
+        <article class="principle-card">
+          <span class="number-tag">03</span>
+          <h3 data-i18n="feat_3_title">Every major loader</h3>
+          <p data-i18n="feat_3_desc">Vanilla, Fabric, Quilt, Forge and NeoForge, each launched exactly as you chose it.</p>
+        </article>
+        <article class="principle-card">
+          <span class="number-tag">04</span>
+          <h3 data-i18n="feat_4_title">Protected sign-in</h3>
+          <p data-i18n="feat_4_desc">Sign in with Microsoft or Ely.by. Tokens are encrypted with Windows DPAPI and never written to logs or telemetry.</p>
+        </article>
+        <article class="principle-card">
+          <span class="number-tag">05</span>
+          <h3 data-i18n="feat_5_title">Skins in 3D</h3>
+          <p data-i18n="feat_5_desc">Preview skins in interactive 3D, pick Classic or Slim, then apply the skin and cape to your Microsoft account.</p>
+        </article>
+        <article class="principle-card">
+          <span class="number-tag">06</span>
+          <h3 data-i18n="feat_6_title">Servers at a glance</h3>
+          <p data-i18n="feat_6_desc">See latency, status and player counts with live pings before you join.</p>
+        </article>
+      </section>
+      <section class="content-sources" id="content-sources" aria-labelledby="content-sources-title">
+        <div class="content-sources-intro">
+          <p class="eyebrow" data-i18n="sources_eyebrow">COMMUNITY CONTENT / 01—02</p>
+          <h2 id="content-sources-title" data-i18n="sources_title">Explore beyond<br /><em>the ordinary.</em></h2>
+          <p data-i18n="sources_description">Discover Minecraft creations from two established community platforms.</p>
+        </div>
+        <div class="content-sources-stage">
+          <article class="content-source-copy">
+            <h3>Modrinth</h3>
+            <p data-i18n="source_modrinth_desc">Explore mods, modpacks, resource packs, and shaders shared by the Minecraft community on Modrinth.</p>
+            <a href="https://modrinth.com/" target="_blank" rel="noopener noreferrer" data-i18n="source_modrinth_link">Explore Modrinth ↗</a>
+          </article>
+          <article class="content-source-copy">
+            <h3>CurseForge</h3>
+            <p data-i18n="source_curseforge_desc">Find community-made Minecraft mods, modpacks, and resource packs in the CurseForge catalog.</p>
+            <a href="https://www.curseforge.com/minecraft" target="_blank" rel="noopener noreferrer" data-i18n="source_curseforge_link">Explore CurseForge ↗</a>
+          </article>
+        </div>
+        <p class="content-sources-disclaimer" data-i18n="sources_disclaimer">Modrinth and CurseForge are independent platforms. Their names and logos belong to their respective owners.</p>
+      </section>
+      <section class="content-policy editorial-policy" id="content-policy">
+        <div>
+          <p class="eyebrow" data-i18n="trust_eyebrow">Why Hyperix</p>
+          <h2 data-i18n="trust_title">Built to respect<br /><em>players and creators.</em></h2>
+        </div>
+        <div class="policy-copy hx-trust-list">
+          <div class="hx-trust-item">
+            <strong data-i18n="trust_1_title">Official sources only</strong>
+            <p data-i18n="policy_p1">Hyperix uses official provider APIs for compatible Minecraft content discovery. It does not scrape provider websites, re-host files, bypass author restrictions, or present creator content as its own.</p>
+          </div>
+          <div class="hx-trust-item">
+            <strong data-i18n="trust_2_title">Creators decide</strong>
+            <p data-i18n="policy_p2">For CurseForge, a project is downloaded only where the creator has explicitly approved third-party distribution. Otherwise, Hyperix directs the player to the official project page.</p>
+          </div>
+          <div class="hx-trust-item">
+            <strong data-i18n="trust_3_title">Your account stays yours</strong>
+            <p data-i18n="trust_3_desc">Sign-in credentials are protected with Windows DPAPI on your PC and are never stored in plain text.</p>
+          </div>
+          <div class="hx-trust-item">
+            <strong data-i18n="trust_4_title">Free, no ads</strong>
+            <p data-i18n="trust_4_desc">The launcher is free to download and use, with no advertisements or bundled adware. Technical telemetry can be turned off in Settings. <a href="./privacy.html">Privacy policy ↗</a></p>
+          </div>
+        </div>
+      </section>
+      <section class="hx-faq-section" id="faq" aria-labelledby="faq-title">
+        <div class="hx-faq-head">
+          <p class="eyebrow" data-i18n="faq_eyebrow">Questions</p>
+          <h2 id="faq-title" data-i18n="faq_title">Good to know<br /><em>before you download.</em></h2>
+        </div>
+        <div class="hx-faq-list">
+          <details class="hx-faq-item">
+            <summary><span data-i18n="faq_1_q">Is Hyperix free?</span></summary>
+            <p data-i18n="faq_1_a">Yes. Hyperix is free to download and use, with no advertisements or bundled adware.</p>
+          </details>
+          <details class="hx-faq-item">
+            <summary><span data-i18n="faq_2_q">Which Minecraft does it run?</span></summary>
+            <p data-i18n="faq_2_a">Minecraft: Java Edition, with Vanilla, Fabric, Quilt, Forge and NeoForge instances. Sign in with a Microsoft account that owns Java Edition; Ely.by accounts are also supported.</p>
+          </details>
+          <details class="hx-faq-item">
+            <summary><span data-i18n="faq_3_q">Microsoft Store or the direct installer?</span></summary>
+            <p data-i18n="faq_3_a">Both install the same Hyperix app. The Microsoft Store handles installation and updates for you. The direct installer (.exe) may trigger a Windows SmartScreen notice for new releases, so verify the SHA-256 checksum shown in the download section.</p>
+          </details>
+          <details class="hx-faq-item">
+            <summary><span data-i18n="faq_4_q">Is my Microsoft account safe?</span></summary>
+            <p data-i18n="faq_4_a">Sign-in tokens are encrypted with Windows DPAPI, tied to your Windows user account, and never stored in plain text. They stay out of the launcher interface, logs, telemetry and crash reports.</p>
+          </details>
+          <details class="hx-faq-item">
+            <summary><span data-i18n="faq_5_q">Where are my worlds and mods stored?</span></summary>
+            <p data-i18n="faq_5_a">On your PC. Instances, worlds, mods, screenshots and settings stay local, and telemetry never includes world names, mod lists or file paths. You can turn telemetry off in Settings → Privacy.</p>
+          </details>
+          <details class="hx-faq-item">
+            <summary><span data-i18n="faq_6_q">Can I play with friends?</span></summary>
+            <p data-i18n="faq_6_a">Play with friends is in development and not included in the current stable release. You can preview it further down this page.</p>
+          </details>
+          <details class="hx-faq-item">
+            <summary><span data-i18n="faq_7_q">What do I need?</span></summary>
+            <p data-i18n="faq_7_a">Windows 10 version 2004 or later, or Windows 11, on a 64-bit (x64) PC, plus an internet connection for sign-in and downloads. You don't need to install Java first: Hyperix downloads a verified Eclipse Temurin runtime when a game version needs it.</p>
+          </details>
+        </div>
+      </section>
+      <section class="status editorial-status" id="available-platforms" aria-label="Project status">
+        <p class="eyebrow" data-i18n="status_eyebrow">Project status</p>
+        <h2 data-i18n="status_title">Available on Microsoft Store<br /><em>&amp; as an independent Windows release.</em></h2>
+        <p data-i18n="status_desc">Hyperix is certified on the Microsoft Store and available as an independent release. It is free to download and use, with no advertisements or bundled adware.</p>
+        <div class="editorial-cta">
+          <a id="available-windows-download" href="https://github.com/Hadeverl4/Hyperix-Releases/releases/download/v1.1.9/Hyperix-Launcher_1.1.9_x64-setup.exe">Download for Windows ↓</a>
+          <a href="https://apps.microsoft.com/detail/9nk9fxtbt77t" target="_blank" rel="noreferrer">Microsoft Store <span aria-hidden="true">↗</span></a>
+          <a href="./support.html">Support <span aria-hidden="true">↗</span></a>
+        </div>
+      </section>
+      <section class="installation-section" id="installation" aria-label="Installation and verification">
+        <aside class="download-notice" aria-label="Windows download verification">
+          <div class="download-notice-header">
+            <strong data-i18n="notice_header">Windows Installation & Integrity</strong>
+          </div>
+          <p data-i18n="notice_body">For verified one-click installation and automatic background updates, get Hyperix directly from the <strong>Microsoft Store</strong>. If you are using the standalone direct installer (.exe) above, Windows SmartScreen may show a temporary warning for new releases. Always verify the SHA-256 checksum below before running.</p>
+          <button class="hash-toggle" type="button" id="hash-toggle" aria-expanded="false" aria-controls="hash-container" data-i18n="hash_show">Show SHA-256 checksum</button>
+          <div class="hash-container" id="hash-container" hidden>
+            <code id="sha256-code">v1.1.9 SHA-256: 15a9688a105a9aaf2f3475f14980fe26fb521c760488273a400e2f06a0c62344</code>
+            <button class="copy-hash-btn" type="button" id="copy-hash-btn" aria-label="Copy SHA-256 checksum" data-i18n="copy_btn">Copy</button>
+          </div>
+        </aside>
+      </section>
+      <section class="p2p-preview" id="p2p-preview" aria-labelledby="p2p-title">
+        <div class="p2p-preview-heading p2p-preview-heading--centered">
+          <div>
+            <p class="eyebrow" data-i18n="p2p_eyebrow">COMING TO HYPERIX / PLAY WITH FRIENDS</p>
+            <h2 id="p2p-title" data-i18n="p2p_title">Your world,<br /><em>shared with friends.</em></h2>
+          </div>
+          <span class="p2p-preview-tag" data-i18n="p2p_tag">IN DEVELOPMENT</span>
+        </div>
+        <p class="p2p-preview-lede" data-i18n="p2p_lede">Plug and play with friends: host an existing world or a managed Vanilla server, share a room, and let friends join without exposing a public Minecraft port.</p>
+        <div class="p2p-cinematic-showcase" id="p2p-cinematic-showcase" aria-label="Play with friends launcher showcase">
+          <div class="p2p-cinematic-visual">
+            <div class="p2p-cinematic-glow" aria-hidden="true"></div>
+            <div class="p2p-cinematic-wave" aria-hidden="true"></div>
+            <div class="p2p-cinematic-wave" aria-hidden="true"></div>
+            <div class="p2p-cinematic-wave" aria-hidden="true"></div>
+            <div class="p2p-cinematic-frame">
+              <img id="p2p-showcase-image" src="./assets/screenshots/play-with-friendsmd-en.png" alt="Hyperix launcher Play with friends showcase" loading="lazy" decoding="async" />
+            </div>
+          </div>
+          <p class="p2p-cinematic-caption" data-i18n="p2p_showcase_note">Preview of the Play with friends experience inside Hyperix Launcher.</p>
+          <button class="p2p-wave-button" id="p2p-wave-button" type="button">
+            <span class="p2p-wave-surface" aria-hidden="true"></span>
+            <span class="p2p-wave-burst" aria-hidden="true"></span>
+            <span class="p2p-wave-label"><span data-i18n="p2p_demo_button">Play with friends</span></span>
+          </button>
+        </div>
+        <div class="p2p-preview-flow" aria-label="P2P preview workflow">
+          <article class="p2p-preview-step"><span data-i18n="p2p_step1_label">01 / HOST</span><strong data-i18n="p2p_step1_title">Choose your world</strong><p data-i18n="p2p_step1_body">Start from an existing world or a managed Vanilla server.</p></article>
+          <article class="p2p-preview-step"><span data-i18n="p2p_step2_label">02 / SHARE</span><strong data-i18n="p2p_step2_title">Invite your friends</strong><p data-i18n="p2p_step2_body">Create a room and share an invitation with the people you choose.</p></article>
+          <article class="p2p-preview-step"><span data-i18n="p2p_step3_label">03 / PLAY</span><strong data-i18n="p2p_step3_title">Join the adventure</strong><p data-i18n="p2p_step3_body">Connect through Hyperix while your Minecraft world stays under your control.</p></article>
+        </div>
+        <div class="p2p-preview-foot">
+          <p data-i18n="p2p_disclaimer">Technical preview. Internet P2P/relay compatibility, cross-network gameplay, and production rollout are still being validated. Not included in the current stable download.</p>
+        </div>
+      </section>
       <section class="changelog-section" id="changelog" aria-labelledby="changelog-title">
         <div class="changelog-header">
           <div>
-            <p class="eyebrow" style="margin-bottom: 0.6rem; color: #a5b4fc;" data-i18n="changelog_eyebrow">Version history</p>
-            <h2 id="changelog-title" data-i18n="changelog_title">Continuous updates, transparently documented.</h2>
+            <p class="eyebrow" data-i18n="changelog_eyebrow">Version history</p>
+            <h2 id="changelog-title" data-i18n="changelog_title">Continuous updates,<br /><em>transparently documented.</em></h2>
           </div>
           <div class="changelog-filters" role="tablist" aria-label="Filter releases by category">
             <button class="changelog-filter-btn active" type="button" data-filter="all"><span data-i18n="filter_all">All releases</span> (<span id="count-all">15</span>)</button>
             <button class="changelog-filter-btn" type="button" data-filter="hyperix">Hyperix (v1.1.x)</button>
             <button class="changelog-filter-btn" type="button" data-filter="legacy">HyperKraft (v1.0.x)</button>
           </div>
+          <div class="hx-shape-slot hx-shape-slot--wide" data-hx-shape-slot="changelog" aria-hidden="true"></div>
         </div>
+        <div class="hx-shape-slot hx-shape-slot--narrow" data-hx-shape-slot="changelog" aria-hidden="true"></div>
 
         <div class="timeline-stream">
           <!-- v1.1.9 (Latest) -->
@@ -623,34 +710,46 @@
         </div>
 
         <div class="changelog-expand-bar">
+          <a class="hx-all-notes" href="./release-notes.html" data-i18n="changelog_all_notes">All release notes ↗</a>
           <button class="changelog-expand-btn" type="button" id="changelog-toggle-btn">
             <span>Show full history (9 earlier releases)</span>
             <span class="expand-arrow" aria-hidden="true">▾</span>
           </button>
         </div>
       </section>
-
-      <section class="content-policy editorial-policy" id="content-policy">
-        <div>
-          <p class="eyebrow" style="margin-bottom: 0.8rem; color: #38bdf8;" data-i18n="policy_eyebrow">Content providers</p>
-          <h2 data-i18n="policy_title">Discovery without taking ownership of creator work.</h2>
+      <section class="hx-credits" id="contributors" aria-labelledby="credits-title">
+        <div class="hx-credits-head">
+          <p class="eyebrow" data-i18n="credits_eyebrow">Credits</p>
+          <h2 id="credits-title" data-i18n="credits_title">Built together,<br /><em>shipped with care.</em></h2>
+          <p class="hx-credits-lede" data-i18n="credits_lede">Hyperix is maintained by one developer, with support from contributors who helped shape the app.</p>
+          <div class="hx-shape-slot hx-shape-slot--heart" data-hx-shape-slot="credits" aria-hidden="true"></div>
         </div>
-        <div class="policy-copy">
-          <p data-i18n="policy_p1">Hyperix uses official provider APIs for compatible Minecraft content discovery. It does not scrape provider websites, re-host files, bypass author restrictions, or present creator content as its own.</p>
-          <p data-i18n="policy_p2">For CurseForge, a project is downloaded only where the creator has explicitly approved third-party distribution. Otherwise, Hyperix directs the player to the official project page.</p>
+        <div class="hx-credits-body">
+          <ul class="hx-credits-list" role="list">
+          <li class="hx-credit is-maintainer"><span class="hx-credit-mark" aria-hidden="true">H</span><span class="hx-credit-name">Hadeverl4</span><span class="hx-credit-role" data-i18n="credits_role_maintainer">Maintainer</span></li>
+          <li class="hx-credit"><span class="hx-credit-mark" aria-hidden="true">S</span><span class="hx-credit-name">supertomllll</span><span class="hx-credit-role" data-i18n="credits_role_contributor">Contributor</span></li>
+          <li class="hx-credit"><span class="hx-credit-mark" aria-hidden="true">K</span><span class="hx-credit-name">kbaro</span><span class="hx-credit-role" data-i18n="credits_role_contributor">Contributor</span></li>
+          </ul>
+          <p class="hx-credits-thanks" data-i18n="credits_thanks">Thanks also to everyone who tests releases and reports issues. <a href="./support.html">Get involved ↗</a></p>
+          <div class="hx-support">
+            <p class="hx-support-label" data-i18n="credits_support_label">Support development</p>
+            <p class="hx-support-copy" data-i18n="credits_support_copy">Donations are voluntary and help cover infrastructure and development time. They don't unlock features or in-game perks.</p>
+            <div class="hx-support-links">
+              <a class="hx-support-btn" href="https://buymeacoffee.com/hadeverl4" target="_blank" rel="noopener noreferrer">Buy Me a Coffee <span aria-hidden="true">↗</span></a>
+              <a class="hx-support-btn" href="https://ko-fi.com/phongcodex" target="_blank" rel="noopener noreferrer">Ko-fi <span aria-hidden="true">↗</span></a>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section class="status editorial-status" id="available-platforms" aria-label="Project status">
-        <p class="eyebrow" style="margin-bottom: 0.8rem; color: #818cf8;" data-i18n="status_eyebrow">Project status</p>
-        <h2 data-i18n="status_title">Available on Microsoft Store & Independent Windows Release.</h2>
-        <p data-i18n="status_desc">Hyperix is certified on the Microsoft Store and available as an independent release. It is a non-commercial project with no advertisements, subscriptions, paid tiers, or bundled third-party software.</p>
-        <div class="editorial-cta">
-          <a id="available-windows-download" href="https://github.com/Hadeverl4/Hyperix-Releases/releases/download/v1.1.9/Hyperix-Launcher_1.1.9_x64-setup.exe">Download for Windows ↓</a>
-          <a href="https://apps.microsoft.com/detail/9nk9fxtbt77t" target="_blank" rel="noreferrer">Microsoft Store <span aria-hidden="true">↗</span></a>
-          <a href="./support.html">Support <span aria-hidden="true">↗</span></a>
-        </div>
-      </section>
+
+
+
+
+
+
+
+
     </main>
 
     <!-- Animated Lightbox Dialog -->
@@ -681,21 +780,42 @@
       </div>
     </dialog>
 
-    <footer>
-      <div class="footer-identity">
-        <div class="footer-brand-row">
-          <span class="footer-brand-mark" aria-hidden="true"></span>
-          <span class="footer-wordmark" data-wordmark="HYPERIX">HYPERIX</span>
+    <footer class="hx-footer">
+      <div class="hx-footer-top">
+        <div class="footer-identity">
+          <div class="footer-brand-row">
+            <span class="footer-brand-mark" aria-hidden="true"></span>
+            <span class="footer-wordmark" data-wordmark="HYPERIX">HYPERIX</span>
+          </div>
+          <small data-i18n="footer_tagline">Independent Minecraft launcher project</small>
         </div>
-        <small data-i18n="footer_tagline">Independent Minecraft launcher project</small>
+        <div class="hx-footer-cols" role="navigation" aria-label="Footer">
+          <div>
+            <span class="hx-footer-label" data-i18n="footer_col_product">Product</span>
+            <a href="#features" data-i18n="nav_features">Features</a>
+            <a href="#gallery" data-i18n="nav_gallery">Gallery</a>
+            <a href="#changelog" data-i18n="nav_changelog">Changelog</a>
+            <a href="./release-notes.html" data-i18n="footer_release_notes">Release notes</a>
+          </div>
+          <div>
+            <span class="hx-footer-label" data-i18n="footer_col_get">Get Hyperix</span>
+            <a href="https://apps.microsoft.com/detail/9nk9fxtbt77t" target="_blank" rel="noreferrer">Microsoft Store</a>
+            <a href="#available-platforms" data-i18n="footer_download">Download for Windows</a>
+            <a href="#contributors" data-i18n="footer_donate">Support development</a>
+          </div>
+          <div>
+            <span class="hx-footer-label" data-i18n="footer_col_help">Help &amp; legal</span>
+            <a href="./privacy.html" data-i18n="footer_privacy">Privacy</a>
+            <a href="./terms.html" data-i18n="footer_terms">Terms</a>
+            <a href="./support.html" data-i18n="footer_support">Support</a>
+            <a href="mailto:hyperix.contact@gmail.com" data-i18n="footer_contact">Contact <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
       </div>
-      <div class="footer-links">
-        <a href="#changelog" data-i18n="nav_changelog">Changelog</a>
-        <a href="https://apps.microsoft.com/detail/9nk9fxtbt77t" target="_blank" rel="noreferrer">Microsoft Store</a>
-        <a href="./privacy.html" data-i18n="footer_privacy">Privacy</a>
-        <a href="./terms.html" data-i18n="footer_terms">Terms</a>
-        <a href="./support.html" data-i18n="footer_support">Support</a>
-        <a href="mailto:hyperix.contact@gmail.com" data-i18n="footer_contact">Contact <span aria-hidden="true">↗</span></a>
+      <div class="hx-footer-mark" aria-hidden="true">HYPERIX</div>
+      <div class="hx-footer-bottom">
+        <span>© Hyperix Launcher</span>
+        <span data-i18n="footer_disclaimer">Not an official Minecraft product. Not approved by or associated with Mojang or Microsoft.</span>
       </div>
     </footer>
 
@@ -724,10 +844,11 @@
     <script src="./scroll-reveal.js" defer></script>
     <script src="./p2p-wave-demo.js" defer></script>
     <script src="./p2p-showcase.js" defer></script>
-    <!-- Three.js Library and 3D Scene Initialization -->
+    <!-- Three.js particle morph background -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="./three-scene.js"></script>
+    <script src="./particle-morph.js"></script>
 
+    <script src="./site-copy.js"></script>
     <script src="./vi-copy-polish.js?v=gallery-lang-20261021b"></script>
     <!-- Dialog & Interaction Scripts -->
     <script>
@@ -798,16 +919,16 @@
           shot_5_title: "Skin selector &amp; 3D preview",
           shot_5_desc: "Preview skins in interactive 3D, switch variants, and customize your look.",
           changelog_eyebrow: "Version history",
-          changelog_title: "Continuous updates, transparently documented.",
+          changelog_title: "Continuous updates,<br /><em>transparently documented.</em>",
           filter_all: "All releases",
           dialog_hint: "Press ‹ › arrows or Esc to close",
           policy_eyebrow: "Content providers",
-          policy_title: "Discovery without taking ownership of creator work.",
+          policy_title: "Discovery without taking<br /><em>ownership of creator work.</em>",
           policy_p1: "Hyperix uses official provider APIs for compatible Minecraft content discovery. It does not scrape provider websites, re-host files, bypass author restrictions, or present creator content as its own.",
           policy_p2: "For CurseForge, a project is downloaded only where the creator has explicitly approved third-party distribution. Otherwise, Hyperix directs the player to the official project page.",
           status_eyebrow: "Project status",
-          status_title: "Available on Microsoft Store &amp; Independent Windows Release.",
-          status_desc: "Hyperix is certified on the Microsoft Store and available as an independent release. It is a non-commercial project with no advertisements, subscriptions, paid tiers, or bundled third-party software.",
+          status_title: "Available on Microsoft Store<br /><em>&amp; as an independent Windows release.</em>",
+          status_desc: "Hyperix is certified on the Microsoft Store and available as an independent release. It is free to download and use, with no advertisements or bundled adware.",
           footer_tagline: "Independent Minecraft launcher project",
           footer_privacy: "Privacy",
           footer_terms: "Terms",
@@ -919,7 +1040,7 @@
           policy_p2: "Đối với CurseForge, tệp chỉ được tải trực tiếp khi tác giả đã bật quyền cho phép phân phối qua bên thứ ba. Nếu không, Hyperix sẽ điều hướng người chơi đến trang chính thức của dự án.",
           status_eyebrow: "Trạng thái dự án",
           status_title: "Đã có mặt trên Microsoft Store &amp; Bản phát hành Windows độc lập.",
-          status_desc: "Hyperix đã được chứng nhận trên Microsoft Store và cung cấp dưới dạng bản phát hành độc lập. Đây là dự án phi thương mại, hoàn toàn không có quảng cáo, không thu phí dịch vụ hay gói trả phí, và không đính kèm bất kỳ phần mềm rác nào.",
+          status_desc: "Hyperix đã được chứng nhận trên Microsoft Store và cung cấp dưới dạng bản phát hành độc lập. Hyperix miễn phí tải và sử dụng, không quảng cáo và không cài kèm phần mềm quảng cáo.",
           footer_tagline: "Dự án trình khởi chạy Minecraft độc lập",
           footer_privacy: "Quyền riêng tư",
           footer_terms: "Điều khoản",
@@ -1028,9 +1149,16 @@
       };
 
       // Natural Vietnamese copy takes precedence over legacy translations.
+      Object.assign(translations.en, {"features_kicker":"WHAT HYPERIX DOES","feat_1_title":"Isolated instances","feat_1_desc":"Every setup keeps its own mods, worlds, configs and resource packs, so one experiment never breaks another.","feat_2_title":"Modrinth &amp; CurseForge","feat_2_desc":"Install mods, modpacks, resource packs, shaders and data packs from both catalogs, filtered to match your instance's loader and version.","feat_3_title":"Every major loader","feat_3_desc":"Vanilla, Fabric, Quilt, Forge and NeoForge, each launched exactly as you chose it.","feat_4_title":"Protected sign-in","feat_4_desc":"Sign in with Microsoft or Ely.by. Tokens are encrypted with Windows DPAPI and never written to logs or telemetry.","feat_5_title":"Skins in 3D","feat_5_desc":"Preview skins in interactive 3D, pick Classic or Slim, then apply the skin and cape to your Microsoft account.","feat_6_title":"Servers at a glance","feat_6_desc":"See latency, status and player counts with live pings before you join.","trust_eyebrow":"WHY HYPERIX","trust_title":"Built to respect<br /><em>players and creators.</em>","trust_1_title":"Official sources only","trust_2_title":"Creators decide","trust_3_title":"Your account stays yours","trust_3_desc":"Sign-in credentials are protected with Windows DPAPI on your PC and are never stored in plain text.","trust_4_title":"Free, no ads","trust_4_desc":"The launcher is free to download and use, with no advertisements or bundled adware. Technical telemetry can be turned off in Settings. <a href=\"./privacy.html\">Privacy policy ↗</a>","faq_eyebrow":"QUESTIONS","faq_title":"Good to know<br /><em>before you download.</em>","faq_1_q":"Is Hyperix free?","faq_1_a":"Yes. Hyperix is free to download and use, with no advertisements or bundled adware.","faq_2_q":"Which Minecraft does it run?","faq_2_a":"Minecraft: Java Edition, with Vanilla, Fabric, Quilt, Forge and NeoForge instances. Sign in with a Microsoft account that owns Java Edition; Ely.by accounts are also supported.","faq_3_q":"Microsoft Store or the direct installer?","faq_3_a":"Both install the same Hyperix app. The Microsoft Store handles installation and updates for you. The direct installer (.exe) may trigger a Windows SmartScreen notice for new releases, so verify the SHA-256 checksum shown in the download section.","faq_4_q":"Is my Microsoft account safe?","faq_4_a":"Sign-in tokens are encrypted with Windows DPAPI, tied to your Windows user account, and never stored in plain text. They stay out of the launcher interface, logs, telemetry and crash reports.","faq_5_q":"Where are my worlds and mods stored?","faq_5_a":"On your PC. Instances, worlds, mods, screenshots and settings stay local, and telemetry never includes world names, mod lists or file paths. You can turn telemetry off in Settings → Privacy.","faq_6_q":"Can I play with friends?","faq_6_a":"Play with friends is in development and not included in the current stable release. You can preview it further down this page.","faq_7_q":"What do I need?","faq_7_a":"Windows 10 version 2004 or later, or Windows 11, on a 64-bit (x64) PC, plus an internet connection for sign-in and downloads. You don't need to install Java first: Hyperix downloads a verified Eclipse Temurin runtime when a game version needs it.","hero_hint":"The download button starts the installer directly. <a href=\"#installation\">Verify the SHA-256 checksum ↓</a>","changelog_all_notes":"All release notes ↗"});
+      Object.assign(translations.en, { credits_eyebrow: 'Credits', credits_title: 'Built together,<br /><em>shipped with care.</em>', credits_lede: 'Hyperix is maintained by one developer, with support from contributors who helped shape the app.', credits_role_maintainer: 'Maintainer', credits_role_contributor: 'Contributor', credits_thanks: 'Thanks also to everyone who tests releases and reports issues. <a href="./support.html">Get involved ↗</a>', credits_support_label: 'Support development', credits_support_copy: "Donations are voluntary and help cover infrastructure and development time. They don't unlock features or in-game perks." });
+      Object.assign(translations.en, { hero_meta_platform: 'Windows · x64', hero_meta_free: 'Free · No ads', hero_meta_sources: 'Modrinth · CurseForge' });
       Object.assign(translations.en, { nav_features: 'Features', nav_gallery: 'Gallery', p2p_step1_label:'01 / HOST', p2p_step2_label:'02 / SHARE', p2p_step3_label:'03 / PLAY' });
       Object.assign(translations.en, {p2p_showcase_kicker:'PLAY WITH FRIENDS / SHOWCASE',p2p_showcase_title:'Your world, shared with friends.',p2p_showcase_subtitle:'A familiar place to start playing together, straight from Hyperix.',p2p_showcase_note:'Preview of the Play with friends experience inside Hyperix Launcher.'});
       Object.assign(translations.en, {p2p_eyebrow:'COMING TO HYPERIX / PLAY WITH FRIENDS',p2p_title:'Your world,<br /><em>shared with friends.</em>',p2p_tag:'IN DEVELOPMENT',p2p_lede:'Plug and play with friends: host an existing world or a managed Vanilla server, share a room, and let friends join without exposing a public Minecraft port.'});
+      if (window.hyperixSiteCopy) {
+        Object.assign(translations.en, window.hyperixSiteCopy.en);
+        Object.assign(translations.vi, window.hyperixSiteCopy.vi);
+      }
       Object.assign(translations.vi, window.hyperixVietnameseCopy || {});
       Object.assign(translations.en, {shot_6_title:'Play with friends',shot_6_desc:'Open your Minecraft world and invite friends to play together.'});
       if (window.hyperixEnglishScreenshots) screenshotsLocalized.en = window.hyperixEnglishScreenshots;
@@ -1053,7 +1181,7 @@
             entry.classList.add('is-hidden');
           } else {
             matchedCount++;
-            if (!isExpanded && matchedCount > 5) {
+            if (!isExpanded && matchedCount > 3) {
               entry.classList.add('is-hidden');
             } else {
               entry.classList.remove('is-hidden');
@@ -1063,11 +1191,11 @@
 
         if (toggleBtn) {
           const totalMatching = Array.from(releaseEntries).filter(e => currentFilter === 'all' || e.dataset.category === currentFilter).length;
-          if (totalMatching <= 5) {
+          if (totalMatching <= 3) {
             toggleBtn.parentElement.style.display = 'none';
           } else {
             toggleBtn.parentElement.style.display = 'flex';
-            const hiddenCount = totalMatching - 5;
+            const hiddenCount = totalMatching - 3;
             const t = translations[currentLang] || translations.en;
             if (isExpanded) {
               toggleBtn.classList.add('is-expanded');
@@ -1473,11 +1601,12 @@
           const exeAsset = latest.assets && latest.assets.find((a) => a.name && a.name.endsWith('.exe'));
           if (exeAsset) {
             const platformDownload = document.getElementById('available-windows-download');
-            // Hero CTAs intentionally scroll to the platform section.
-            // Direct installer links remain available in release entries.
+            // The hero and platform buttons download the latest installer directly.
             if (platformDownload && exeAsset.browser_download_url) {
               platformDownload.href = exeAsset.browser_download_url;
             }
+            const heroDownload = document.getElementById('primary-download-btn');
+            if (heroDownload && exeAsset.browser_download_url) heroDownload.href = exeAsset.browser_download_url;
 
             if (exeAsset.digest && exeAsset.digest.startsWith('sha256:')) {
               const sha = exeAsset.digest.replace('sha256:', '');
@@ -1540,5 +1669,8 @@
     <script src="./mux-hero-video.js"></script>
     <script src="./spotify-music.js"></script>
     <script src="./gallery-slider.js?v=gallery-lang-20261021b"></script>
+    <!-- Motion layer: Lenis smooth scroll, choreographed reveals, section rail -->
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.27/dist/lenis.min.js" integrity="sha384-R18XzqnxvVLEF+BYfhpmDx30v7eP83fAckyfoRzK7/Uf6nGqufcmsk0eAKo7S3RU" crossorigin="anonymous" defer></script>
+    <script src="./motion.js" defer></script>
   </body>
 </html>

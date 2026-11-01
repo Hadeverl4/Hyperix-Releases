@@ -1,22 +1,95 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-hx-particles="galaxy">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Read Hyperix Launcher release notes, improvements and fixes.">
 <title>Release Notes — Hyperix Launcher</title>
-<link rel="icon" href="./favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@1,6..72,400;1,6..72,500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" type="image/x-icon" href="./favicon.ico?v=artwork-20261020">
+<link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png?v=artwork-20261020">
+<link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png?v=artwork-20261020">
+<link rel="stylesheet" href="./styles.css">
+<link rel="stylesheet" href="./cinematic.css">
+<link rel="stylesheet" href="./pages.css">
 <link rel="stylesheet" href="./release-notes.css">
+<link rel="stylesheet" href="./motion.css">
+<link rel="stylesheet" href="./hx-theme.css">
+<script src="./site-copy.js"></script>
 <script src="./release-notes.js" defer></script>
 </head>
 <body>
-<header class="topbar"><a class="brand" href="./index.html"><img src="./assets/hyperix-logo.png" alt=""> <strong>Hyperix</strong><span>Launcher</span></a><nav><a href="./index.html#changelog" id="back">← Version history</a><button id="language" type="button">VI</button></nav></header>
-<main class="layout">
-<div class="eyebrow">HYPERIX / RELEASE JOURNAL</div>
-<section class="intro"><div><span class="chip" id="type">RELEASE NOTES</span><h1 id="title">Release notes<span class="accent">.</span></h1><p id="subtitle">Features, improvements and fixes. All in one place.</p></div><div class="meta"><span id="date"></span><span id="tag"></span></div></section>
-<div class="divider"></div>
-<div class="body-grid"><aside><div class="aside-label">RELEASE</div><div id="version-label">—</div><a href="./index.html#changelog" id="all-releases">All releases ↗</a></aside><article id="content" aria-live="polite"><p class="status">Loading release notes…</p></article></div>
-<div class="technical"><details><summary id="technical-title">Technical details &amp; source <span>+</span></summary><p id="technical-description">Original release metadata is maintained on GitHub.</p><a id="source" href="https://github.com/Hadeverl4/Hyperix-Releases/releases" target="_blank" rel="noopener noreferrer">View original on GitHub ↗</a></details></div>
+<canvas id="webgl-canvas" class="webgl-canvas" aria-hidden="true"></canvas>
+<main class="policy-page release-page">
+  <nav aria-label="Primary navigation">
+    <a class="brand" href="./index.html" aria-label="Hyperix Launcher home">
+      <img class="brand-mark" src="./assets/hyperix-artwork-white.png" alt="" aria-hidden="true">
+      <span>Hyperix <em>Launcher</em></span>
+    </a>
+    <div class="nav-right">
+      <a class="source-link nav-discover" href="./index.html#features" data-i18n="nav_features">Features</a>
+      <a class="source-link nav-discover" href="./index.html#gallery" data-i18n="nav_gallery">Gallery</a>
+      <a class="source-link" href="./index.html#changelog" data-i18n="nav_changelog">Changelog</a>
+      <a class="source-link" id="nav-store-link" href="https://apps.microsoft.com/detail/9nk9fxtbt77t" target="_blank" rel="noreferrer" data-i18n="nav_store">Microsoft Store <span aria-hidden="true">↗</span></a>
+      <div class="lang-switch" role="group" aria-label="Language selection">
+        <button class="lang-btn" type="button" data-lang="en" aria-label="Switch to English">EN</button>
+        <span class="lang-divider" aria-hidden="true">/</span>
+        <button class="lang-btn" type="button" data-lang="vi" aria-label="Chuyển sang Tiếng Việt">VI</button>
+      </div>
+    </div>
+  </nav>
+  <div class="layout">
+    <div class="eyebrow">HYPERIX / RELEASE JOURNAL</div>
+    <section class="intro"><div><span class="chip" id="type">RELEASE NOTES</span><h1 id="title">Release notes</h1><p id="subtitle">Features, improvements and fixes. All in one place.</p></div><div class="meta"><span id="date"></span><span id="tag"></span></div></section>
+    <div class="divider"></div>
+    <div class="body-grid"><aside><div class="aside-label">RELEASES</div><div id="version-label">—</div><a href="./index.html#changelog" id="all-releases">All releases ↗</a></aside><article id="content" aria-live="polite"><p class="status">Loading release notes…</p></article></div>
+    <div class="technical"><details><summary id="technical-title">Technical details &amp; source <span>+</span></summary><p id="technical-description">Original release metadata is maintained on GitHub.</p><a id="source" href="https://github.com/Hadeverl4/Hyperix-Releases/releases" target="_blank" rel="noopener noreferrer">View original on GitHub ↗</a></details></div>
+  </div>
 </main>
-<footer><span>© Hyperix Launcher</span><a href="./index.html">Home</a><a href="./privacy.html">Privacy</a><a href="./support.html">Support</a></footer>
-</body></html>
+<footer class="hx-footer">
+      <div class="hx-footer-top">
+        <div class="footer-identity">
+          <div class="footer-brand-row">
+            <span class="footer-brand-mark" aria-hidden="true"></span>
+            <span class="footer-wordmark" data-wordmark="HYPERIX">HYPERIX</span>
+          </div>
+          <small data-i18n="footer_tagline">Independent Minecraft launcher project</small>
+        </div>
+        <div class="hx-footer-cols" role="navigation" aria-label="Footer">
+          <div>
+            <span class="hx-footer-label" data-i18n="footer_col_product">Product</span>
+            <a href="./index.html#features" data-i18n="nav_features">Features</a>
+            <a href="./index.html#gallery" data-i18n="nav_gallery">Gallery</a>
+            <a href="./index.html#changelog" data-i18n="nav_changelog">Changelog</a>
+            <a href="./release-notes.html" data-i18n="footer_release_notes">Release notes</a>
+          </div>
+          <div>
+            <span class="hx-footer-label" data-i18n="footer_col_get">Get Hyperix</span>
+            <a href="https://apps.microsoft.com/detail/9nk9fxtbt77t" target="_blank" rel="noreferrer">Microsoft Store</a>
+            <a href="./index.html#available-platforms" data-i18n="footer_download">Download for Windows</a>
+            <a href="./index.html#contributors" data-i18n="footer_donate">Support development</a>
+          </div>
+          <div>
+            <span class="hx-footer-label" data-i18n="footer_col_help">Help &amp; legal</span>
+            <a href="./privacy.html" data-i18n="footer_privacy">Privacy</a>
+            <a href="./terms.html" data-i18n="footer_terms">Terms</a>
+            <a href="./support.html" data-i18n="footer_support">Support</a>
+            <a href="mailto:hyperix.contact@gmail.com" data-i18n="footer_contact">Contact <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="hx-footer-mark" aria-hidden="true">HYPERIX</div>
+      <div class="hx-footer-bottom">
+        <span>© Hyperix Launcher</span>
+        <span data-i18n="footer_disclaimer">Not an official Minecraft product. Not approved by or associated with Mojang or Microsoft.</span>
+      </div>
+    </footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+<script src="./particle-morph.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.3.27/dist/lenis.min.js" integrity="sha384-R18XzqnxvVLEF+BYfhpmDx30v7eP83fAckyfoRzK7/Uf6nGqufcmsk0eAKo7S3RU" crossorigin="anonymous" defer></script>
+<script src="./nav-state.js" defer></script>
+<script src="./motion.js" defer></script>
+</body>
+</html>
