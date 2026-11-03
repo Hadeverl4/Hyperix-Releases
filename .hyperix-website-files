@@ -1,6 +1,4 @@
-README.md
 assets/apple-touch-icon.png
-assets/audio/spotify-playlist-cover.jpg
 assets/discovery.png
 assets/favicon-16x16.png
 assets/favicon-32x32.png
@@ -48,7 +46,6 @@ favicon.ico
 fonts.css
 gallery-slider.js
 hash-toggle.js
-hero-video.js
 hx-theme.css
 index.html
 mobile-polish.css
@@ -71,9 +68,7 @@ release-notes.js
 scroll-reveal.js
 site-copy.js
 splash-scroll-lock.js
-spotify-music.js
 styles.css
 support.html
 terms.html
-three-scene.js
 vi-copy-polish.js
