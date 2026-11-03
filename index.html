@@ -5,10 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="Hyperix Launcher is an independent Minecraft desktop launcher for safe, isolated instance management." />
     <title>Hyperix Launcher</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preconnect" href="https://stream.mux.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@1,6..72,400;1,6..72,500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link href="./fonts.css" rel="stylesheet" />
     <link rel="icon" type="image/x-icon" href="./favicon.ico?v=artwork-20261020" />
     <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon-16x16.png?v=artwork-20261020" />
     <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png?v=artwork-20261020" />
@@ -293,7 +291,7 @@
           </details>
           <details class="hx-faq-item">
             <summary><span data-i18n="faq_2_q">Which Minecraft does it run?</span></summary>
-            <p data-i18n="faq_2_a">Minecraft: Java Edition, with Vanilla, Fabric, Quilt, Forge and NeoForge instances. Sign in with a Microsoft account that owns Java Edition; Ely.by accounts are also supported.</p>
+            <p data-i18n="faq_2_a">Minecraft: Java Edition, with Vanilla, Fabric, Quilt, Forge and NeoForge instances. Sign in with a Microsoft account that owns Java Edition. Ely.by accounts are also supported.</p>
           </details>
           <details class="hx-faq-item">
             <summary><span data-i18n="faq_3_q">Microsoft Store or the direct installer?</span></summary>
@@ -305,7 +303,7 @@
           </details>
           <details class="hx-faq-item">
             <summary><span data-i18n="faq_5_q">Where are my worlds and mods stored?</span></summary>
-            <p data-i18n="faq_5_a">On your PC. Instances, worlds, mods, screenshots and settings stay local, and telemetry never includes world names, mod lists or file paths. You can turn telemetry off in Settings → Privacy.</p>
+            <p data-i18n="faq_5_a">On your PC. Instances, worlds, mods, screenshots and settings stay local, and telemetry never includes world names, mod lists or file paths. You can turn telemetry off in Settings → Privacy. If you use Hyperix Connect, your Hyperix ID and friends list are stored online.</p>
           </details>
           <details class="hx-faq-item">
             <summary><span data-i18n="faq_6_q">Can I play with friends?</span></summary>
@@ -407,10 +405,10 @@
               </div>
               <p class="release-summary" data-i18n="rel_1_1_9_summary">Hyperix 1.1.9 mang đến hỗ trợ CurseForge toàn diện, theo dõi nội dung instance thời gian thực, hiển thị tiến trình tải trên Taskbar Windows và tinh chỉnh giao diện hộp thoại mượt mà.</p>
               <ul class="release-bullets">
-                <li data-i18n="rel_1_1_9_b1"><strong>CurseForge:</strong> Cài mod, resource pack, shader và modpack trực tiếp từ CurseForge; đổi phiên bản với lọc loader theo instance; Data Packs cài theo từng thế giới.</li>
+                <li data-i18n="rel_1_1_9_b1"><strong>CurseForge:</strong> Cài mod, resource pack, shader và modpack trực tiếp từ CurseForge, đổi phiên bản với lọc loader theo instance, và cài Data Packs theo từng thế giới.</li>
                 <li data-i18n="rel_1_1_9_b2"><strong>Nội dung instance:</strong> Danh sách cập nhật thời gian thực khi thêm/xóa file, hiển thị trạng thái kiểm tra nguồn và đổi phiên bản tại chỗ cho cả Modrinth &amp; CurseForge.</li>
                 <li data-i18n="rel_1_1_9_b3"><strong>Tiện ích hệ thống:</strong> Thanh tiến độ trên biểu tượng taskbar Windows khi tải modpack, thông báo có logo Hyperix, thanh quản lý dung lượng ổ đĩa 4 phần không làm treo app.</li>
-                <li data-i18n="rel_1_1_9_b4"><strong>Giao diện:</strong> Các hộp thoại dùng chung chuẩn toàn màn hình làm mờ nền; sidebar giữ đủ nút khi thu nhỏ cửa sổ; lưu thời gian chơi ở cấp launcher.</li>
+                <li data-i18n="rel_1_1_9_b4"><strong>Giao diện:</strong> Các hộp thoại dùng chung chuẩn toàn màn hình làm mờ nền, sidebar giữ đủ nút khi thu nhỏ cửa sổ, và lưu thời gian chơi ở cấp launcher.</li>
               </ul>
             </div>
           </article>
@@ -556,7 +554,7 @@
               </div>
               <ul class="release-bullets">
                 <li>Instance Detail uses compact, stable pagination with previous/next controls and direct page selector.</li>
-                <li>Removed redundant modpack content card; keeps managed-pack status concise.</li>
+                <li>Removed the redundant modpack content card and kept managed-pack status concise.</li>
                 <li>Added Storage Manager for safe cleanup of logs, crash reports, and stale download staging files.</li>
                 <li>Added clearer local-content provenance and hardened provider network handling.</li>
                 <li>Home greeting and interface polish improvements.</li>
@@ -824,19 +822,6 @@
       <span class="pulse-dot" aria-hidden="true"></span>
       <span id="video-toggle-label" data-i18n="video_ambient_label">Ambient Video</span>
     </button>
-    <div class="official-music-dock" id="music-widget" aria-label="Official Minecraft music player">
-      <button class="official-music-vinyl" id="spotify-vinyl-trigger" type="button" aria-expanded="false" aria-controls="spotify-panel" aria-label="Open Spotify music player">
-        <span class="official-vinyl-label" aria-hidden="true"><img class="official-vinyl-cover" src="./assets/audio/spotify-playlist-cover.jpg" alt="" width="52" height="52" decoding="async" /><span class="official-vinyl-hole"></span></span>
-      </button>
-      <div class="official-music-panel" id="spotify-panel">
-        <div class="official-music-caption"><span>MINECRAFT CREATOR-SAFE</span><span id="soundtrack-label" role="status">Connecting to Spotify…</span></div>
-        <div class="spotify-embed-shell">
-          <div id="spotify-embed" aria-label="Spotify official embedded player"></div>
-          <span class="spotify-embed-corner-guard" aria-hidden="true"></span>
-        </div>
-        <a href="https://open.spotify.com/playlist/5T4KWhz9Q8r98skQBimtlH" target="_blank" rel="noopener noreferrer">Listen on Spotify ↗</a>
-      </div>
-    </div>
 
     <script src="./nav-state.js"></script>
     <script src="./splash-scroll-lock.js" defer></script>
@@ -949,10 +934,10 @@
           rel_expand_collapse: "Collapse earlier releases",
 
           rel_1_1_9_summary: "Hyperix 1.1.9 brings comprehensive CurseForge integration, real-time instance content monitoring, Windows Taskbar download progress, and unified full-screen modal styling.",
-          rel_1_1_9_b1: "<strong>CurseForge:</strong> Install mods, resource packs, shaders, and modpacks directly from CurseForge; switch versions with instance loader filtering; world-specific Data Packs.",
+          rel_1_1_9_b1: "<strong>CurseForge:</strong> Install mods, resource packs, shaders, and modpacks directly from CurseForge, switch versions with instance loader filtering, and use world-specific Data Packs.",
           rel_1_1_9_b2: "<strong>Instance Content:</strong> Real-time updates when files are added or deleted, verification status indicators, and in-place version switching for both Modrinth &amp; CurseForge.",
           rel_1_1_9_b3: "<strong>System Integrations:</strong> Progress bar on Windows taskbar icon during modpack downloads, branded notifications, non-blocking 4-segment disk storage manager.",
-          rel_1_1_9_b4: "<strong>Interface Polish:</strong> Standardized full-screen backdrop-blur dialogs; persistent sidebar buttons on narrow windows; launcher-level total play-time tracking.",
+          rel_1_1_9_b4: "<strong>Interface Polish:</strong> Standardized full-screen backdrop-blur dialogs, persistent sidebar buttons on narrow windows, and launcher-level total play-time tracking.",
 
           rel_1_1_8_summary: "Hyperix 1.1.8 improves instance content management and settings, adds safer Modrinth included-content filtering, and fixes UI layering.",
           rel_1_1_8_b1: "Improved instance content management and settings controls.",
@@ -1061,10 +1046,10 @@
           rel_expand_collapse: "Thu gọn các bản phát hành trước",
 
           rel_1_1_9_summary: "Hyperix 1.1.9 mang đến hỗ trợ CurseForge toàn diện, theo dõi nội dung instance thời gian thực, hiển thị tiến trình tải trên Taskbar Windows và tinh chỉnh giao diện hộp thoại mượt mà.",
-          rel_1_1_9_b1: "<strong>CurseForge:</strong> Cài mod, resource pack, shader và modpack trực tiếp từ CurseForge; đổi phiên bản với lọc loader theo instance; Data Packs cài theo từng thế giới.",
+          rel_1_1_9_b1: "<strong>CurseForge:</strong> Cài mod, resource pack, shader và modpack trực tiếp từ CurseForge, đổi phiên bản với lọc loader theo instance, và cài Data Packs theo từng thế giới.",
           rel_1_1_9_b2: "<strong>Nội dung instance:</strong> Danh sách cập nhật thời gian thực khi thêm/xóa file, hiển thị trạng thái kiểm tra nguồn và đổi phiên bản tại chỗ cho cả Modrinth &amp; CurseForge.",
           rel_1_1_9_b3: "<strong>Tiện ích hệ thống:</strong> Thanh tiến độ trên biểu tượng taskbar Windows khi tải modpack, thông báo có logo Hyperix, thanh quản lý dung lượng ổ đĩa 4 phần không làm treo app.",
-          rel_1_1_9_b4: "<strong>Giao diện:</strong> Các hộp thoại dùng chung chuẩn toàn màn hình làm mờ nền; sidebar giữ đủ nút khi thu nhỏ cửa sổ; lưu thời gian chơi ở cấp launcher.",
+          rel_1_1_9_b4: "<strong>Giao diện:</strong> Các hộp thoại dùng chung chuẩn toàn màn hình làm mờ nền, sidebar giữ đủ nút khi thu nhỏ cửa sổ, và lưu thời gian chơi ở cấp launcher.",
 
           rel_1_1_8_summary: "Hyperix 1.1.8 cải tiến trình quản lý nội dung và cài đặt instance, thêm bộ lọc an toàn cho nội dung đính kèm Modrinth, và sửa lỗi hiển thị phân lớp giao diện.",
           rel_1_1_8_b1: "Cải tiến quản lý nội dung instance và các tùy chọn cài đặt.",
@@ -1149,7 +1134,7 @@
       };
 
       // Natural Vietnamese copy takes precedence over legacy translations.
-      Object.assign(translations.en, {"features_kicker":"WHAT HYPERIX DOES","feat_1_title":"Isolated instances","feat_1_desc":"Every setup keeps its own mods, worlds, configs and resource packs, so one experiment never breaks another.","feat_2_title":"Modrinth &amp; CurseForge","feat_2_desc":"Install mods, modpacks, resource packs, shaders and data packs from both catalogs, filtered to match your instance's loader and version.","feat_3_title":"Every major loader","feat_3_desc":"Vanilla, Fabric, Quilt, Forge and NeoForge, each launched exactly as you chose it.","feat_4_title":"Protected sign-in","feat_4_desc":"Sign in with Microsoft or Ely.by. Tokens are encrypted with Windows DPAPI and never written to logs or telemetry.","feat_5_title":"Skins in 3D","feat_5_desc":"Preview skins in interactive 3D, pick Classic or Slim, then apply the skin and cape to your Microsoft account.","feat_6_title":"Servers at a glance","feat_6_desc":"See latency, status and player counts with live pings before you join.","trust_eyebrow":"WHY HYPERIX","trust_title":"Built to respect<br /><em>players and creators.</em>","trust_1_title":"Official sources only","trust_2_title":"Creators decide","trust_3_title":"Your account stays yours","trust_3_desc":"Sign-in credentials are protected with Windows DPAPI on your PC and are never stored in plain text.","trust_4_title":"Free, no ads","trust_4_desc":"The launcher is free to download and use, with no advertisements or bundled adware. Technical telemetry can be turned off in Settings. <a href=\"./privacy.html\">Privacy policy ↗</a>","faq_eyebrow":"QUESTIONS","faq_title":"Good to know<br /><em>before you download.</em>","faq_1_q":"Is Hyperix free?","faq_1_a":"Yes. Hyperix is free to download and use, with no advertisements or bundled adware.","faq_2_q":"Which Minecraft does it run?","faq_2_a":"Minecraft: Java Edition, with Vanilla, Fabric, Quilt, Forge and NeoForge instances. Sign in with a Microsoft account that owns Java Edition; Ely.by accounts are also supported.","faq_3_q":"Microsoft Store or the direct installer?","faq_3_a":"Both install the same Hyperix app. The Microsoft Store handles installation and updates for you. The direct installer (.exe) may trigger a Windows SmartScreen notice for new releases, so verify the SHA-256 checksum shown in the download section.","faq_4_q":"Is my Microsoft account safe?","faq_4_a":"Sign-in tokens are encrypted with Windows DPAPI, tied to your Windows user account, and never stored in plain text. They stay out of the launcher interface, logs, telemetry and crash reports.","faq_5_q":"Where are my worlds and mods stored?","faq_5_a":"On your PC. Instances, worlds, mods, screenshots and settings stay local, and telemetry never includes world names, mod lists or file paths. You can turn telemetry off in Settings → Privacy.","faq_6_q":"Can I play with friends?","faq_6_a":"Play with friends is in development and not included in the current stable release. You can preview it further down this page.","faq_7_q":"What do I need?","faq_7_a":"Windows 10 version 2004 or later, or Windows 11, on a 64-bit (x64) PC, plus an internet connection for sign-in and downloads. You don't need to install Java first: Hyperix downloads a verified Eclipse Temurin runtime when a game version needs it.","hero_hint":"The download button starts the installer directly. <a href=\"#installation\">Verify the SHA-256 checksum ↓</a>","changelog_all_notes":"All release notes ↗"});
+      Object.assign(translations.en, {"features_kicker":"WHAT HYPERIX DOES","feat_1_title":"Isolated instances","feat_1_desc":"Every setup keeps its own mods, worlds, configs and resource packs, so one experiment never breaks another.","feat_2_title":"Modrinth &amp; CurseForge","feat_2_desc":"Install mods, modpacks, resource packs, shaders and data packs from both catalogs, filtered to match your instance's loader and version.","feat_3_title":"Every major loader","feat_3_desc":"Vanilla, Fabric, Quilt, Forge and NeoForge, each launched exactly as you chose it.","feat_4_title":"Protected sign-in","feat_4_desc":"Sign in with Microsoft or Ely.by. Tokens are encrypted with Windows DPAPI and never written to logs or telemetry.","feat_5_title":"Skins in 3D","feat_5_desc":"Preview skins in interactive 3D, pick Classic or Slim, then apply the skin and cape to your Microsoft account.","feat_6_title":"Servers at a glance","feat_6_desc":"See latency, status and player counts with live pings before you join.","trust_eyebrow":"WHY HYPERIX","trust_title":"Built to respect<br /><em>players and creators.</em>","trust_1_title":"Official sources only","trust_2_title":"Creators decide","trust_3_title":"Your account stays yours","trust_3_desc":"Sign-in credentials are protected with Windows DPAPI on your PC and are never stored in plain text.","trust_4_title":"Free, no ads","trust_4_desc":"The launcher is free to download and use, with no advertisements or bundled adware. Technical telemetry can be turned off in Settings. <a href=\"./privacy.html\">Privacy policy ↗</a>","faq_eyebrow":"QUESTIONS","faq_title":"Good to know<br /><em>before you download.</em>","faq_1_q":"Is Hyperix free?","faq_1_a":"Yes. Hyperix is free to download and use, with no advertisements or bundled adware.","faq_2_q":"Which Minecraft does it run?","faq_2_a":"Minecraft: Java Edition, with Vanilla, Fabric, Quilt, Forge and NeoForge instances. Sign in with a Microsoft account that owns Java Edition. Ely.by accounts are also supported.","faq_3_q":"Microsoft Store or the direct installer?","faq_3_a":"Both install the same Hyperix app. The Microsoft Store handles installation and updates for you. The direct installer (.exe) may trigger a Windows SmartScreen notice for new releases, so verify the SHA-256 checksum shown in the download section.","faq_4_q":"Is my Microsoft account safe?","faq_4_a":"Sign-in tokens are encrypted with Windows DPAPI, tied to your Windows user account, and never stored in plain text. They stay out of the launcher interface, logs, telemetry and crash reports.","faq_5_q":"Where are my worlds and mods stored?","faq_5_a":"On your PC. Instances, worlds, mods, screenshots and settings stay local, and telemetry never includes world names, mod lists or file paths. You can turn telemetry off in Settings → Privacy. If you use Hyperix Connect, your Hyperix ID and friends list are stored online.","faq_6_q":"Can I play with friends?","faq_6_a":"Play with friends is in development and not included in the current stable release. You can preview it further down this page.","faq_7_q":"What do I need?","faq_7_a":"Windows 10 version 2004 or later, or Windows 11, on a 64-bit (x64) PC, plus an internet connection for sign-in and downloads. You don't need to install Java first: Hyperix downloads a verified Eclipse Temurin runtime when a game version needs it.","hero_hint":"The download button starts the installer directly. <a href=\"#installation\">Verify the SHA-256 checksum ↓</a>","changelog_all_notes":"All release notes ↗"});
       Object.assign(translations.en, { credits_eyebrow: 'Credits', credits_title: 'Built together,<br /><em>shipped with care.</em>', credits_lede: 'Hyperix is maintained by one developer, with support from contributors who helped shape the app.', credits_role_maintainer: 'Maintainer', credits_role_contributor: 'Contributor', credits_thanks: 'Thanks also to everyone who tests releases and reports issues. <a href="./support.html">Get involved ↗</a>', credits_support_label: 'Support development', credits_support_copy: "Donations are voluntary and help cover infrastructure and development time. They don't unlock features or in-game perks." });
       Object.assign(translations.en, { hero_meta_platform: 'Windows · x64', hero_meta_free: 'Free · No ads', hero_meta_sources: 'Modrinth · CurseForge' });
       Object.assign(translations.en, { nav_features: 'Features', nav_gallery: 'Gallery', p2p_step1_label:'01 / HOST', p2p_step2_label:'02 / SHARE', p2p_step3_label:'03 / PLAY' });
@@ -1667,10 +1652,10 @@
       // Hero video playback and cinematic scroll stage are managed in hero-video.js.
     </script>
     <script src="./mux-hero-video.js"></script>
-    <script src="./spotify-music.js"></script>
     <script src="./gallery-slider.js?v=gallery-lang-20261021b"></script>
     <!-- Motion layer: Lenis smooth scroll, choreographed reveals, section rail -->
     <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.27/dist/lenis.min.js" integrity="sha384-R18XzqnxvVLEF+BYfhpmDx30v7eP83fAckyfoRzK7/Uf6nGqufcmsk0eAKo7S3RU" crossorigin="anonymous" defer></script>
     <script src="./motion.js" defer></script>
+    <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "857de82d4a984d5abd2bb400f3a44d8e"}'></script><!-- End Cloudflare Web Analytics -->
   </body>
 </html>

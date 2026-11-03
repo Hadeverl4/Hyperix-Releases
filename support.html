@@ -5,9 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="Hyperix Launcher support and security information." />
     <title>Support — Hyperix Launcher</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@1,6..72,400;1,6..72,500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link href="./fonts.css" rel="stylesheet" />
     <link rel="icon" type="image/x-icon" href="./favicon.ico?v=artwork-20261020" />
     <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon-16x16.png?v=artwork-20261020" />
     <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png?v=artwork-20261020" />
@@ -48,19 +46,22 @@
           <p class="eyebrow" data-i18n="support_eyebrow">Support</p>
         </div>
         <h1 data-i18n="support_h1">Help us reproduce the issue safely.</h1>
-        <p class="lede" data-i18n="support_lede">Hyperix is maintained independently. Please include the launcher version, Windows version, relevant Minecraft version/loader, reproducible steps, and a sanitized error message.</p>
+        <p class="lede" data-i18n="support_lede">Hyperix is maintained independently. Please include your launcher version, Windows version, Minecraft version and loader, the steps to reproduce the problem, and the error message with private details removed.</p>
 
         <h2 data-i18n="support_h2_general">General support</h2>
         <p data-i18n="support_p_general">Use the official <a href="https://github.com/Hadeverl4/Hyperix-Launcher/issues" target="_blank" rel="noopener">Hyperix issue tracker</a> for a reproducible bug or feature request. Do not attach access tokens, refresh tokens, device codes, account credentials, private server addresses, worlds, or unredacted logs.</p>
 
         <h2 data-i18n="support_h2_security">Security reports</h2>
-        <p data-i18n="support_p_security">For a security issue, do not publish credentials or a working exploit in a public issue. Contact <a href="mailto:hyperix.contact@gmail.com">hyperix.contact@gmail.com</a> with a minimal reproduction and the affected Hyperix version. Before Store publication, this mailbox must remain monitored.</p>
+        <p data-i18n="support_p_security">If you find a security issue, please do not post credentials or a working exploit publicly. Email <a href="mailto:hyperix.contact@gmail.com">hyperix.contact@gmail.com</a> with short steps to reproduce it and the affected Hyperix version.</p>
 
         <h2 data-i18n="support_h2_content">Content and rights reports</h2>
         <p data-i18n="support_p_content">Hyperix does not host provider content. Report a mod, modpack, or creator-rights concern first through the relevant provider’s official reporting route. If Hyperix is displaying or handling that content incorrectly, include the provider project URL and an explanation in the issue tracker.</p>
 
+        <h2 data-i18n="support_h2_privacy">Privacy requests</h2>
+        <p data-i18n="support_p_privacy">To ask what data Hyperix holds about you, or to correct or delete it, email <a href="mailto:hyperix.contact@gmail.com">hyperix.contact@gmail.com</a>. The <a href="./privacy.html">Privacy Policy</a> explains what is collected.</p>
+
         <h2 data-i18n="support_h2_downloads">Official downloads</h2>
-        <p data-i18n="support_p_downloads">Only download Hyperix from this page, the official GitHub Releases page, or the <a href="https://apps.microsoft.com/detail/9nk9fxtbt77t" target="_blank" rel="noreferrer">official Microsoft Store</a>. Do not accept executables or account-login instructions from third parties.</p>
+        <p data-i18n="support_p_downloads">Download Hyperix only from this page, the official GitHub Releases page or the official Microsoft Store. Do not accept executables or sign-in instructions from anyone else.</p>
       </article>
     </main>
 
@@ -112,15 +113,17 @@
           nav_privacy: "Privacy",
           support_eyebrow: "Support",
           support_h1: "Help us reproduce the issue safely.",
-          support_lede: "Hyperix is maintained independently. Please include the launcher version, Windows version, relevant Minecraft version/loader, reproducible steps, and a sanitized error message.",
+          support_lede: "Hyperix is maintained independently. Please include your launcher version, Windows version, Minecraft version and loader, the steps to reproduce the problem, and the error message with private details removed.",
           support_h2_general: "General support",
           support_p_general: "Use the official <a href=\"https://github.com/Hadeverl4/Hyperix-Launcher/issues\" target=\"_blank\" rel=\"noopener\">Hyperix issue tracker</a> for a reproducible bug or feature request. Do not attach access tokens, refresh tokens, device codes, account credentials, private server addresses, worlds, or unredacted logs.",
           support_h2_security: "Security reports",
-          support_p_security: "For a security issue, do not publish credentials or a working exploit in a public issue. Contact <a href=\"mailto:hyperix.contact@gmail.com\">hyperix.contact@gmail.com</a> with a minimal reproduction and the affected Hyperix version. Before Store publication, this mailbox must remain monitored.",
+          support_p_security: "If you find a security issue, please do not post credentials or a working exploit publicly. Email <a href=\"mailto:hyperix.contact@gmail.com\">hyperix.contact@gmail.com</a> with short steps to reproduce it and the affected Hyperix version.",
           support_h2_content: "Content and rights reports",
           support_p_content: "Hyperix does not host provider content. Report a mod, modpack, or creator-rights concern first through the relevant provider’s official reporting route. If Hyperix is displaying or handling that content incorrectly, include the provider project URL and an explanation in the issue tracker.",
+          support_h2_privacy: "Privacy requests",
+          support_p_privacy: "To ask what data Hyperix holds about you, or to correct or delete it, email <a href=\"mailto:hyperix.contact@gmail.com\">hyperix.contact@gmail.com</a>. The <a href=\"./privacy.html\">Privacy Policy</a> explains what is collected.",
           support_h2_downloads: "Official downloads",
-          support_p_downloads: "Only download Hyperix from this page, the official GitHub Releases page, or the <a href=\"https://apps.microsoft.com/detail/9nk9fxtbt77t\" target=\"_blank\" rel=\"noreferrer\">official Microsoft Store</a>. Do not accept executables or account-login instructions from third parties.",
+          support_p_downloads: "Download Hyperix only from this page, the official GitHub Releases page or the official Microsoft Store. Do not accept executables or sign-in instructions from anyone else.",
           footer_privacy: "Privacy",
           footer_terms: "Terms",
           footer_home: "Home"
@@ -130,16 +133,18 @@
           meta_description: "Thông tin hỗ trợ và hướng dẫn bảo mật cho Hyperix Launcher.",
           nav_privacy: "Quyền riêng tư",
           support_eyebrow: "Hỗ trợ",
-          support_h1: "Giúp chúng tôi tái hiện sự cố an toàn & nhanh chóng.",
-          support_lede: "Hyperix được duy trì độc lập. Vui lòng cung cấp phiên bản launcher, bản Windows, phiên bản Minecraft/loader liên quan, các bước tái hiện lỗi và thông báo lỗi đã được lọc bỏ thông tin nhạy cảm.",
+          support_h1: "Giúp chúng tôi tái hiện lỗi một cách an toàn.",
+          support_lede: "Hyperix được duy trì độc lập. Vui lòng cho biết phiên bản launcher, phiên bản Windows, phiên bản Minecraft và loader, các bước gây ra lỗi, và thông báo lỗi đã bỏ thông tin riêng tư.",
           support_h2_general: "Hỗ trợ chung",
-          support_p_general: "Sử dụng trang <a href=\"https://github.com/Hadeverl4/Hyperix-Launcher/issues\" target=\"_blank\" rel=\"noopener\">theo dõi sự cố Hyperix chính thức</a> để báo cáo lỗi hoặc đề xuất tính năng mới. Tuyệt đối không đính kèm mã token, refresh token, mã thiết bị, mật khẩu tài khoản, địa chỉ máy chủ nội bộ, file thế giới hoặc nhật ký chưa được che thông tin cá nhân.",
+          support_p_general: "Dùng trang theo dõi lỗi chính thức của Hyperix để báo lỗi hoặc đề xuất tính năng. Đừng đính kèm token, refresh token, mã thiết bị, mật khẩu tài khoản, địa chỉ máy chủ riêng, tệp thế giới hoặc nhật ký chưa che thông tin riêng tư.",
           support_h2_security: "Báo cáo bảo mật",
-          support_p_security: "Đối với sự cố bảo mật, vui lòng không đăng công khai thông tin đăng nhập hoặc mã khai thác lỗi. Hãy liên hệ trực tiếp <a href=\"mailto:hyperix.contact@gmail.com\">hyperix.contact@gmail.com</a> kèm hướng dẫn tái hiện tối giản và phiên bản Hyperix liên quan. Hộp thư này luôn được theo dõi thường xuyên.",
+          support_p_security: "Nếu phát hiện lỗi bảo mật, vui lòng không đăng công khai thông tin đăng nhập hoặc mã khai thác. Hãy gửi tới <a href=\"mailto:hyperix.contact@gmail.com\">hyperix.contact@gmail.com</a> kèm các bước ngắn để tái hiện và phiên bản Hyperix bị ảnh hưởng.",
           support_h2_content: "Báo cáo nội dung & bản quyền",
-          support_p_content: "Hyperix không lưu trữ nội dung của nhà cung cấp. Vui lòng báo cáo thắc mắc về mod, modpack hoặc quyền tác giả trước tiên qua kênh chính thức của nền tảng tương ứng. Nếu Hyperix hiển thị hoặc xử lý nội dung không đúng, hãy gửi URL dự án cùng giải thích chi tiết trên trang theo dõi lỗi.",
+          support_p_content: "Hyperix không lưu trữ nội dung của nhà cung cấp. Với vấn đề về mod, modpack hoặc quyền tác giả, hãy báo trước qua kênh chính thức của nền tảng đó. Nếu Hyperix hiển thị hoặc xử lý nội dung sai, hãy gửi đường dẫn dự án và mô tả trên trang theo dõi lỗi.",
+          support_h2_privacy: "Yêu cầu về quyền riêng tư",
+          support_p_privacy: "Để hỏi Hyperix đang giữ dữ liệu gì về bạn, hoặc yêu cầu sửa hay xoá, vui lòng gửi tới <a href=\"mailto:hyperix.contact@gmail.com\">hyperix.contact@gmail.com</a>. <a href=\"./privacy.html\">Chính sách quyền riêng tư</a> giải thích những gì được thu thập.",
           support_h2_downloads: "Tải về chính thức",
-          support_p_downloads: "Chỉ tải Hyperix từ trang này, trang GitHub Releases chính thức hoặc <a href=\"https://apps.microsoft.com/detail/9nk9fxtbt77t\" target=\"_blank\" rel=\"noreferrer\">Microsoft Store chính thức</a>. Tuyệt đối không tải file thực thi hoặc làm theo hướng dẫn đăng nhập từ các bên thứ ba không rõ nguồn gốc.",
+          support_p_downloads: "Chỉ tải Hyperix từ trang này, trang GitHub Releases chính thức hoặc Microsoft Store chính thức. Đừng nhận tệp cài đặt hoặc làm theo hướng dẫn đăng nhập từ người khác.",
           footer_privacy: "Quyền riêng tư",
           footer_terms: "Điều khoản",
           footer_home: "Trang chủ"
@@ -195,5 +200,6 @@
     <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.27/dist/lenis.min.js" integrity="sha384-R18XzqnxvVLEF+BYfhpmDx30v7eP83fAckyfoRzK7/Uf6nGqufcmsk0eAKo7S3RU" crossorigin="anonymous" defer></script>
     <script src="./nav-state.js" defer></script>
     <script src="./motion.js" defer></script>
+    <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "857de82d4a984d5abd2bb400f3a44d8e"}'></script><!-- End Cloudflare Web Analytics -->
   </body>
 </html>
