@@ -1428,38 +1428,40 @@
         return (s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
       }
 
+      // Bullets stay under the heading they follow, so a section name shows once
+      // instead of being repeated in front of every line.
       function parseReleaseBody(body) {
-        if (!body) return { summary: '', bullets: [] };
+        if (!body) return { summary: '', groups: [] };
         const lines = body.split(/\r?\n/).map(l => l.trim()).filter(Boolean);
-        const bullets = [];
+        const groups = [];
         let summary = '';
-        let currentHeader = '';
+        let group = null;
+        const isBullet = line => line.startsWith('- ') || line.startsWith('* ');
+        const openGroup = title => {
+          group = { title, bullets: [] };
+          groups.push(group);
+        };
 
         for (let i = 0; i < lines.length; i++) {
           const line = lines[i];
           if (line.toLowerCase().startsWith('hyperix launcher') || line.toLowerCase().startsWith('hyperkraft')) {
             continue;
           }
-          if (line.startsWith('- ') || line.startsWith('* ')) {
-            const text = line.replace(/^[-*]\s+/, '');
-            if (currentHeader) {
-              bullets.push(`<strong>${escapeHtml(currentHeader)}:</strong> ${escapeHtml(text)}`);
-            } else {
-              bullets.push(escapeHtml(text));
-            }
+          if (isBullet(line)) {
+            if (!group) openGroup('');
+            group.bullets.push(escapeHtml(line.replace(/^[-*]\s+/, '')));
           } else if (line.startsWith('#')) {
-            currentHeader = line.replace(/^#+\s*/, '');
+            openGroup(line.replace(/^#+\s*/, ''));
+          } else if (i + 1 < lines.length && isBullet(lines[i + 1])) {
+            openGroup(line);
+          } else if (!summary) {
+            summary = escapeHtml(line);
           } else {
-            if (i + 1 < lines.length && (lines[i+1].startsWith('- ') || lines[i+1].startsWith('* '))) {
-              currentHeader = line;
-            } else if (!summary) {
-              summary = escapeHtml(line);
-            } else {
-              bullets.push(escapeHtml(line));
-            }
+            if (!group) openGroup('');
+            group.bullets.push(escapeHtml(line));
           }
         }
-        return { summary, bullets };
+        return { summary, groups: groups.filter(g => g.bullets.length > 0) };
       }
 
       function createReleaseCardElement(release, isLatest) {
@@ -1518,16 +1520,22 @@
           card.appendChild(summaryP);
         }
 
-        if (parsed.bullets.length > 0) {
+        parsed.groups.forEach(group => {
+          if (group.title) {
+            const title = document.createElement('h4');
+            title.className = 'release-group-title';
+            title.textContent = group.title;
+            card.appendChild(title);
+          }
           const ul = document.createElement('ul');
           ul.className = 'release-bullets';
-          parsed.bullets.forEach(b => {
+          group.bullets.forEach(b => {
             const li = document.createElement('li');
             li.innerHTML = b;
             ul.appendChild(li);
           });
           card.appendChild(ul);
-        }
+        });
 
         article.appendChild(card);
         return article;
