@@ -56,7 +56,7 @@
           <a class="source-link nav-discover" href="#features" data-i18n="nav_features">Features</a>
           <a class="source-link nav-discover" href="#gallery" data-i18n="nav_gallery">Gallery</a>
           <a class="source-link" href="#changelog" data-i18n="nav_changelog">Changelog</a>
-          <span class="release-badge" id="live-version-badge"><span class="pulse-dot" aria-hidden="true"></span> <span id="live-version-text">v2.0.0 Live</span></span>
+          <span class="release-badge" id="live-version-badge"><span class="pulse-dot" aria-hidden="true"></span> <span id="live-version-text">v2.0.1 Live</span></span>
           <a class="source-link" id="nav-store-link" href="https://apps.microsoft.com/detail/9nk9fxtbt77t" target="_blank" rel="noreferrer" data-i18n="nav_store">Microsoft Store <span aria-hidden="true">↗</span></a>
           <div class="lang-switch" role="group" aria-label="Language selection">
             <button class="lang-btn" type="button" data-lang="en" aria-label="Switch to English">EN</button>
@@ -96,7 +96,7 @@
             </div>
           </a>
 
-          <a class="button primary" id="primary-download-btn" href="https://github.com/Hadeverl4/Hyperix-Releases/releases/download/v2.0.0/Hyperix-Launcher_2.0.0_x64-setup.exe">
+          <a class="button primary" id="primary-download-btn" href="https://github.com/Hadeverl4/Hyperix-Releases/releases/download/v2.0.1/Hyperix-Launcher_2.0.1_x64-setup.exe">
             <svg class="button-icon" viewBox="0 0 24 24" aria-hidden="true">
               <path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.551H10.949M0 12.6h9.75V22.05L0 20.7m10.949-8.1H24V24l-13.051-1.8" />
             </svg>
@@ -320,7 +320,7 @@
         <h2 data-i18n="status_title">Available on Microsoft Store<br /><em>&amp; as an independent Windows release.</em></h2>
         <p data-i18n="status_desc">Hyperix is certified on the Microsoft Store and available as an independent release. It is free to download and use, with no advertisements or bundled adware.</p>
         <div class="editorial-cta">
-          <a id="available-windows-download" href="https://github.com/Hadeverl4/Hyperix-Releases/releases/download/v2.0.0/Hyperix-Launcher_2.0.0_x64-setup.exe">Download for Windows ↓</a>
+          <a id="available-windows-download" href="https://github.com/Hadeverl4/Hyperix-Releases/releases/download/v2.0.1/Hyperix-Launcher_2.0.1_x64-setup.exe">Download for Windows ↓</a>
           <a href="https://apps.microsoft.com/detail/9nk9fxtbt77t" target="_blank" rel="noreferrer">Microsoft Store <span aria-hidden="true">↗</span></a>
           <a href="./support.html">Support <span aria-hidden="true">↗</span></a>
         </div>
@@ -333,7 +333,7 @@
           <p data-i18n="notice_body">For verified one-click installation and automatic background updates, get Hyperix directly from the <strong>Microsoft Store</strong>. If you are using the standalone direct installer (.exe) above, Windows SmartScreen may show a temporary warning for new releases. Always verify the SHA-256 checksum below before running.</p>
           <button class="hash-toggle" type="button" id="hash-toggle" aria-expanded="false" aria-controls="hash-container" data-i18n="hash_show">Show SHA-256 checksum</button>
           <div class="hash-container" id="hash-container" hidden>
-            <code id="sha256-code">v2.0.0 SHA-256: 73baeb239000f08b2eee82d3462e417f04c3abbc9977019530692876b0463b1a</code>
+            <code id="sha256-code">v2.0.1 SHA-256: 20ddf6cf12b5359c83f4d6dcf70acaffd835a05e26b6d356ec659781b8559886</code>
             <button class="copy-hash-btn" type="button" id="copy-hash-btn" aria-label="Copy SHA-256 checksum" data-i18n="copy_btn">Copy</button>
           </div>
         </aside>
@@ -1390,7 +1390,7 @@
         const badgeText = document.getElementById('live-version-text');
         if (badgeText) {
           const tagMatch = badgeText.textContent.match(/v\d+\.\d+\.\d+/);
-          const tag = tagMatch ? tagMatch[0] : 'v2.0.0';
+          const tag = tagMatch ? tagMatch[0] : 'v2.0.1';
           badgeText.textContent = `${tag} ${translations[lang].rel_live_suffix}`;
         }
       }
@@ -1403,8 +1403,8 @@
         });
       });
 
-      // Current SHA-256 Hash for latest release (v2.0.0)
-      let currentSha256 = '73baeb239000f08b2eee82d3462e417f04c3abbc9977019530692876b0463b1a';
+      // Current SHA-256 Hash for latest release (v2.0.1)
+      let currentSha256 = '20ddf6cf12b5359c83f4d6dcf70acaffd835a05e26b6d356ec659781b8559886';
 
       // Copy SHA-256 Hash
       const copyBtn = document.getElementById('copy-hash-btn');
