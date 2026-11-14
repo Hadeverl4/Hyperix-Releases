@@ -53,6 +53,13 @@ motion.css
 motion.js
 mux-hero-video.js
 nav-state.js
+news-blocks.js
+news-page.js
+news.css
+news.html
+news/images/hyperix-home.png
+news/v1/feed.json
+news/v1/feed.json.sig
 open-mod.css
 open-mod.html
 open-mod.js
