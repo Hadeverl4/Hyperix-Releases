@@ -57,7 +57,7 @@
           <a class="source-link nav-discover" href="#gallery" data-i18n="nav_gallery">Gallery</a>
           <a class="source-link" href="#changelog" data-i18n="nav_changelog">Changelog</a>
           <span class="release-badge" id="live-version-badge"><span class="pulse-dot" aria-hidden="true"></span> <span id="live-version-text">v2.0.2 Live</span></span>
-          <a class="source-link" id="nav-store-link" href="https://apps.microsoft.com/detail/9nk9fxtbt77t" target="_blank" rel="noreferrer" data-i18n="nav_store">Microsoft Store <span aria-hidden="true">↗</span></a>
+          <a class="source-link" id="nav-store-link" data-store-link hidden href="https://apps.microsoft.com/detail/9nk9fxtbt77t" target="_blank" rel="noreferrer" data-i18n="nav_store">Microsoft Store <span aria-hidden="true">↗</span></a>
           <div class="lang-switch" role="group" aria-label="Language selection">
             <button class="lang-btn" type="button" data-lang="en" aria-label="Switch to English">EN</button>
             <span class="lang-divider" aria-hidden="true">/</span>
@@ -72,7 +72,7 @@
           <div class="eyebrow-badge">
             <p class="eyebrow" data-i18n="eyebrow_launcher">Independent Minecraft desktop launcher</p>
           </div>
-          <span class="store-certified-pill">
+          <span class="store-certified-pill" data-store-link hidden>
             <svg viewBox="0 0 16 16" aria-hidden="true">
               <path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"/>
             </svg>
@@ -83,7 +83,7 @@
         <p class="lede" data-i18n="hero_lede">Hyperix helps players create and manage isolated Minecraft instances, organize local content, and understand what belongs to each setup.</p>
 
         <div class="actions">
-          <a class="store-badge-btn" id="ms-store-btn" href="https://apps.microsoft.com/detail/9nk9fxtbt77t" target="_blank" rel="noreferrer" aria-label="Get Hyperix from the Microsoft Store">
+          <a class="store-badge-btn" id="ms-store-btn" data-store-link hidden href="https://apps.microsoft.com/detail/9nk9fxtbt77t" target="_blank" rel="noreferrer" aria-label="Get Hyperix from the Microsoft Store">
             <svg class="ms-store-logo" viewBox="0 0 24 24" aria-hidden="true">
               <rect x="1" y="1" width="10" height="10" fill="#f25022" rx="1.5" />
               <rect x="13" y="1" width="10" height="10" fill="#7fba00" rx="1.5" />
@@ -293,7 +293,7 @@
             <summary><span data-i18n="faq_2_q">Which Minecraft does it run?</span></summary>
             <p data-i18n="faq_2_a">Minecraft: Java Edition, with Vanilla, Fabric, Quilt, Forge and NeoForge instances. Sign in with a Microsoft account that owns Java Edition. Ely.by accounts are also supported.</p>
           </details>
-          <details class="hx-faq-item">
+          <details class="hx-faq-item" data-store-link hidden>
             <summary><span data-i18n="faq_3_q">Microsoft Store or the direct installer?</span></summary>
             <p data-i18n="faq_3_a">Both install the same Hyperix app. The Microsoft Store handles installation and updates for you. The direct installer (.exe) may trigger a Windows SmartScreen notice for new releases, so verify the SHA-256 checksum shown in the download section.</p>
           </details>
@@ -317,11 +317,11 @@
       </section>
       <section class="status editorial-status" id="available-platforms" aria-label="Project status">
         <p class="eyebrow" data-i18n="status_eyebrow">Project status</p>
-        <h2 data-i18n="status_title">Available on Microsoft Store<br /><em>&amp; as an independent Windows release.</em></h2>
-        <p data-i18n="status_desc">Hyperix is certified on the Microsoft Store and available as an independent release. It is free to download and use, with no advertisements or bundled adware.</p>
+        <h2 data-i18n="status_title">Free for Windows<br /><em>as an independent release.</em></h2>
+        <p data-i18n="status_desc">Hyperix is available as an independent Windows release. It is free to download and use, with no advertisements or bundled adware.</p>
         <div class="editorial-cta">
           <a id="available-windows-download" href="https://github.com/Hadeverl4/Hyperix-Releases/releases/download/v2.0.2/Hyperix-Launcher_2.0.2_x64-setup.exe">Download for Windows ↓</a>
-          <a href="https://apps.microsoft.com/detail/9nk9fxtbt77t" target="_blank" rel="noreferrer">Microsoft Store <span aria-hidden="true">↗</span></a>
+          <a data-store-link hidden href="https://apps.microsoft.com/detail/9nk9fxtbt77t" target="_blank" rel="noreferrer">Microsoft Store <span aria-hidden="true">↗</span></a>
           <a href="./support.html">Support <span aria-hidden="true">↗</span></a>
         </div>
       </section>
@@ -330,7 +330,7 @@
           <div class="download-notice-header">
             <strong data-i18n="notice_header">Windows Installation & Integrity</strong>
           </div>
-          <p data-i18n="notice_body">For verified one-click installation and automatic background updates, get Hyperix directly from the <strong>Microsoft Store</strong>. If you are using the standalone direct installer (.exe) above, Windows SmartScreen may show a temporary warning for new releases. Always verify the SHA-256 checksum below before running.</p>
+          <p data-i18n="notice_body">Windows SmartScreen may show a temporary warning for new releases of the direct installer (.exe). Always verify the SHA-256 checksum below before running it.</p>
           <button class="hash-toggle" type="button" id="hash-toggle" aria-expanded="false" aria-controls="hash-container" data-i18n="hash_show">Show SHA-256 checksum</button>
           <div class="hash-container" id="hash-container" hidden>
             <code id="sha256-code">v2.0.2 SHA-256: 87fee603db8c0964c357bde2e041800ea045e822e52ae39bd6f8ba6205d2cf6c</code>
@@ -798,7 +798,7 @@
           </div>
           <div>
             <span class="hx-footer-label" data-i18n="footer_col_get">Get Hyperix</span>
-            <a href="https://apps.microsoft.com/detail/9nk9fxtbt77t" target="_blank" rel="noreferrer">Microsoft Store</a>
+            <a data-store-link hidden href="https://apps.microsoft.com/detail/9nk9fxtbt77t" target="_blank" rel="noreferrer">Microsoft Store</a>
             <a href="#available-platforms" data-i18n="footer_download">Download for Windows</a>
             <a href="#contributors" data-i18n="footer_donate">Support development</a>
           </div>
@@ -854,7 +854,7 @@
           btn_download: "Download for Windows",
           btn_changelog: "Releases &amp; Changelog <span aria-hidden=\"true\">↓</span>",
           notice_header: "Windows Installation &amp; Integrity",
-          notice_body: "For verified one-click installation and automatic background updates, get Hyperix directly from the <strong>Microsoft Store</strong>. If you are using the standalone direct installer (.exe) above, Windows SmartScreen may show a temporary warning for new releases. Always verify the SHA-256 checksum below before running.",
+          notice_body: "Windows SmartScreen may show a temporary warning for new releases of the direct installer (.exe). Always verify the SHA-256 checksum below before running it.",
           copy_btn: "Copy",
           hash_show: "Show SHA-256 checksum",
           hash_hide: "Hide SHA-256 checksum",
@@ -913,8 +913,8 @@
           policy_p1: "Hyperix uses official provider APIs for compatible Minecraft content discovery. It does not scrape provider websites, re-host files, bypass author restrictions, or present creator content as its own.",
           policy_p2: "For CurseForge, a project is downloaded only where the creator has explicitly approved third-party distribution. Otherwise, Hyperix directs the player to the official project page.",
           status_eyebrow: "Project status",
-          status_title: "Available on Microsoft Store<br /><em>&amp; as an independent Windows release.</em>",
-          status_desc: "Hyperix is certified on the Microsoft Store and available as an independent release. It is free to download and use, with no advertisements or bundled adware.",
+          status_title: "Free for Windows<br /><em>as an independent release.</em>",
+          status_desc: "Hyperix is available as an independent Windows release. It is free to download and use, with no advertisements or bundled adware.",
           footer_tagline: "Independent Minecraft launcher project",
           footer_privacy: "Privacy",
           footer_terms: "Terms",
@@ -966,7 +966,7 @@
           btn_download: "Tải về cho Windows",
           btn_changelog: "Các bản phát hành &amp; Thay đổi <span aria-hidden=\"true\">↓</span>",
           notice_header: "Cài đặt &amp; Kiểm tra toàn vẹn trên Windows",
-          notice_body: "Để cài đặt 1 chạm đã qua kiểm duyệt và tự động cập nhật ngầm, hãy tải Hyperix trực tiếp từ <strong>Microsoft Store</strong>. Nếu sử dụng bản cài đặt độc lập (.exe) ở trên, Windows SmartScreen có thể hiển thị cảnh báo tạm thời đối với các bản phát hành mới. Hãy luôn đối chiếu mã kiểm tra SHA-256 bên dưới trước khi mở.",
+          notice_body: "Với bộ cài trực tiếp (.exe), Windows SmartScreen đôi khi sẽ cảnh báo tạm thời với bản phát hành mới. Hãy kiểm tra mã SHA-256 bên dưới trước khi mở file.",
           copy_btn: "Sao chép",
           hash_show: 'Hiá»‡n mÃ£ SHA-256',
           hash_hide: 'áº¨n mÃ£ SHA-256',
@@ -1025,8 +1025,8 @@
           policy_p1: "Hyperix sử dụng API chính thức của các nền tảng để tìm kiếm nội dung Minecraft tương thích. Chúng tôi không thu thập lậu từ trang web, không tự ý lưu trữ lại tệp tin, không phá vỡ giới hạn phân phối của tác giả và không nhận tác phẩm của cộng đồng làm của mình.",
           policy_p2: "Đối với CurseForge, tệp chỉ được tải trực tiếp khi tác giả đã bật quyền cho phép phân phối qua bên thứ ba. Nếu không, Hyperix sẽ điều hướng người chơi đến trang chính thức của dự án.",
           status_eyebrow: "Trạng thái dự án",
-          status_title: "Đã có mặt trên Microsoft Store &amp; Bản phát hành Windows độc lập.",
-          status_desc: "Hyperix đã được chứng nhận trên Microsoft Store và cung cấp dưới dạng bản phát hành độc lập. Hyperix miễn phí tải và sử dụng, không quảng cáo và không cài kèm phần mềm quảng cáo.",
+          status_title: "Miễn phí cho Windows<br /><em>dưới dạng bản phát hành độc lập.</em>",
+          status_desc: "Hyperix có dưới dạng bộ cài Windows độc lập, miễn phí tải và sử dụng, không quảng cáo hay phần mềm đi kèm không mong muốn.",
           footer_tagline: "Dự án trình khởi chạy Minecraft độc lập",
           footer_privacy: "Quyền riêng tư",
           footer_terms: "Điều khoản",
