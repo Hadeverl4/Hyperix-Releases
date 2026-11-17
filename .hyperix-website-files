@@ -46,6 +46,8 @@ favicon.ico
 fonts.css
 gallery-slider.js
 hash-toggle.js
+horizon-builds.json
+horizon-builds.json.sig
 hx-theme.css
 index.html
 mobile-polish.css
