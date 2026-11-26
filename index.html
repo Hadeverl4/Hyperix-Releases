@@ -58,7 +58,7 @@
           <a class="source-link nav-discover" href="#gallery" data-i18n="nav_gallery">Gallery</a>
           <a class="source-link nav-news" href="./news.html" data-i18n="nav_news">News</a>
           <a class="source-link" href="#changelog" data-i18n="nav_changelog">Changelog</a>
-          <span class="release-badge" id="live-version-badge"><span class="pulse-dot" aria-hidden="true"></span> <span id="live-version-text">v2.0.2 Live</span></span>
+          <span class="release-badge" id="live-version-badge"><span class="pulse-dot" aria-hidden="true"></span> <span id="live-version-text">v2.0.3 Live</span></span>
           <a class="source-link" id="nav-store-link" data-store-link hidden href="https://apps.microsoft.com/detail/9nk9fxtbt77t" target="_blank" rel="noreferrer" data-i18n="nav_store">Microsoft Store <span aria-hidden="true">↗</span></a>
           <div class="lang-switch" role="group" aria-label="Language selection">
             <button class="lang-btn" type="button" data-lang="en" aria-label="Switch to English">EN</button>
@@ -98,7 +98,7 @@
             </div>
           </a>
 
-          <a class="button primary" id="primary-download-btn" href="https://github.com/Hadeverl4/Hyperix-Releases/releases/download/v2.0.2/Hyperix-Launcher_2.0.2_x64-setup.exe">
+          <a class="button primary" id="primary-download-btn" href="https://github.com/Hadeverl4/Hyperix-Releases/releases/download/v2.0.3/Hyperix-Launcher_2.0.3_x64-setup.exe">
             <svg class="button-icon" viewBox="0 0 24 24" aria-hidden="true">
               <path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.551H10.949M0 12.6h9.75V22.05L0 20.7m10.949-8.1H24V24l-13.051-1.8" />
             </svg>
@@ -322,7 +322,7 @@
         <h2 data-i18n="status_title">Free for Windows<br /><em>as an independent release.</em></h2>
         <p data-i18n="status_desc">Hyperix is available as an independent Windows release. It is free to download and use, with no advertisements or bundled adware.</p>
         <div class="editorial-cta">
-          <a id="available-windows-download" href="https://github.com/Hadeverl4/Hyperix-Releases/releases/download/v2.0.2/Hyperix-Launcher_2.0.2_x64-setup.exe">Download for Windows ↓</a>
+          <a id="available-windows-download" href="https://github.com/Hadeverl4/Hyperix-Releases/releases/download/v2.0.3/Hyperix-Launcher_2.0.3_x64-setup.exe">Download for Windows ↓</a>
           <a data-store-link hidden href="https://apps.microsoft.com/detail/9nk9fxtbt77t" target="_blank" rel="noreferrer">Microsoft Store <span aria-hidden="true">↗</span></a>
           <a href="./support.html">Support <span aria-hidden="true">↗</span></a>
         </div>
@@ -335,7 +335,7 @@
           <p data-i18n="notice_body">Windows SmartScreen may show a temporary warning for new releases of the direct installer (.exe). Always verify the SHA-256 checksum below before running it.</p>
           <button class="hash-toggle" type="button" id="hash-toggle" aria-expanded="false" aria-controls="hash-container" data-i18n="hash_show">Show SHA-256 checksum</button>
           <div class="hash-container" id="hash-container" hidden>
-            <code id="sha256-code">v2.0.2 SHA-256: 87fee603db8c0964c357bde2e041800ea045e822e52ae39bd6f8ba6205d2cf6c</code>
+            <code id="sha256-code">v2.0.3 SHA-256: 45a2d3bcc2c3d625414c794a0fffc91d9f454e66b387462e144c214f1273ead5</code>
             <button class="copy-hash-btn" type="button" id="copy-hash-btn" aria-label="Copy SHA-256 checksum" data-i18n="copy_btn">Copy</button>
           </div>
         </aside>
@@ -1403,7 +1403,7 @@
         const badgeText = document.getElementById('live-version-text');
         if (badgeText) {
           const tagMatch = badgeText.textContent.match(/v\d+\.\d+\.\d+/);
-          const tag = tagMatch ? tagMatch[0] : 'v2.0.2';
+          const tag = tagMatch ? tagMatch[0] : 'v2.0.3';
           badgeText.textContent = `${tag} ${translations[lang].rel_live_suffix}`;
         }
       }
@@ -1416,8 +1416,8 @@
         });
       });
 
-      // Current SHA-256 Hash for latest release (v2.0.2)
-      let currentSha256 = '87fee603db8c0964c357bde2e041800ea045e822e52ae39bd6f8ba6205d2cf6c';
+      // Current SHA-256 Hash for latest release (v2.0.3)
+      let currentSha256 = '45a2d3bcc2c3d625414c794a0fffc91d9f454e66b387462e144c214f1273ead5';
 
       // Copy SHA-256 Hash
       const copyBtn = document.getElementById('copy-hash-btn');
