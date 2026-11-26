@@ -57,6 +57,7 @@ mux-hero-video.js
 nav-state.js
 news-blocks.js
 news-page.js
+news-teaser.js
 news.css
 news.html
 news/images/hyperix-home.png
