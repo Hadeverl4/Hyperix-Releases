@@ -1592,8 +1592,12 @@
           if (!res.ok) throw new Error('API unavailable');
           return res.json();
         })
-        .then((releases) => {
-          if (!Array.isArray(releases) || releases.length === 0) return;
+        .then((allReleases) => {
+          if (!Array.isArray(allReleases)) return;
+          // The home page shows stable releases only. Betas (prereleases) and the
+          // beta-channel feed release live on beta.html.
+          const releases = allReleases.filter((r) => r && !r.draft && !r.prerelease);
+          if (releases.length === 0) return;
 
           const latest = releases[0];
           const latestTag = latest.tag_name;
